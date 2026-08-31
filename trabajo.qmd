@@ -1,0 +1,19 @@
+---
+title: "Crime"
+author: "pau, fer, y teo"
+format: typst
+editor: visual
+---
+
+## Trabajo
+
+Instalamos la bd
+
+```{r}
+install.packages("pder")
+```
+
+```{r}
+library(pder)
+data("Mafia")
+```
