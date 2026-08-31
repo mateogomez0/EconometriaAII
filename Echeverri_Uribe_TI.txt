@@ -1,0 +1,23 @@
+Nota=4.8
+- Introducción: buena redacción y buena estructura. Muy bien motivado, con un objetivo claro y como se llega a él con los datos y la metodología. Faltó resaltar la
+contribución del actual estudio. Es importante que utilicen referencias para sustentar las ideas, no hay una sola referencia en la introducción.
+- Revisión de literatura: faltó un par de líneas de introducción en esta sección presentando la importancia del tema y luego si entrando a la literatura
+existente sobre el tema. Se entra muy rápido al listado de la evidencia
+- Se debió anclar mejor el último párrafo de la revisión de literatura con la contribución del actual documento a la luz de la evidencia mostrada, qué hueco en esa
+literatura se pretende llenar con el actual estudio? Ser más directo en vender la idea. En general, buena revisión.
+- En la sección 3.1 Datos, faltó una tabla resumen de las variables, eso ayuda mucho a realizar una lectura más fluida
+- Buen análisis ESDA
+- Buena presentación de los resultados, pero faltaron los cálculos de los efectos directos e indirectos. Entiendo que les dio el SEM, lo cual es raro, quizás se debe
+a la selección de la W sobre knn=4, pero hubiera sido bueno defender/completar el análisis con los spillovers
+
+
+
+Comentarios menores
+- Ser más consistente en el manejo de . y , para la separación de decimales: en el texto se pone , y en las tablas se pone.
+- Demasiado sesgado al enfoque espacial: desde la tabla 1 se habla de esto, pero debe ser un poco más natural y ver primero los mapas y tests para empezar a decir eso
+- Evitar subsecciones muy cortas: en la parte 3.2 no era necesario sacar subsubsecciones, debería ser más continuo
+- La Fig 1 no es autocontenida, se debe dovolver a leer qué es Y y G. La tabla de definición de variables es importante, además de una nota definión qué es Y y G,
+o poner el título de la figura la definición y entre paréntesis Y y G. Los gráficos y tablas deben de ser autocontenidos
+- Faltó poner los p-value en los scatter plot de Moran
+- Muy buen manejo de Quarto, la edición es impecable y los mapas intercativos son muy informativos!
+ 
