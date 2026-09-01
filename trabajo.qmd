@@ -10,10 +10,49 @@ editor: visual
 Instalamos la bd
 
 ```{r}
-install.packages("pder")
-```
-
-```{r}
+#install.packages("pder")
 library(pder)
 data("Mafia")
+```
+
+limpiamos la bd
+
+```{r}
+# Cargar librerías
+library(sf)
+library(dplyr)
+
+# Cargar shapefile de Italia
+italy <- st_read("it_shp/it.shp", quiet = TRUE)
+
+# Tabla de equivalencias entre nombres del shapefile y del dataset Mafia
+equivalencias <- data.frame(
+  shp_name   = c("Turin", "Aoste", "Mantova", "Bozen", "Padova",
+                 "Reggio Emilia", "Forlì-Cesena", "Massa-Carrara",
+                 "Firenze", "Pesaro e Urbino", "Reggio Calabria",
+                 "Siracusa", "Oristrano"),
+  mafia_name = c("Torino", "Aosta", "Mantua", "Bolzano", "Padua",
+                 "Reggio Nell'Emilia", "Forli' - Cesena", "Massa Carrara",
+                 "Florence", "Pesaro E Urbino", "Reggio Di Calabria",
+                 "Syracuse", "Oristano")
+)
+
+# Filtrar y renombrar provincias para que coincidan con Mafia
+italy_clean <- italy |>
+  left_join(equivalencias, by = c("name" = "shp_name")) |>
+  mutate(province = ifelse(is.na(mafia_name), name, mafia_name)) |>
+  filter(province %in% unique(Mafia$province))
+plot(st_geometry(italy_clean))
+```
+
+matriz de pesos
+
+```{r}
+library(spdep)
+library(sf)
+
+# Centroides y matriz W por knn=4
+coords   <- st_centroid(italy_clean) |> st_coordinates()
+italy_nb <- knn2nb(knearneigh(coords, k = 4))
+italy_W  <- nb2listw(italy_nb, style = "W")
 ```
