@@ -51,37 +51,61 @@ italy_clean <- italy |>
 plot(st_geometry(italy_clean))
 ```
 
-Matriz de pesos
+Descriptivas :)
 
 ```{r}
-{r}
-library(spdep)
-library(sf)
+library(knitr)
+library(tidyr)
 
-# Centroides y matriz W por knn=4
-coords   <- st_centroid(italy_clean) |> st_coordinates()
-italy_nb <- knn2nb(knearneigh(coords, k = 4))
-italy_W  <- nb2listw(italy_nb, style = "W")
+# Tabla de estadísticas descriptivas
+Mafia |>
+  select(y, g, cd, cds1, cds2, u1, u2, mafiosi, murder) |>
+  summarise(across(everything(), list(
+    Mean = ~mean(., na.rm = TRUE),
+    SD   = ~sd(., na.rm = TRUE),
+    Min  = ~min(., na.rm = TRUE),
+    Max  = ~max(., na.rm = TRUE)
+  ))) |>
+  pivot_longer(everything(),
+               names_to  = c("Variable", ".value"),
+               names_sep = "_") |>
+  mutate(Description = c(
+    "% growth of real per-capita value added",
+    "Variation of per-capita public investment / lagged GDP",
+    "Municipalities under external commissioners",
+    "Same as cd (decree in first semester)",
+    "Same as cd (avg days < 180)",
+    "Change in log per-capita employment",
+    "Change in log per-capita hours of unemployment insurance",
+    "1st diff. of mafia-type association reports",
+    "1st diff. of mafia-related murder reports"
+  )) |>
+  select(Variable, Description, Mean, SD, Min, Max) |>
+  kable(digits = 3, caption = "Descriptive Statistics")
 ```
+
+Mapas
 
 ```{r}
 library(ggplot2)
 
-# Promediar variables por provincia (colapsar el panel)
+# Promediar variables por provincia
 mafia_avg <- Mafia |>
   group_by(province) |>
   summarise(
     y        = mean(y,        na.rm = TRUE),
     g        = mean(g,        na.rm = TRUE),
     mafiosi  = mean(mafiosi,  na.rm = TRUE),
-    murder   = mean(murder,   na.rm = TRUE)
+    murder   = mean(murder,   na.rm = TRUE),
+    cds1    = sum(cds1,     na.rm = TRUE),
+    cds2    = sum(cds2,     na.rm = TRUE) 
   )
 
 # Join con shapefile
 italy_mafia <- italy_clean |>
   left_join(mafia_avg, by = "province")
 
-# Función para no repetir código en cada mapa
+# mapa
 mapa_italia <- function(variable, titulo, leyenda) {
   ggplot(italy_mafia) +
     geom_sf(aes(fill = {{ variable }}), color = "white", linewidth = 0.2) +
@@ -96,16 +120,75 @@ mapa_italia <- function(variable, titulo, leyenda) {
 }
 
 # Mapas individuales
-mapa_y       <- mapa_italia(y,       "GDP per capita (y)",          "log GDP")
-mapa_g       <- mapa_italia(g,       "Public Spending (g)",         "log Spending")
-mapa_mafiosi <- mapa_italia(mafiosi, "Mafia Presence (mafiosi)",    "Rate")
-mapa_murder  <- mapa_italia(murder,  "Murder Rate",                 "Rate")
+mapa_y       <- mapa_italia(y,       "GDP per capita growth (y)",          "% growth")
+mapa_g       <- mapa_italia(g,       "Public Spending variation (g)",      "variation")
+mapa_mafiosi <- mapa_italia(mafiosi, "Mafia activity (mafiosi)",           "1st diff")
+mapa_murder  <- mapa_italia(murder,  "Mafia-related murders",              "1st diff")
+mapa_cds1    <- mapa_italia(cds1,    "Municipalities under commissioners (cds1)", "count")
+mapa_cds2    <- mapa_italia(cds2,    "Municipalities under commissioners (cds2)", "count")
 
-# Ver los mapas
-mapa_y
-mapa_g
-mapa_mafiosi
-mapa_murder
+# Ver todos
+mapa_y; mapa_g; mapa_mafiosi; mapa_murder; mapa_cds1; mapa_cds2
+```
+
+Matriz de pesos
+
+```{r}
+library(spdep)
+library(sf)
+
+# Centroides y matriz W por knn=4
+coords   <- st_centroid(italy_clean) |> st_coordinates()
+italy_nb <- knn2nb(knearneigh(coords, k = 4))
+italy_W  <- nb2listw(italy_nb, style = "W")
+```
+
+Test de Moran para autocorrelación espacial
+
+```{r}
+# Moran's I test para y y g
+moran_y <- moran.test(italy_mafia$y, italy_W)
+moran_g <- moran.test(italy_mafia$g, italy_W)
+
+moran_y
+moran_g
+```
+
+Scatter plot
+
+```{r}
+library(ggplot2)
+
+moran_plot_gg <- function(var, W, titulo, color) {
+  lag_var <- lag.listw(W, var)
+  df <- data.frame(x = var, y = lag_var)
+  
+  # p-value del test de Moran
+  mt <- moran.test(var, W)
+  pval <- format(mt$p.value, scientific = TRUE, digits = 3)
+  moran_i <- round(mt$estimate[1], 3)
+  
+  ggplot(df, aes(x = x, y = y)) +
+    geom_point(color = color, alpha = 0.7) +
+    geom_smooth(method = "lm", se = FALSE, color = "black", linewidth = 0.8) +
+    geom_vline(xintercept = mean(var), linetype = "dashed", color = "gray50") +
+    geom_hline(yintercept = mean(lag_var), linetype = "dashed", color = "gray50") +
+    labs(title = titulo,
+         x = "Variable", y = "Spatially lagged variable",
+         subtitle = paste0("Moran's I = ", moran_i, " | p-value = ", pval)) +
+    theme_minimal() +
+    theme(plot.title    = element_text(hjust = 0.5, face = "bold"),
+          plot.subtitle = element_text(hjust = 0.5, color = "gray40"))
+}
+
+# Generar plots
+mp_y <- moran_plot_gg(italy_mafia$y, italy_W, 
+                      "Moran Scatter Plot: GDP growth (y)", "steelblue")
+mp_g <- moran_plot_gg(italy_mafia$g, italy_W, 
+                      "Moran Scatter Plot: Public Spending (g)", "coral")
+
+mp_y
+mp_g
 ```
 
 # Econometric Model
