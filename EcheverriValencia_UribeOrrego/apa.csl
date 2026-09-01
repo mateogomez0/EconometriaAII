@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0"
+  class="in-text" default-locale="es-ES" demote-non-dropping-particle="never">
+  <info>
+    <title>APA (simplified, Spanish)</title>
+    <title-short>APA-simplified</title-short>
+    <id>http://www.zotero.org/styles/apa-simplified-spanish</id>
+    <link href="http://www.zotero.org/styles/apa-simplified-spanish" rel="self"/>
+    <author>
+      <name>ChatGPT (simplified APA for teaching)</name>
+      <email>noreply@example.com</email>
+    </author>
+    <category citation-format="author-date"/>
+    <summary>Estilo APA 7 simplificado para uso académico (docencia). Para cumplimiento estricto de APA 7, use el estilo oficial de la repositorio CSL.</summary>
+    <updated>2025-08-30T00:00:00+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This style is distributed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+
+  <!-- Ajustes globales -->
+  <locale xml:lang="es">
+    <terms>
+      <term name="editor" form="short">Ed.</term>
+      <term name="edition">ed.</term>
+      <term name="page-range-delimiter">–</term>
+      <term name="and">y</term>
+      <term name="et-al">et al.</term>
+      <term name="available at">Recuperado de</term>
+      <term name="page">p.</term>
+      <term name="page" form="short">p.</term>
+      <term name="pages">pp.</term>
+      <term name="pages" form="short">pp.</term>
+      <term name="no date">s. f.</term>
+    </terms>
+  </locale>
+
+  <macro name="author">
+    <names variable="author">
+      <name form="long" and="text" name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="never"/>
+      <label form="short" prefix=" (" suffix=")"/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="publisher"/>
+        <text variable="container-title"/>
+        <text variable="title"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" and="text" delimiter=", " initialize-with=". "/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="title" form="short"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="issued">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="title">
+    <choose>
+      <if type="article-journal webpage post-weblog" match="any">
+        <text variable="title" text-case="sentence"/>
+      </if>
+      <else>
+        <text variable="title" text-case="title"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="container-title">
+    <text variable="container-title" font-style="italic"/>
+  </macro>
+
+  <macro name="volume-issue-pages">
+    <group delimiter=", ">
+      <group>
+        <text variable="volume" font-style="italic"/>
+        <group prefix="(" suffix=")">
+          <text variable="issue"/>
+        </group>
+      </group>
+      <group>
+        <label variable="page" form="short"/>
+        <text variable="page" prefix=" "/>
+      </group>
+    </group>
+  </macro>
+
+  <macro name="publisher-place">
+    <group delimiter=": ">
+      <text variable="publisher-place"/>
+      <text variable="publisher"/>
+    </group>
+  </macro>
+
+  <macro name="doi-url">
+    <choose>
+      <if variable="DOI">
+        <text value="https://doi.org/"/>
+        <text variable="DOI"/>
+      </if>
+      <else-if variable="URL">
+        <text variable="URL"/>
+      </else-if>
+    </choose>
+  </macro>
+
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year-suffix">
+    <sort>
+      <key macro="author-short"/>
+      <key macro="issued"/>
+    </sort>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=", ">
+        <text macro="author-short"/>
+        <text macro="issued"/>
+        <group>
+          <text variable="locator" prefix="p. "/>
+        </group>
+      </group>
+    </layout>
+  </citation>
+
+  <bibliography et-al-min="7" et-al-use-first="6" line-spacing="1.2" hanging-indent="true">
+    <sort>
+      <key macro="author"/>
+      <key macro="issued"/>
+    </sort>
+    <layout>
+      <choose>
+        <!-- Artículo de revista -->
+        <if type="article-journal">
+          <group delimiter=". ">
+            <text macro="author"/>
+            <group prefix=" (" suffix=").">
+              <text macro="issued"/>
+            </group>
+            <text macro="title"/>
+            <group>
+              <text macro="container-title"/>
+              <text macro="volume-issue-pages" prefix=", "/>
+            </group>
+            <text macro="doi-url"/>
+          </group>
+        </if>
+
+        <!-- Libro -->
+        <else-if type="book">
+          <group delimiter=". ">
+            <text macro="author"/>
+            <group prefix=" (" suffix=").">
+              <text macro="issued"/>
+            </group>
+            <text macro="title" font-style="italic"/>
+            <text variable="publisher"/>
+            <text macro="doi-url"/>
+          </group>
+        </else-if>
+
+        <!-- Capítulo en libro -->
+        <else-if type="chapter paper-conference" match="any">
+          <group delimiter=". ">
+            <text macro="author"/>
+            <group prefix=" (" suffix=").">
+              <text macro="issued"/>
+            </group>
+            <text macro="title"/>
+            <group>
+              <text term="in" text-case="capitalize-first" suffix=" "/>
+              <names variable="editor">
+                <name and="text" initialize-with=". " delimiter=", "/>
+                <label form="short" prefix=" (" suffix=")"/>
+              </names>
+              <text variable="container-title" font-style="italic" prefix=", "/>
+              <group prefix=", ">
+                <label variable="page" form="short"/>
+                <text variable="page" prefix=" "/>
+              </group>
+            </group>
+            <text variable="publisher"/>
+            <text macro="doi-url"/>
+          </group>
+        </else-if>
+
+        <!-- Reporte / Working paper / Tesis -->
+        <else-if type="report thesis">
+          <group delimiter=". ">
+            <text macro="author"/>
+            <group prefix=" (" suffix=").">
+              <text macro="issued"/>
+            </group>
+            <text macro="title" font-style="italic"/>
+            <group>
+              <text variable="genre"/>
+              <text variable="number" prefix=" No. "/>
+            </group>
+            <text variable="publisher"/>
+            <text macro="doi-url"/>
+          </group>
+        </else-if>
+
+        <!-- Webpage u otros -->
+        <else>
+          <group delimiter=". ">
+            <text macro="author"/>
+            <group prefix=" (" suffix=").">
+              <text macro="issued"/>
+            </group>
+            <text macro="title"/>
+            <text macro="container-title"/>
+            <text macro="doi-url"/>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>

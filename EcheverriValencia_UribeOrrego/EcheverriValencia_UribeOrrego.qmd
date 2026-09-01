@@ -1,0 +1,1824 @@
+---
+title: "El multiplicador “Al Capone” y spillovers de la mafia: caso de provincias italianas entre 1990 y 1999"
+author:
+  - name: "Echeverri–Valencia, M. F."
+    email: "mfecheverv@eafit.edu.co"
+  - name: "Uribe–Orrego, M."
+    email: "muribeo3@eafit.edu.co"
+lang: es
+language:
+  title-block-author-single: "AUTOR"
+  title-block-author-plural: "AUTORES"
+editor: visual
+format:
+  html:
+    embed-resources: true
+    math: mathjax
+    theme: cosmo            
+    toc: true                # activar tabla de contenido
+    toc-location: left       # TOC a la izquierda
+    toc-title: "Índice"        # sin título encima del TOC
+    toc-depth: 6
+    toc-float: true           # nivel de subtítulos que aparecerán
+    smooth-scroll: true      # scroll suave al hacer clic
+    df_print: default
+    number-sections: true
+bibliography: refs.bib
+csl: apa.csl          
+link-citations: true
+---
+
+```{=html}
+<style>
+  body p,
+  body li {
+    text-align: justify !important;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+
+</style>
+
+<style>
+  .quarto-figure .figure-caption,
+  figure > figcaption.figure-caption {
+    text-align: center !important;
+  }
+</style>
+
+<style>
+:root{
+  --toc-accent: #8B5CF6;  /* color de la línea y texto activo (lavanda) */
+  --toc-border: #E9E5FF;  /* color del borde del recuadro */
+  --toc-active-bg: #F7F5FF; /* fondo suave del ítem activo (opcional) */
+}
+
+/* Contenedor del TOC (flotante o a la izquierda) */
+.quarto-sidebar #TOC,
+nav#TOC,
+nav#TOC.toc-active,
+.sidebar nav#TOC {
+  border: 1px solid var(--toc-border);
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+/* Espaciado compacto */
+#TOC ul { margin-left: 0; }
+#TOC li { margin: 2px 0; }
+
+/* Evitar justificación rara dentro del TOC */
+#TOC li, #TOC a,
+.quarto-sidebar #TOC li, .quarto-sidebar #TOC a {
+  text-align: left !important;
+  text-justify: auto !important;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+}
+
+/* Línea vertical y estilo del ítem activo */
+#TOC .nav-link { 
+  border-left: 4px solid transparent;         /* base transparente */
+  transition: color .15s ease, border-color .15s ease;
+}
+
+#TOC .nav-link.active,
+#TOC .active > .nav-link {
+  border-left-color: var(--toc-accent);       /* línea colorida */
+  padding-left: 10px;                         /* espacio para la línea */
+  color: var(--toc-accent);
+  font-weight: 600;
+  background: var(--toc-active-bg);
+}
+
+/* Hover agradable */
+#TOC .nav-link:hover { color: var(--toc-accent); }
+
+
+.quarto-sidebar { width: 280px; }
+
+</style>
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introducción
+
+La presencia de organizaciones criminales distorsiona la asignación de la inversión pública y el desempeño económico local y sus efectos rara vez se detienen en los límites administrativos. En Italia, durante la última década del siglo XX, las disoluciones de concejos municipales por infiltración mafiosa generaron interrupciones súbitas de pagos de obra pública; estos episodios constituyen un shock cuasi-exógeno que permite identificar el impacto causal de la inversión en infraestructura sobre el crecimiento del valor agregado per cápita. Dado que los contratos, las cadenas de suministro y los mercados laborales operan en redes regionales, un recorte de gasto en una provincia puede contraer la actividad de sus vecinas o, por el contrario, desplazarla hacia territorios con instituciones más sólidas. Explorar estos derrames espaciales ofrece, por tanto, evidencia clave para diseñar reglas fiscales y mecanismos de coordinación intergubernamental que internalicen costos y beneficios que exceden la jurisdicción tratada.
+
+Sobre esta base, el objetivo principal de este trabajo es estimar el multiplicador fiscal de la inversión pública a nivel provincial, distinguiendo el efecto directo en la provincia afectada del efecto de derrame sobre provincias cercanas. La combinación de un shock exógeno con un marco explícitamente espacial permite cuantificar no solo cuánto crece la economía local ante un aumento del gasto, sino también cómo ese impulso se propaga o se retrae a lo largo de la red territorial.
+
+Para responder esta pregunta se utiliza un panel anual de 95 provincias italianas entre 1990 y 1999 (950 observaciones). La variable de resultado es la tasa de crecimiento del valor agregado real per cápita, mientras que la variable explicativa principal es el cambio interanual del gasto de inversión pública en infraestructura per cápita, normalizado por el valor agregado real per cápita rezagado. La identificación se basa en dos instrumentos construidos a partir de las disoluciones: (i) disoluciones con decreto en el primer semestre ponderadas por población y (ii) disoluciones ocurridas dentro de los 180 días previos al cierre del año utilizadas con un rezago. Ambos capturan variación en la ejecución de inversión, de forma exógena al gasto local contemporáneo. Además, se controlan, en términos per cápita y cuando corresponde en diferencias logarítmicas, medidas de asociación mafiosa, extorsión, homicidios, dos indicadores de corrupción y dos proxys del mercado laboral. La dependencia espacial se modela con una matriz de cuatro vecinos más cercanos.
+
+El documento se organiza de la siguiente manera, primero se presenta una revisión de la literatura sobre crimen organizado y desempeño económico, los derrames asociados a violencia y terrorismo y el debate en torno a los multiplicadores locales y su transmisión interregional. Enseguida se describen los datos y se reportan estadísticas descriptivas. Luego se detalla la estrategia empírica que integra variables instrumentales con modelos de econometría espacial. A continuación se exponen los resultados principales y ejercicios de robustez, y, por último, se discuten las implicaciones de política y se presentan las conclusiones.
+
+# Revisión de literatura
+
+La evidencia para Italia muestra que el crimen organizado deteriora el desempeño económico local vía captura institucional, distorsiones en la contratación pública y la percepción de mayor riesgo. Con un diseño de control sintético para la región italiana de Mezzogiorno, @pinotti2015 estima contracciones notables del PIB per cápita en áreas con fuerte presencia mafiosa después de 1970. Por su parte, la comunidad autónoma española del País Vasco experimentó pérdidas económicas sustantivas en la década del 70 durante el ciclo de violencia [@abadie2003]. Estos resultados establecen una base empírica robusta: la criminalidad organizada y el terrorismo generan costos locales persistentes.
+
+Varios estudios muestran los mecanismos de transmisión de estos efectos: debido a las disrupciones en la cadena de ejecución de obras públicas, se crea una mala asignación de los recursos y una reubicación potencialmente ineficiente de la actividad económica [@buonanno2015; @daniele2011]. En el contexto italiano de finales de siglo XX, las disoluciones municipales por infiltración mafiosa (Ley 164/1991) activan recortes temporales de inversión, de forma exógena a la naturaleza cíclica del gasto, que permite estudiar el multiplicador local y, por consecuencia, derrames hacia jurisdicciones cercanas [@acconcia2014].
+
+Más allá del territorio afectado, la literatura sobre violencia y terrorismo encuentra spillovers negativos en regiones o países vecinos: menor crecimiento, caída del comercio y del turismo. En paneles internacionales los conflictos reducen el crecimiento de países colindantes [@degroot2010] y los atentados elevan el riesgo y deprimen el comercio bilateral de manera persistente [@pham2018]. Revisiones analíticas subrayan canales de transmisión vía primas de riesgo, seguros y retracción de IED [@sandler2014].
+
+No obstante hay evidencia de spillovers “positivos” por sustitución: shocks de violencia desplazan demanda (turistas, inversión) hacia destinos cercanos percibidos como más seguros. En turismo se documentan desvíos espaciales tras atentados transnacionales y en mercados ilícitos las redes reconfiguran rutas y actividad económica tras intervenciones, con efectos heterogéneos por territorio [@dell2015]. Con esto en mente, los expertos en el tema no han llegado a un consenso en cuanto a los efectos spillovers.
+
+En términos de finanzas públicas territoriales, los multiplicadores locales pueden propagarse a jurisdicciones vecinas vía encadenamientos sectoriales, movilidad laboral y efectos propios de los mercados. Para EE. UU., @nakamura2014 estiman un multiplicador cercano 1.5 a nivel regional y @auerbach2020 hallan spillovers geográficos positivos que pierden significancia ante un aumento en la distancia.
+
+Este contraste es especialmente relevante para Italia en el contexto de la década de los 90, cuando la inversión local estaba altamente centralizada en la financiación, pero descentralizada en la ejecución: los recursos eran asignados desde el gobierno central, pero los proyectos y los contratistas eran asignados por los gobiernos locales, todo esto bajo una escasa autonomía tributaria a nivel provincial. Esta estructura implica que shocks administrativos como las disoluciones interrumpen el flujo de pagos a obras locales sin cambios tributarios contemporáneos, aislando el canal de gasto y facilitando la identificación de spillovers interprovinciales a través de cadenas de suministro y empleo vinculadas a la obra pública [@acconcia2014].
+
+Sin embargo, existe una corriente que cuestiona la magnitud de los efectos espaciales. Analizando el programa de estímulos económicos ARRA (por sus siglas en inglés, American Recovery and Reinvestment Act of 2009) en EE. UU., @dupor2018 encuentran escasos spillovers interestatales en empleo: los efectos se concentran en la jurisdicción receptora y no afectan otras áreas. En un enfoque similar con gasto en infraestructura, @wilson2012 halla creación de empleo principalmente in-state, con spillovers limitados hacia estados vecinos.
+
+Más en general, trabajos sobre el estímulo económico subnacional como @chodorowreich2012 y @feyrer2011 señalan que los multiplicadores locales pueden ser contemporáneos con episodios de fugas de capitales en agregaciones territoriales que diluyen el impacto sobre áreas vecinas inmediatas; y que la reasignación sectorial dentro de grandes cadenas o firmas multirregionales puede capturar parte del efecto dentro de la propia unidad tratada. Estos trabajos académicos sugueren que, según la estructura productiva y la movilidad, los spillovers espaciales del gasto público pueden ser pequeños o no detectables en algunos contextos.
+
+La cuantificación de los spillovers asociados a shocks exógenos de inversión pública es central para el diseño de reglas fiscales y la coordinación intergubernamental. En el contexto italiano de los 90, las disoluciones municipales por infiltración mafiosa interrumpen de manera súbita y temporal los pagos de obra pública, generando contracciones de gasto con posibles efectos que trascienden las fronteras administrativas de la provincia tratada. Si dichos shocks reducen el crecimiento en jurisdicciones vecinas conectadas por cadenas de suministro, mercados laborales o redes de contratación, los costos sociales del ajuste superan el ámbito local, lo que justifica instrumentos de coordinación regional, mecanismos compensatorios o reprogramaciones de inversión para amortiguar impactos colaterales. De forma contraria, si se observan desplazamientos de actividad hacia provincias vecinas, es posible reasignar proyectos hacia territorios con mayor capacidad de ejecución.
+
+Desde el punto de vista metodológico, abordar esta cuestión con un diseño que combine variación cuasi-experimental (disoluciones como instrumentos del gasto) y econometría espacial (modelos SLX/SDM) permite identificar de forma rigurosa los efectos directos, indirectos e impactos totales del gasto, atendiendo de forma adecuada posibles dependencias entre provincias. En conjunto, los resultados permiten nutrir el debate de forma sobre los multiplicadores locales de forma abierta y puede proporcionar métricas operativas para la programación de inversión y las políticas públicas.
+
+# Datos y estadísticas descriptivas
+
+## Datos
+
+La unidad de observación es provincia–año para Italia en el periodo 1990–1999 (95 provincias). Todas las variables per cápita utilizan la población provincial y, cuando corresponde, se convierten a términos reales con base 1995. La variable de resultado $Y$ corresponde al PIB (valor agregado) per cápita real, medido como tasa de crecimiento porcentual anual entre \\(t-1\\) y $t$. La variable explicativa principal $G$ es el gasto público per cápita en inversión en infraestructura, definido como el cambio anual real de la inversión pública per cápita normalizado por el valor agregado per cápita real rezagado (\\(y\_{i, t-1}\\)); la inversión comprende rubros de transporte, saneamiento/energía/recuperación ambiental y edificaciones públicas.
+
+Para identificar shocks exógenos de gasto utilizamos indicadores de disolución del concejo municipal por infiltración mafiosa (administración forzosa). Denotamos $CD$ como el número de municipios de la provincia puestos bajo administración de comisionados externos en el año $t$ ponderado por la fracción de población provincial que reside en esos municipios. A partir de $CD$ construimos dos medidas de “timing”: $CDS1$ considera únicamente las disoluciones cuyo decreto oficial se publica en el primer semestre del año, y $CDS2$ capta los casos en los que, en promedio, el número de días entre la disolución y el fin de año es menor a 180; ambas se ponderan por población de la misma forma que $CD$.
+
+Como controles de criminalidad y corrupción a nivel provincial empleamos variables per cápita (por cada 1.000 habitantes): $Mafiosi$ (primera diferencia de personas reportadas por asociación de tipo mafioso, art. 416-bis), Murder (personas reportadas por homicidio vinculado a criminalidad organizada), $Extortion$ (primera diferencia de personas reportadas por extorsión), $Corruption 1$ (primera diferencia de personas reportadas por delitos de corrupción en sentido amplio, incluyendo peculado, malversación, concusión y cohecho) y $Corruption 2$ (primera diferencia de número de delitos registrados bajo esa misma definición amplia). En la práctica trabajamos con sus variaciones anuales y, en las especificaciones econométricas, con transformaciones en primeras diferencias logarítmicas y rezagos, tal como se detalla en la sección metodológica.
+
+Finalmente, para aproximar las condiciones del mercado laboral incorporamos dos proxies: \\(U1\\), definida como la variación del logaritmo del empleo per cápita provincial, y \\(U2\\) la variación del logaritmo de las horas per cápita cubiertas por el esquema de cassa integrazione (suspensión temporal subvencionada en grandes empresas). Completa el conjunto de datos el identificador Province (provincia) que se emplea para efectos fijos, agrupación de errores estándar y, en el análisis espacial, para distinguir y comparar derrames intra e inter provinciales.
+
+## Estadísticas descriptivas
+
+### Generales
+
+Como se muestra en la @tbl-1 las estadísticas descriptivas reflejan una elevada heterogeneidad entre provincias tanto en variables económicas como en indicadores de criminalidad y corrupción. El crecimiento anual del PIB per cápita real ($Y$) exhibe en promedio una tasa positiva de 0,46%, aunque acompañado de una alta dispersión (SD = 2,37), lo cual evidencia marcadas diferencias regionales en el desempeño económico. La variable explicativa central, el gasto público en inversión per cápita ($G$), muestra una media cercana a cero, pero con una desviación estándar considerable (1,21), indicando la presencia de episodios de fuerte expansión y contracción del gasto. En lo que respecta a los indicadores de disolución del concejo municipal por infiltración mafiosa ($CD$, $CDS1$, $CDS2$), si bien sus valores medios son reducidos, los máximos observados sugieren que en determinadas provincias se concentraron procesos excepcionales de intervención administrativa.
+
+Asimismo, los indicadores de criminalidad y corrupción (corrupción, extorsión, homicidios y asociación mafiosa) presentan valores promedio bajos en términos per cápita, aunque con variaciones relevantes que justifican su inclusión como controles en el análisis empírico. Finalmente, las variables de mercado laboral ($U1$, $U2$) muestran variaciones negativas promedio, consistentes con caídas en el empleo y en las horas trabajadas, aunque nuevamente con una dispersión no despreciable. En conjunto, estas estadísticas ponen de manifiesto la necesidad de un enfoque econométrico que permita captar el efecto del gasto público bajo condiciones de marcada heterogeneidad regional.
+
+```{r}
+#| label: Preparación de datos
+#| message: false
+#| warning: false
+#| include: false
+
+# ---- Clear the environment and imports libraries ----
+rm(list=ls(all=TRUE))
+
+pacman::p_load(
+  pder, dplyr, sf, ggplot2, stringi,
+  gganimate, gifski, viridisLite, magick,
+  spdep, purrr, scales,haven, plm, tidyverse, summarytools,tidyr, kableExtra,gt,purrr
+)
+
+# ---- Import dataset and data processing ----
+data("Mafia")
+
+# Creating the lags and renaming the variables
+df <- Mafia %>%
+  group_by(province) %>%
+  arrange(year, .by_group = TRUE) %>%
+  mutate(
+    
+    # Lags for council dismissal
+    L1cds2 = dplyr::lag(cds2, 1),
+    L2cd  = dplyr::lag(cd, 2),
+    L3cd  = dplyr::lag(cd, 3),
+    
+    # Lags for economic variables
+    Y = y,
+    G = g,
+    L1G = dplyr::lag(g, 1),
+    L2G = dplyr::lag(g, 2),
+    L1Y = dplyr::lag(y, 1),
+    L2Y = dplyr::lag(y, 2),
+    
+    # Controls in t
+    Mafiosi      = mafiosi,
+    Extortion    = extortion,
+    Corruption1  = corruption1,
+    Corruption2  = corruption2,
+    Murder       = murder,
+    Population   = pop,
+    
+    # Lags of controls
+    L1U1 = dplyr::lag(u1, 1),
+    L1U2 = dplyr::lag(u2, 1),
+    L2U1 = dplyr::lag(u1, 2),
+    L2U2 = dplyr::lag(u2, 2),
+    
+    L2CD = dplyr::lag(cd, 2),
+    L3CD = dplyr::lag(cd, 3),
+    
+    L1Mafiosi     = dplyr::lag(mafiosi, 1),
+    L1Extortion   = dplyr::lag(extortion, 1),
+    L1Corruption1 = dplyr::lag(corruption1, 1),
+    L1Corruption2 = dplyr::lag(corruption2, 1),
+    L1Murder      = dplyr::lag(murder, 1),
+    
+    L2Mafiosi     = dplyr::lag(mafiosi, 2),
+    L2Extortion   = dplyr::lag(extortion, 2),
+    L2Corruption1 = dplyr::lag(corruption1, 2),
+    L2Corruption2 = dplyr::lag(corruption2, 2),
+    L2Murder      = dplyr::lag(murder, 2),
+    
+    CD_S1 = cds1,
+    L1CD_S2 = dplyr::lag(cds2, 1)
+    
+  ) %>%
+  ungroup()
+
+# Filter for 1990 - 1999
+df_9099 <- df %>%  filter(year >= 1990, year <= 1999)
+summary(df_9099)
+dfSummary(df_9099, valid.col = FALSE, graph.col = F, silent = FALSE)
+
+# Panel data frame for Mafia
+data <- pdata.frame(df_9099, c("province","year"))
+
+```
+
+```{r}
+#| label: Estadísticas descriptivas
+#| message: false
+#| warning: false
+#| include: false
+
+# Variables a resumir
+invisible(
+vars <- c("y","g","cd","cds1","cds2",
+          "mafiosi","murder","extortion",
+          "corruption1","corruption2","u1","u2")
+)
+
+invisible(
+overall <- data %>%
+  summarise(
+    across(all_of(vars),
+           list(
+             N     = ~sum(!is.na(.)),
+             Media = ~mean(., na.rm = TRUE),
+             SD    = ~sd(.,   na.rm = TRUE),
+             Var   = ~var(.,  na.rm = TRUE),
+             Min   = ~min(.,  na.rm = TRUE),
+             Max   = ~max(.,  na.rm = TRUE)
+           ),
+           .names = "{.col}_{.fn}")
+  ) %>%
+  pivot_longer(everything(),
+               names_to = c("Variable","Estadística"),
+               names_sep = "_") %>%
+  pivot_wider(names_from = Estadística, values_from = value) %>%
+  arrange(Variable)
+)
+
+overall %>%
+  gt(rowname_col = "Variable") %>%
+  gt::fmt_number(columns = where(is.numeric), decimals = 3) %>%
+  gt::tab_header(title = "Estadísticas descriptivas – Total Italia") %>%
+  gt::tab_source_note(gt::md("Nota: N = 950, número de observaciones ; SD = desviación estándar. * Datos con 855 observaciones."))
+
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+# ---- Diccionario de nombres completos ----
+labels <- c(
+  y  = "PIB per cápita (crec. real, %)",
+  g  = "Gasto inversión pública per cápita ($\\Delta$ real / $y_{t-1}$)",
+  cd = "Disoluciones del concejo por infiltración mafiosa",
+  cds1 = "Disoluciones (decreto 1er semestre)",
+  cds2 = "Disoluciones (≤180 días hasta fin de año)",
+  mafiosi    = "Asociación mafiosa (por cada 1.000 personas)",
+  murder     = "Homicidios (por cada 1.000 personas)",
+  extortion  = "Extorsión (por cada 1.000 personas)",
+  corruption1= "Corrupción (personas por cada 1.000 personas)",
+  corruption2= "Corrupción (casos cada 1.000 personas)",
+  u1 = "$\\Delta$ en log per capita empleo*",
+  u2 = "$\\Delta$ log en horas per cápita de cassa integrazione*"
+)
+
+# --- 1) primera columna = Variable (nombre completo) + 2) quita N ---
+overall3 <- overall %>%
+  dplyr::mutate(
+    abrev    = Variable,
+    Variable = dplyr::coalesce(unname(labels[Variable]), Variable)
+  ) %>%
+  dplyr::relocate(Variable, abrev) %>%   # Variable primero, luego Abreviación
+  dplyr::select(-N)                      # eliminar la columna N
+
+# columnas numéricas (ya sin N)
+num_cols <- names(overall3)[vapply(overall3, is.numeric, logical(1))]
+```
+
+```{r}
+#| echo: false
+#| label: tbl-1
+#| tbl-cap: "Estadísticas descriptivas - Total Italia"
+#| tbl-cap-location: top
+# ---- imprime la tabla ----
+# --- 3) tabla con math en nombres (fmt_markdown en 'Variable') ---
+overall3 %>%
+  gt::gt() %>%
+  gt::cols_label(
+    Variable = "Variable",
+    abrev    = "Abreviación",
+    Media = "Media", SD = "SD", Var = "Var", Min = "Min", Max = "Max"
+  ) %>%
+  gt::fmt_markdown(columns = "Variable") %>%                          # <-- permite $...$ (MathJax)
+  gt::fmt_number(columns = dplyr::all_of(num_cols), decimals = 3) %>%
+    gt::tab_source_note(gt::md("**Nota:** N = 950, número de observaciones; SD = desviación estándar. * Datos con 855 observaciones.")) %>%
+  gt::tab_source_note(gt::md("**Fuente:** Elaboración propia con datos de ISTAT / Ministero dell’Interno.")) %>%
+  # estilo de las notas
+  gt::tab_style(
+    style = gt::cell_text(align = "left"), 
+    locations = gt::cells_source_notes()
+  ) %>%
+  gt::tab_options(source_notes.font.size = gt::px(12))
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# Definir carpeta donde están los archivos
+path <- "C:/Users/USUARIO/Downloads/gadm36_ITA_shp"  # <- ajusta tu ruta
+
+
+
+# Leer shapefiles
+
+gadm_province <- st_read(file.path(path, "gadm36_ITA_2.shp"),quiet=TRUE)
+
+kids_to_mother <- c(
+  "Barletta-Andria-Trani" = "Bari",         # (parte de Bari + parte de Foggia; aquí la mandamos a Bari)
+  "Biella"                 = "Vercelli",
+  "Carbonia-Iglesias"      = "Cagliari",
+  "Crotone"                = "Catanzaro",
+  "Fermo"                  = "Ascoli Piceno",
+  "Lecco"                  = "Como",
+  "Lodi"                   = "Milano",
+  "Medio Campidano"        = "Cagliari",    # (parte de Oristano + parte de Cagliari; aquí a Cagliari)
+  "Monza and Brianza"      = "Milano",
+  "Ogliastra"              = "Nuoro",       # (parte de Nuoro + parte de Cagliari; aquí a Nuoro)
+  "Olbia-Tempio"           = "Sassari",
+  "Prato"                  = "Florence",
+  "Rimini"                 = "Forli' - Cesena",# en 1990 era "Forlì"
+  "Verbano-Cusio-Ossola"   = "Novara",
+  "Vibo Valentia"          = "Catanzaro"
+)
+tmp <- gadm_province %>%
+  st_make_valid() %>%
+  mutate(prov_1990 = dplyr::recode(NAME_2, !!!kids_to_mother, .default = NAME_2))
+
+# 1) Geometría disuelta (una por prov_1990)
+geom_95 <- tmp %>%
+  group_by(prov_1990) %>%
+  summarise(geometry = sf::st_union(geometry), .groups = "drop")
+
+# 2) Atributos: toma una fila representativa por prov_1990 (conserva TODAS las columnas)
+attrs_95 <- tmp %>%
+  group_by(prov_1990) %>%
+  slice(1) %>%              
+  ungroup() %>%
+  select(-geometry)
+
+attrs_95_df <- sf::st_drop_geometry(attrs_95)
+
+# 3) Une geometría + atributos (join por atributo, ya sin sf a la derecha)
+gadm_province_95 <- geom_95 %>%
+  left_join(attrs_95_df, by = "prov_1990") %>%
+  mutate(NAME_2 = prov_1990) %>%
+  select(any_of(names(gadm_province)))  
+# Paquetes
+   # para unir GIFs
+invisible(
+  tmp %>%
+    filter(NAME_2 != prov_1990) %>% 
+    count(NAME_2, prov_1990, sort = TRUE)
+)
+
+map <- gadm_province_95 %>%
+  left_join(
+    data, 
+    by = c("NAME_2" = "province"),
+    suffix = c("", "_df")  # por si hay columnas con el mismo nombre
+  )
+
+# 4) Rangos independientes (cada uno con su colorbar)
+yrange_y <- range(map$y, na.rm = TRUE)
+yrange_g <- range(map$g, na.rm = TRUE)
+
+# 5) Plots Y(mismo estilo), SIN transición (frames discretos)
+p_y <- ggplot(map) +
+  geom_sf(aes(fill = y), color = "#ffffff", linewidth = 0.2) +
+  scale_fill_viridis_c(
+    option = "plasma", direction = -1,
+    limits = yrange_y, oob = scales::squish, na.value = "grey90"
+  ) +
+  labs(title = "Y por provincia", subtitle = "Año: {current_frame}", fill = NULL) +
+  theme_void() +
+  theme(
+    plot.title    = element_text(face = "bold", size = 9, hjust = 0.02),
+    plot.subtitle = element_text(face = "bold", size = 8, hjust = 0.02),
+    legend.position = c(1.1, .25),
+    legend.key.height = unit(0.5, "cm"),
+    legend.key.width  = unit(0.3, "cm"),
+    legend.text  = element_text(size = 5, face = "bold"),
+    plot.margin = margin(6, 6, 6, 6)
+  )
+p_y_anim <- p_y + transition_manual(year)
+
+# 5) Plots G
+p_g <- ggplot(map) +
+  geom_sf(aes(fill = g), color = "#ffffff", linewidth = 0.2) +
+  scale_fill_viridis_c(
+    option = "plasma", direction = -1,      # puedes cambiar la paleta si quieres
+    limits = yrange_g, oob = scales::squish, na.value = "grey90"
+  ) +
+  labs(title = "G por provincia", subtitle = "Año: {current_frame}", fill = NULL) +
+  theme_void() +
+  theme(
+    plot.title    = element_text(face = "bold", size = 9, hjust = 0.02),
+    plot.subtitle = element_text(face = "bold", size = 8, hjust = 0.02),
+    legend.position = c(1.1, .25),
+    legend.key.height = unit(0.5, "cm"),
+    legend.key.width  = unit(0.3, "cm"),
+    legend.text  = element_text(size = 5, face = "bold"),
+    plot.margin = margin(6, 6, 6, 6)
+  ) 
+
+p_g_anim <- p_g + transition_manual(year)
+
+# 6) Renderiza a GIFs con los mismos fps/duración
+fps_set <- 1
+dur_set <- length(unique(data$year))*2  # ~2 s por año (ajusta a gusto)
+
+anim<-animate(p_y_anim, renderer = gifski_renderer("map_Y.gif"),
+              width = 900, height = 600, units = "px",fps = 1, duration = dur_set,start_pause = 2.5,      # 3 frames = 3 s (con fps=1)
+  end_pause   = 2)
+
+anim_2<-animate(p_g_anim, renderer = gifski_renderer("map_G.gif"),
+                width = 900, height = 600,units = "px", fps = fps_set, duration = dur_set,start_pause = 2.5,      # 3 frames = 3 s (con fps=1)
+  end_pause   = 2)
+
+
+img_y <- image_read("map_Y.gif") |>
+  image_coalesce() |>
+  image_background("white", flatten = TRUE) |>
+  image_trim()
+
+img_g <- image_read("map_G.gif") |>
+  image_coalesce() |>
+  image_background("white", flatten = TRUE) |>
+  image_trim()
+
+# Asegura misma altura
+img_y <- image_scale(img_y, "x500")
+img_g <- image_scale(img_g, "x500")
+
+n <- min(length(img_y), length(img_g))
+out <- image_append(c(img_y[1], img_g[1]))        # sin espacios
+for (i in 2:n) out <- c(out, image_append(c(img_y[i], img_g[i])))
+
+image_write(out, "mapa_Y_vs_G.gif")
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+yrange_cd <- range(map$cd, na.rm = TRUE)
+yrange_murder <- range(map$murder, na.rm = TRUE)
+yrange_extortion <- range(map$extortion, na.rm = TRUE)
+
+# Plots council dismissal
+p_cd <- ggplot(map) +
+  geom_sf(aes(fill = cd), color = "#ffffff", linewidth = 0.2) +
+  scale_fill_viridis_c(
+    option = "plasma", direction = -1,
+    limits = yrange_cd, oob = scales::squish, na.value = "grey90"
+  ) +
+  labs(title = "Council dismissal por provincia", subtitle = "Año: {current_frame}", fill = NULL) +
+  theme_void() +
+  theme(
+    plot.title    = element_text(face = "bold", size = 11, hjust = 0.02),
+    plot.subtitle = element_text(face = "bold", size = 10, hjust = 0.02),
+    legend.position = c(1.1, .25),
+    legend.key.height = unit(0.5, "cm"),
+    legend.key.width  = unit(0.3, "cm"),
+    legend.text  = element_text(size = 5, face = "bold"),
+    plot.margin = margin(6, 6, 6, 6)
+  )
+p_cd_anim <- p_cd + transition_manual(year)
+
+#  Plots murder
+p_murder <- ggplot(map) +
+  geom_sf(aes(fill = murder), color = "#ffffff", linewidth = 0.2) +
+  scale_fill_viridis_c(
+    option = "plasma", direction = -1,      # puedes cambiar la paleta si quieres
+    limits = yrange_murder, oob = scales::squish, na.value = "grey90"
+  ) +
+  labs(title = "Murder por provincia", subtitle = "Año: {current_frame}", fill = NULL) +
+  theme_void() +
+  theme(
+    plot.title    = element_text(face = "bold", size = 11, hjust = 0.02),
+    plot.subtitle = element_text(face = "bold", size = 10, hjust = 0.02),
+    legend.position = c(1.1, .25),
+    legend.key.height = unit(0.5, "cm"),
+    legend.key.width  = unit(0.3, "cm"),
+    legend.text  = element_text(size = 5, face = "bold"),
+    plot.margin = margin(6, 6, 6, 6)
+  ) 
+
+p_murder_anim <- p_murder + transition_manual(year)
+
+#  Plots extortion
+p_extortion <- ggplot(map) +
+  geom_sf(aes(fill = extortion), color = "#ffffff", linewidth = 0.2) +
+  scale_fill_viridis_c(
+    option = "plasma", direction = -1,      # puedes cambiar la paleta si quieres
+    limits = yrange_extortion, oob = scales::squish, na.value = "grey90"
+  ) +
+  labs(title = "Extortion por provincia", subtitle = "Año: {current_frame}", fill = NULL) +
+  theme_void() +
+  theme(
+    plot.title    = element_text(face = "bold", size = 11, hjust = 0.02),
+    plot.subtitle = element_text(face = "bold", size = 10, hjust = 0.02),
+    legend.position = c(1.1, .25),
+    legend.key.height = unit(0.5, "cm"),
+    legend.key.width  = unit(0.3, "cm"),
+    legend.text  = element_text(size = 5, face = "bold"),
+    plot.margin = margin(6, 6, 6, 6)
+  ) 
+
+p_extortion_anim <- p_extortion + transition_manual(year)
+
+# Renderiza a GIFs con los mismos fps/duración
+fps_set <- 1
+dur_set <- length(unique(df_9099$year))*2  # ~2 s por año (ajusta a gusto)
+
+anim_3<-animate(p_cd_anim, renderer = gifski_renderer("map_cd.gif"),
+              width = 900, height = 600, units = "px",fps = 1, duration = dur_set,start_pause = 2,      # 3 frames = 3 s (con fps=1)
+  end_pause   = 2)
+
+anim_4<-animate(p_murder_anim, renderer = gifski_renderer("map_murder.gif"),
+                width = 900, height = 600,units = "px", fps = fps_set, duration = dur_set,start_pause = 2,      # 3 frames = 3 s (con fps=1)
+  end_pause   = 2)
+
+anim_5<-animate(p_extortion_anim, renderer = gifski_renderer("map_extortion.gif"),
+                width = 900, height = 600,units = "px", fps = fps_set, duration = dur_set,start_pause = 2,      # 3 frames = 3 s (con fps=1)
+  end_pause   = 2)
+
+img_cd <- image_read("map_cd.gif") |>
+  image_coalesce() |>
+  image_background("white", flatten = TRUE) |>
+  image_trim()
+
+img_murder <- image_read("map_murder.gif") |>
+  image_coalesce() |>
+  image_background("white", flatten = TRUE) |>
+  image_trim()
+
+img_extortion <- image_read("map_extortion.gif") |>
+  image_coalesce() |>
+  image_background("white", flatten = TRUE) |>
+  image_trim()
+
+# Asegura misma altura
+img_cd <- image_scale(img_cd, "x500")
+img_murder <- image_scale(img_murder, "x500")
+img_extortion <- image_scale(img_extortion, "x500")
+
+n <- min(length(img_cd), min(length(img_murder),length(img_extortion)))
+out <- image_append(c(img_cd[1], img_murder[1],img_extortion[1]))        # sin espacios
+for (i in 2:n) out <- c(out, image_append(c(img_cd[i], img_murder[i], img_extortion[i])))
+
+image_write(out, "mapa_cd_vs_murder_Extortion.gif")
+```
+
+### Evolución espacio-temporal de variables económicas
+
+La @fig-1 ilustra la distribución espacial del crecimiento del PIB per cápita real ($Y$) y del gasto público en infraestructura per cápita ($G$) a nivel provincial, mostrando la evolución desde 1990 hasta 1999. En términos generales, se observa un patrón similar año a año en la distribución espacial de ambas variables, con cierta heterogeneidad en provincias específicas que se desvían de la tendencia común. Este comportamiento refleja que, si bien existe cierta estabilidad en la configuración regional, hay episodios puntuales de divergencia tantos positivos como negativos que justifican un análisis más detallado.
+
+La comparación conjunta de $Y$ y $G$ resalta la ausencia de una correspondencia inmediata entre niveles de inversión pública y desempeño económico provincial en un mismo año, reforzando la motivación para evaluar de manera causal la relación entre ambas variables. En particular, el análisis espacio-temporal evidencia la necesidad de identificar variación exógena en el gasto ($G$) para aislar su efecto sobre el crecimiento económico ($Y$), lo que constituye la estrategia central de este trabajo.
+
+```{r}
+#| echo: false
+#| label: fig-1
+#| fig-cap: "Mapa Estadísticas variables económicas"
+#| fig-cap-location: top
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics("mapa_Y_vs_G.gif")
+```
+
+### Evolución espacio-temporal de variables de criminalidad
+
+La @fig-2 presenta la evolución espacial de tres indicadores de criminalidad: disoluciones del concejo municipal por infiltración mafiosa ($cd$), homicidios vinculados al crimen organizado ($murder$) y extorsiones reportadas ($extortion$). Los resultados muestran que las disoluciones ($cd$) son un fenómeno altamente localizado, presente únicamente en un número reducido de provincias, lo que confirma su carácter excepcional. En contraste, los homicidios exhiben valores bajos y una distribución relativamente homogénea en el territorio, con escasa variación espacial. Finalmente, las extorsiones reflejan un poco más de heterogeneidad regional, con episodios más notorios aunque sin alcanzar la magnitud ni la excepcionalidad del fenómeno de disoluciones.
+
+En conjunto, estos patrones ponen de relieve que mientras homicidios y extorsiones describen dinámicas de criminalidad más extendidas, las disoluciones de concejos aparecen como un evento institucional poco frecuente y territorialmente focalizado, lo que las convierte en una fuente potencial de variación exógena para el análisis empírico.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-2
+#| fig-cap: "Mapa Estadísticas descriptivas variables de criminalidad"
+#| fig-cap-location: top
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics("mapa_cd_vs_murder_Extortion.gif")
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# 1) Geometría limpia y en CRS proyectado (distancias en metros)
+map_y <- st_make_valid(map)
+map_y <- st_transform(map, 3857)
+
+# Seleccionar solo la geometría base por provincia
+provinces_sf <- map_y %>%
+  group_by(NAME_2) %>% slice(1) %>% ungroup() %>%
+  select(NAME_2, geometry)
+
+# Centroides del polígono más grande
+cent <- st_centroid(st_geometry(provinces_sf), of_largest_polygon = TRUE)
+
+# Convertir a coordenadas numéricas
+coords <- st_coordinates(cent)   # matriz n×2 (X, Y)
+
+k <- 4
+knn_obj <- knearneigh(coords, k = k)
+nb_knn  <- knn2nb(knn_obj, sym = TRUE)   # sym=TRUE: vecinos mutuos
+W_knn   <- nb2listw(nb_knn, style = "W")
+
+
+```
+
+## Estadísticas descriptivas espaciales
+
+Dado que el objeto de análisis incorpora dimensiones geográficas y heterogeneidad regional, resulta necesario explorar la presencia de dependencia espacial antes de proceder a la estimación de los modelos. Para ello se realiza un análisis descriptivo espacial basado en distintas herramientas: en primer lugar, se construyen matrices de vecindad a partir de criterios de proximidad geográfica (K–nearest neighbors), lo que permite definir la estructura de interacciones entre provincias. Posteriormente, se evalúa la existencia de autocorrelación global mediante el estadístico de Moran tanto para cada año como en el agregado, con el fin de identificar patrones espaciales persistentes en las variables de interés. Asimismo, se emplean indicadores locales de asociación espacial (LISA), que permiten detectar focos específicos de concentración (clusters) y posibles outliers espaciales. Este ejercicio exploratorio es fundamental, pues motiva la necesidad de especificar modelos econométricos espaciales capaces de capturar las interdependencias regionales y evitar sesgos en la estimación de los efectos causales.
+
+### Construcción de la matriz de pesos espaciales
+
+Para el análisis econométrico espacial es necesario definir una matriz de pesos que capture la estructura de dependencia entre las provincias italianas. En este trabajo se emplea el criterio de k-vecinos más cercanos (k-NN), que garantiza que cada unidad territorial esté conectada con un número fijo de provincias vecinas en función de su proximidad geográfica. En particular, se seleccionó un valor de $k=4$, lo que permite asegurar la conectividad del grafo y evitar la fragmentación en componentes aislados, un problema común en contextos como el italiano donde las islas (Cerdeña y Sicilia) y algunas provincias periféricas pueden quedar desconectadas bajo esquemas de contigüidad estricta. Esta estructura se ilustra en la @fig-knn, donde se observa la red resultante de interacciones espaciales entre provincias.
+
+La elección de $k=4$ responde a un equilibrio entre parsimonia y robustez: un número reducido de vecinos evita introducir conexiones artificiales excesivas, mientras que un mínimo de cuatro vínculos por provincia garantiza que todas las unidades espaciales estén integradas en la misma red, facilitando la identificación de procesos de difusión espacial. En términos generales, este procedimiento permite capturar de manera más realista la interacción regional, reconociendo que la influencia económica, social o institucional de una provincia no se limita a las fronteras administrativas inmediatas, sino que puede extenderse a un conjunto cercano de territorios.
+
+Desde un punto de vista metodológico, la matriz construida es simétrica y se encuentra estandarizada por filas, lo que implica que los pesos asignados a los vecinos de cada provincia suman a uno. Esta normalización asegura la comparabilidad entre unidades de distinto tamaño y constituye un requisito fundamental para la aplicación de pruebas de autocorrelación espacial (como el índice de Moran global y local) y para la estimación de modelos econométricos espaciales, donde la estructura de interdependencia debe estar claramente definida y ser estadísticamente consistente.
+
+```{r}
+#| label: fig-knn
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| fig-cap: Mapa de relaciones de 4 vecinos más cercanos
+#| fig-cap-location: top
+
+opar <- par(no.readonly = TRUE)
+            
+plot(sf::st_geometry(provinces_sf), border = "grey", asp = 1)
+spdep::plot.nb(nb_knn, coords, add = TRUE, col = "red", lwd = 1)
+title(main = sprintf("k-NN (k=%d, symmetric)", k),
+      font.main = 2, cex.main = 0.9, adj = 0.4)
+
+par(opar)
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+years <- sort(unique(map$year))
+
+calc_moran <- function(y_) {
+  dat <- map_y %>% filter(year == y_) %>% arrange(NAME_2)
+  v <- dat$y
+  
+  mt  <- moran.test(v, W_knn)
+  mmc <- moran.mc(v, listw = W_knn, nsim = 9999)
+  
+  tibble(
+    year = y_,
+    moran_I       = unname(mt$estimate[["Moran I statistic"]]),
+    exp_I         = unname(mt$estimate[["Expectation"]]),
+    var_I         = unname(mt$estimate[["Variance"]]),
+    p_asymptotic  = mt$p.value,
+    p_montecarlo  = mmc$p.value
+  )
+}
+
+
+moran_by_year <- map_dfr(years, calc_moran)
+print(moran_by_year)
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# === 0) Orden consistente con W y con cálculo ===
+#  calc_moran usó arrange(NAME_2), así que usamos ese mismo orden
+prov_order <- sort(unique(map_y$NAME_2))
+
+# === 1) Estandarizar y y calcular Wy por año (siempre con el mismo W_knn) ===
+prep_df <- map_y %>%
+  select(NAME_2, year, y) %>%
+  arrange(NAME_2, year) %>%
+  group_by(year) %>%
+  mutate(
+    st_y = as.numeric(scale(y))   # z-score por año (centra y escala)
+  ) %>% 
+  ungroup() %>%
+  group_by(year) %>%
+  arrange(NAME_2, .by_group = TRUE) %>%           # MISMO orden que en calc_moran
+  mutate(
+    lag_st_y = as.numeric(lag.listw(W_knn, st_y))
+  ) %>%
+  ungroup()
+
+# === 2) Etiquetas a partir de moran_by_year ===
+labels <- moran_by_year %>%
+  transmute(
+    year,
+    label_I = paste0("Moran's I = ", sprintf('%.3f', moran_I)),
+    label_p = paste0("P-value = ", ifelse(p_montecarlo < 1/9999, "< 0.0001",
+                                          sprintf('%.4f', p_montecarlo)))
+  )
+
+df_plot <- prep_df %>% left_join(labels, by = "year")
+
+# === 3) Moran scatter + animación por año ===
+p <- ggplot(df_plot, aes(x = st_y, y = lag_st_y)) +
+  geom_point(shape = 1, size = 1) +
+  geom_smooth(formula = y ~ x, method = "lm", se = FALSE) +
+  geom_hline(yintercept = 0, lty = 2) +
+  geom_vline(xintercept = 0, lty = 2) +
+  scale_x_continuous(limits = c(-2.2, 3.5)) +
+  scale_y_continuous(limits = c(-3, 2.2)) +
+  labs(
+    x = "Y (estandarizado por año)",
+    y = "Rezago espacial de Y (estandarizado)",
+    title = "Moran scatter — Año: {current_frame}"
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(
+    plot.title = element_text(face = "bold", size = 12, hjust = 0.02),
+    axis.title.y = element_text(size = rel(.9)),
+    axis.title.x = element_text(size = rel(.9))
+  ) +
+  # Anotaciones que cambian por año (tomadas de moran_by_year)
+  geom_text(
+    data = labels, aes(x = 2.0, y = -3.0, label = label_I),
+    inherit.aes = FALSE, size = 3
+  ) +
+  geom_text(
+    data = labels, aes(x = 2.0, y = -3.3, label = label_p),
+    inherit.aes = FALSE, size = 3
+  ) +
+  transition_manual(year)
+n_states <- length(unique(df_plot$year))*2
+# === 4) Render y guardar GIF ===
+anim <- animate(p, nframes  = n_states,width = 600, height = 350, res = 120, fps = 1,units = "px", renderer = gifski_renderer(),start_pause = 2,      # 3 frames = 3 s (con fps=1)
+  end_pause   = 2)
+anim_save("moran_scatter_y.gif", animation = anim)
+
+```
+
+### Autocorrelación espacial global: Índice de Moran por año
+
+Con el fin de evaluar la presencia de dependencia espacial en el crecimiento del PIB per cápita real ($Y$), se estimó el Índice de Moran global para cada año del período 1990–1999, utilizando tanto el valor del estadístico como sus contrastes de significancia (p-values asintóticos y basados en permutaciones Monte Carlo). Los resultados muestran evidencia consistente de autocorrelación espacial positiva en todos los años, lo que indica que las provincias tienden a exhibir patrones de agrupamiento en niveles de crecimiento económico similares.
+
+No obstante, existen excepciones relevantes: en los años 1996 y 1998, el estadístico de Moran no resulta significativo bajo ninguno de los contrastes, lo cual sugiere una ruptura temporal en la estructura espacial del crecimiento económico. Estas anomalías podrían estar vinculadas a factores coyunturales de esos años, que generaron una mayor dispersión idiosincrática entre provincias y atenuaron el patrón de dependencia espacial.
+
+En conjunto, este análisis preliminar respalda la pertinencia de emplear modelos econométricos espaciales, al tiempo que destaca la necesidad de considerar variaciones temporales en la intensidad de la autocorrelación espacial. La @fig-4 resume la evolución del índice de Moran por año a través de la serie de Moran scatterplots que ilustra gráficamente la relación entre cada provincia y el promedio espacial de sus vecinas.
+
+```{r}
+#| label: fig-4
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| fig-cap: Scatterplot de índice de moran anual
+#| fig-cap-location: top
+#| out-width: 70%
+knitr::include_graphics("moran_scatter_y.gif")
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+
+lisa_by_year <- map_dfr(years, function(yr) { 
+  df_yr <- prep_df %>% 
+    filter(year == yr) %>% 
+    arrange(NAME_2) 
+  v <- df_yr$st_y # usamos el z-score por año que ya se creó 
+  lm <- localmoran(v, listw = W_knn) 
+  lm_df <- as.data.frame(lm) 
+  
+  tibble( 
+    NAME_2 = df_yr$NAME_2, 
+    year = yr, 
+    Ii = lm_df$Ii, 
+    Z_Ii = lm_df$Z.Ii, 
+    p_val = lm_df$`Pr(z > 0)`
+    ) 
+  }) 
+summary_by_year <- lisa_by_year %>% 
+  group_by(year) %>% 
+  summarise( 
+    n = n(), 
+    min_Ii = min(Ii, na.rm = TRUE), 
+    q1_Ii = quantile(Ii, 0.25, na.rm = TRUE), 
+    median_Ii= median(Ii, na.rm = TRUE), 
+    mean_Ii = mean(Ii, na.rm = TRUE), 
+    q3_Ii = quantile(Ii, 0.75, na.rm = TRUE), 
+    max_Ii = max(Ii, na.rm = TRUE),
+    .groups = "drop" ) 
+
+print(summary_by_year)
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+# 1) Pos/neg por año 
+moran_posneg <- lisa_by_year %>% 
+  mutate(posneg = ifelse(Ii < 0, "(-)", "(+)")) 
+
+# 2) Geometría única + etiqueta corta para el texto del mapa
+
+geom_base <- map_y %>% 
+  select(NAME_2, geometry) %>% 
+  distinct() %>% arrange(NAME_2) %>% 
+  # etiqueta (usa abreviatura de NAME_2) 
+  mutate(label = toupper(substr(NAME_2, 1, 3))) 
+# 3) Unir todo (sf + Ii sign por año) 
+moran_map_all <- geom_base %>% left_join(moran_posneg, by = "NAME_2") 
+
+# 4) Mapa animado (1s por año) 
+p_sign <- ggplot(moran_map_all) + 
+  geom_sf(aes(fill = posneg), color = "gray35", size = 0.05) +
+  geom_sf_text(aes(label = label), size = 2, colour = "black") +
+  scale_fill_manual(values = c("(-)" = "white", "(+)" = "skyblue"), drop = FALSE) + 
+  labs( 
+    fill = "Local Moran stat", 
+    title = "Signo de Ii — Año: {current_frame}" ) + 
+  theme_void() + 
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.02),
+    legend.position = c(1.1, .2), 
+    legend.key.size = unit(0.5, "cm"), 
+    legend.text = element_text(size = 8), 
+    legend.title = element_text(size = 8)) + 
+  transition_manual(year) 
+
+
+n_states <- length(unique(moran_map_all$year))
+anim_sign <- animate( 
+  p_sign, fps = 1, duration=dur_set,
+  width = 900, 
+  height = 600, 
+  res = 120, units=
+    "px",
+  renderer = gifski_renderer() ,start_pause=2, end_pause=2
+  ) 
+
+anim_save("Ii_sign_by_year.gif", animation = anim_sign)
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+# Quita geometría una sola vez
+prep_df_ng <- prep_df %>% sf::st_drop_geometry()
+
+
+lisa_panel <- lapply(years, function(yr) {
+  # RHS sin geometría
+  df_att <- prep_df_ng %>%
+    dplyr::filter(year == yr) %>%
+    dplyr::arrange(NAME_2) %>%
+    dplyr::select(NAME_2, st_y)
+
+  # Join con geom_base (sf) + datos sin geometría
+  sf_year <- geom_base %>% dplyr::left_join(df_att, by = "NAME_2")
+
+  # Pesos KNN en rgeoda con el mismo k de W_knn
+  w_geo <- rgeoda::knn_weights(sf_year, k = k)
+
+  # Si hubiese NA en st_y, rgeoda falla: decide si imputar o filtrar
+  sf_year$st_y[is.na(sf_year$st_y)] <- 0  # (o usa dplyr::filter(!is.na(st_y)))
+
+  # LISA con z-score por año
+  lisa <- rgeoda::local_moran(
+    w_geo,
+    sf_year["st_y"],
+    permutations = 999,
+    permutation_method = "complete",
+    significance_cutoff = 0.05,
+    cpu_threads = 2,
+    seed = 123456789
+  )
+
+  sf_year$cluster <- as.factor(lisa$GetClusterIndicators())
+  levels(sf_year$cluster) <- lisa$GetLabels()
+  sf_year$year <- yr
+  sf_year
+})
+
+lisa_panel <- do.call(rbind, lisa_panel)
+
+# Frecuencias por año (equivalente a freq(cluster))
+freq_cluster_year <- lisa_panel %>%
+  sf::st_drop_geometry() %>%
+  dplyr::count(year, cluster, name = "n") %>%
+  dplyr::group_by(year) %>%
+  dplyr::mutate(pct = n / sum(n)) %>%
+  dplyr::ungroup()
+
+print(freq_cluster_year)
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+# 0) Asegura etiquetas consistentes 
+lisa_panel <- lisa_panel %>%
+  mutate(
+    cluster = as.character(cluster),
+    cluster = dplyr::recode(cluster,
+      "Not Significant" = "Not significant",
+      .default = cluster
+    ),
+    cluster = factor(cluster,
+      levels = c("High-High","High-Low","Low-High","Low-Low","Not significant")
+    )
+  )
+
+# 1) Paleta 
+pal_lisa <- c("High-High"="red","High-Low"="pink",
+              "Low-High"="lightblue","Low-Low"="darkblue",
+              "Not significant"="grey95")
+
+# 2) Plot + animación por año 
+p_gif <- ggplot(lisa_panel) +
+  geom_sf(aes(fill = cluster), color = NA, show.legend = TRUE) +
+  scale_fill_manual(values = pal_lisa, drop = FALSE) +
+  labs(title = "LISA clusters — Año: {current_frame}", fill = "LISA") +
+  guides(fill = guide_legend(title.position = "top")) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.02),
+    panel.background = element_rect(fill = "white"),
+    legend.position  = c(0.22, 0.20),
+    legend.key.size  = unit(0.5, "cm"),
+    legend.key.width = unit(0.5, "cm"),
+    legend.text      = element_text(size = 6),
+    legend.background= element_rect(fill = NA),
+    legend.title     = element_text(size = 8),
+    axis.text        = element_blank(),
+    axis.ticks       = element_blank()
+  ) +
+  transition_manual(year)
+
+# 3) Render GIF 
+anim <- animate(
+  p_gif,
+  duration  = dur_set,
+  fps      = 1,                
+  width    = 900,           
+  height   = 600,          
+  res      = 120,
+  renderer = gifski_renderer(),units="px",,start_pause=2, end_pause=2
+)
+
+anim_save("LISA_clusters_panel.gif", animation = anim)
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+img_morgan <- image_read("Ii_sign_by_year.gif") |>
+  image_coalesce() |>
+  image_background("white", flatten = TRUE) |>
+  image_trim()
+
+img_lisa <- image_read("LISA_clusters_panel.gif") |>
+  image_coalesce() |>
+  image_background("white", flatten = TRUE) |>
+  image_trim()
+
+# Asegura misma altura
+img_morgan <- image_scale(img_morgan, "x500")
+img_lisa <- image_scale(img_lisa, "x500")
+
+n <- min(length(img_morgan), length(img_lisa))
+out <- image_append(c(img_morgan[1], img_lisa[1]))        # sin espacios
+for (i in 2:n) out <- c(out, image_append(c(img_morgan[i], img_lisa[i])))
+
+image_write(out, "mapa_morgan_lisa.gif")
+
+```
+
+### Autocorrelación espacial local: Local Moran’s I y LISA clusters
+
+El análisis de autocorrelación espacial local permite complementar la evidencia global identificando patrones específicos de asociación entre provincias. La @fig-6 muestra, en el panel izquierdo, el signo del Local Moran’s I, que distingue entre asociaciones positivas (asimilación con las vecinas) y negativas (contraste), sin tener en cuenta la significancia estadística. En contraste, el panel derecho presenta los LISA clusters, donde únicamente se destacan aquellas provincias cuya asociación espacial resulta estadísticamente significativa.
+
+Los resultados evidencian que los clústeres significativos no son homogéneos ni persistentes en el tiempo, sino que varían entre regiones y años. En algunos periodos aparecen conglomerados High–High (provincias con alto crecimiento rodeadas de vecinas con alto crecimiento) y en otros predominan clústeres Low–Low, donde provincias con bajo desempeño se agrupan espacialmente. Así, la relación entre los dos mapas es coherente: un signo positivo en el Local Moran puede materializarse en un clúster High–High o Low–Low si es significativo, mientras que las asociaciones negativas se reflejan en clústeres de contraste (High–Low o Low–High).
+
+En conjunto, este ejercicio muestra que la dependencia espacial del crecimiento económico provincial en Italia no es uniforme, sino que se concentra en focos localizados y cambiantes a lo largo del tiempo, lo que refuerza la necesidad de considerar explícitamente estas dinámicas en la modelación econométrica.
+
+```{r}
+#| label: fig-6
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| fig-cap: Índice local de morgan y LISA
+#| fig-cap-location: top
+#| out-width: 80%
+knitr::include_graphics("mapa_morgan_lisa.gif")
+```
+
+# Modelo econométrico
+
+La medición del multiplicador fiscal ha sido estudiada, en gran medida, desde modelos SVAR que identifican perturbaciones exógenas del gasto mediante supuestos estructurales sobre elasticidades contemporáneas o restricciones fiscales [@BlanchardPerotti2002]. Tal es el caso de @MountfordUhlig2009 , quienes proponen restricciones fiscales para aislar los shocks de política. Por su parte, otros estudios respaldan que los anuncios de gasto en defensa resuelven los problemas de anticipación del choque y que a través de una variación cuasi-experimental en transferencias federales o gasto militar se pueden estimar los multiplicadores locales [@nakamura2014; @chodorowreich2012]. En el ámbito internacional se documenta que los multiplicadores dependen del estado de la economía y del régimen institucional, pero aún así hay bastante heterogeneidad en los resultados, especialmente en recesiones [@AuerbachGorodnichenko2012; @BarroRedlick2011; @IlzetzkiMendozaVegh2013].
+
+En la elaboración de este trabajo inicialmente se propone un modelo basado en los estudios cuasi-experimentales de @acconcia2014, el cual se fundamenta en que los shocks son exógemos a la ejecución pública. La especificación del modelo (ver @eq-mod1) relaciona el crecimiento anual agregado per cápita a nivel de provincia (\\(Y\_{i, t}\\)) con la variación interanual del gasto público per cápita en infraestructura (\\(G\_{i, t}\\)), normalizada por el rezago del producto per cápita. Dado lo anterior, se estima un modelo de datos panel con efectos fijos provinciales (\\( \\alpha_i\\)) y efectos fijos de año (\\( \\lambda_t\\)), con un vector de controles (\\(X\_{i, t}\\)) y un término de error (\\(\\varepsilon\_{i, t}\\)).
+
+$$
+Y_{i,t}=\beta G_{i,t}+\alpha_i+\lambda_t+\gamma_i'X_{i,t}+\varepsilon_{i,t}\hspace{2cm} \varepsilon_{i,t} \sim \mathcal{N}(0,\sigma_\epsilon^2)
+$$ {#eq-mod1}
+
+Sin embargo, el uso de estimaciones por Mínimos Cuadrados Ordinarios (MCO) resulta insuficiente en este contexto debido a la fuerte endogeneidad que afecta al gasto público en infraestructura. La ejecución de proyectos suele estar anticipada por decisiones políticas y administrativas, de manera que los cambios en inversión pueden correlacionarse con shocks no observados de crecimiento económico. Además, la reasignación de recursos frente a crisis locales o regionales introduce simultaneidad entre gasto e ingresos provinciales. Estas fuentes de sesgo generan correlación entre el gasto y el término de error, lo que conduce a estimadores inconsistentes y a una mala interpretación del efecto sobre el multiplicador fiscal. Por tanto, para aislar shocks exógenos en la inversión se requiere recurrir a un enfoque de Variables Instrumentales (IV).
+
+Los instrumentos utilizados siguen la propuesta de @acconcia2014 al hacer uso de las disoluciones forzosas de concejos municipales por infiltración mafiosa como variación cuasi-exógena en la ejecución de gasto público. Se consideran dos medidas: i) \\(cds1\_{i,t}\\)​, que capta el número de municipios sometidos a administración obligatoria en el primer semestre del año ponderados por la proporción de población provincial que reside en dichos municipios, y ii) \\(cds2\_{i,t-1}\\)​, que mide la exposición cuando la destitución ocurre en el segundo semestre y se calcula en función de los días transcurridos hasta final de año (ver @eq-mod2). Ambas variables representan shocks administrativos que alteran de manera abrupta y ajena al ciclo económico local la capacidad de ejecutar proyectos de inversión pública, cumpliendo así los supuestos de validez de los instrumentos.
+
+$$
+G_{i,t}=\psi_1CDS1_{i,t}+\psi_2CDS2_{i,t-1}+\alpha_i+\lambda_t+\gamma_i'X_{i,t}+v_{i,t}\hspace{2cm} v_{i,t} \sim \mathcal{N}(0,\sigma_v^2)
+$$ {#eq-mod2}
+
+En cuanto a los controles, el modelo incorpora un conjunto amplio de variables para reducir sesgos por omisión. Se incluyen proxies del mercado laboral: el crecimiento del empleo per cápita (\\(u1\\)) y las horas de *cassa integrazione* per cápita (\\(u2\\)), ambos considerados en niveles y con dos rezagos. Asimismo, se añaden indicadores de criminalidad vinculados a la mafia: número de asociados mafiosos, extorsiones, homicidios y delitos de corrupción (medidos tanto como personas reportadas como por denuncias judiciales), todos en forma contemporánea y hasta dos rezagos para cada provincia. La inclusión de estos controles permite capturar tanto la dinámica del ciclo económico como factores institucionales y criminales que influyen en la capacidad de crecimiento y en la ejecución de gasto, asegurando estimaciones más robustas del multiplicador fiscal.
+
+Un aporte fundamental de este trabajo es la incorporación de modelos espaciales que permiten capturar explícitamente la interdependencia entre provincias italianas durante el periodo analizado. A diferencia de la metodología de @acconcia2014 , se emplea una matriz de contigüidad W construida a partir de los 4 vecinos más cercanos, lo que posibilita reflejar de manera más realista las interacciones territoriales en términos de gasto público, crimen organizado y desempeño económico. Todos los modelos espaciales son estimados bajo un enfoque de efectos fijos y utilizando variables instrumentales, lo que asegura robustez frente a la heterogeneidad no observada y a los problemas de endogeneidad en el gasto público per cápita. Este diseño metodológico permite no solo mantener consistencia en la estimación, sino también integrar la dimensión geográfica que es central en el contexto de la infiltración mafiosa y de la asignación de recursos de inversión pública.
+
+En particular, se emplea la especificación del Spatial Durbin Model, el cual permite identificar no solo cómo las variaciones en el gasto de una provincia afectan a su propio crecimiento económico, sino también cómo se transmiten hacia provincias vecinas a través de spillovers espaciales. En la @eq-mod3 el parámetro $\rho$ mide la dependencia espacial de la variable dependiente (rezago espacial de $Y$), capturando los efectos spillovers entre provincias a través de $WY$. El vector $\beta$ recoge los efectos directos de los regresores sobre $Y$ dentro de cada provincia, mientras que $\theta$ cuantifica los spillovers de los regresores hacia las provincias vecinas mediante $WX$ (efectos indirectos); la suma de ambos define el impacto total. En la estimación se incorporan efectos fijos por provincia y año para controlar por heterogeneidad no observada invariante y choques comunes. De igual forma se estiman otros modelos espaciales para comprobar la robustez del ejercicio.
+
+$$
+Y=\rho WY + X\beta + WX\theta + \varepsilon
+$$ {#eq-mod3}
+
+# Resultados
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+library(haven); library(plm); library(tidyverse); library(summarytools); library(dplyr);library(lmtest); 
+library(pder) # Import dataset
+library(tidyr); library(kableExtra); library(gt)
+
+# Static models without IV
+{
+  # Pooled without IV
+  pool_s <- plm(formula = Y ~ G + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                L2Murder, data = data, cluster = "Group", model = "pooling", weights = Population)
+  summary(pool_s) # 9.6822e-05
+  
+  # Random effects without IV
+  re_s <- plm(Y ~ 0 + G + Extortion + Mafiosi + Murder + Corruption1 + Corruption2 +
+              L1Extortion + L1Mafiosi + L1Murder + L1Corruption1 + L1Corruption2 + 
+              L2Extortion + L2Mafiosi + L2Murder + L2Corruption1 + L2Corruption2 + 
+              L1U1 + L2U1 + L1U2 + L2U2 + L2CD + L3CD + L1G + L2G, 
+            data = data, cluster = "Group", model = "random", weights = Population)
+  
+  summary(re_s) # 1.9763e-05
+  
+  # Fixed Effects without IV
+  fe_s <- plm(Y ~ 0 + G + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+              Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+              L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+              L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+              L2Murder, data = data, model = "within", effect = "twoways", cluster = "Group", 
+            weights = Population)
+  
+  summary(fe_s) # 1.9261e-05
+  
+  # Defining the best model: test
+  {
+    pwtest(pool_s, data = Mafia) # 0.05277 
+    
+    plmtest(re_s, type = "bp") # 0.06291
+    
+    bptest(pool_s) #2.2e-16
+    
+    bgtest(pool_s, order = 1) # 0.03825
+    
+    pooltest(pool_s, fe_s) # 0.999
+    
+    pFtest(fe_s, pool_s) # 0.999
+    
+    phtest(fe_s, re_s) # 0.8276
+  }
+}
+# Static models with IV
+{
+  # Pooled model with IV
+  pool_iv_s <- plm(formula = Y ~ G + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                   Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                   L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                   L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                   L2Murder | CD_S1 + L1CD_S2 + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD +                        Mafiosi + Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                   L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                   L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                   L2Murder, data = data, model = "pooling")
+  
+  summary(pool_iv_s) # 0.42209
+  
+  # Fixed effects IV
+  fe_iv_s <- plm(Y ~ G + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                  Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                  L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                  L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                  L2Murder | CD_S1 + L1CD_S2 + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                  Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                  L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                  L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                  L2Murder + L1G + L2G, data = data, model = "within",
+                effect = "twoways")
+  summary(fe_iv_s) # 0.0035717
+  
+  # Random effects IV
+  re_iv_s <- plm(Y ~ G + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                   Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                   L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                   L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                   L2Murder | CD_S1 + L1CD_S2 + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                   Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                   L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                   L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                   L2Murder + L1G + L2G, data = data, model = "random")
+  summary(re_iv_s) # 0.12316
+}
+# Dynamic models (FE with/without IV)
+{
+  fe_d <- plm(Y ~ G + L1G + L2G + L1Y + L2Y + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+               Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+               L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+               L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+               L2Murder, data = data, model = "within", effect = "twoways", cluster = "Group", 
+             weights = Population)
+  summary(fe_d) # 1.8639e-05
+  
+  fe_iv_d <- plm(Y ~ G + L1G + L2G + L1Y + L2Y + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                  Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                  L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                  L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                  L2Murder | CD_S1 + L1CD_S2 + L1Y + L2Y + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD +                        Mafiosi + Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                  L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                  L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                  L2Murder + L1G + L2G, data = data, model = "within",
+                effect = "twoways", cluster = "Group")
+  summary(fe_iv_d) # 0.6.073e-07
+}
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+
+library(splm)
+library(car)
+iv_form <- Y ~ G + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                   Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                   L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                   L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                   L2Murder | CD_S1 + L1CD_S2 + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD +                        Mafiosi + Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                   L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                   L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                   L2Murder
+
+slmtest(iv_form, data=data, listw = W_knn, test="lml",
+        model="within") # 2.2e-16. El valor es 193,9
+
+slmtest(iv_form, data=data, listw = W_knn, test="lme",
+        model="within")# 2.2e-16. El valor es 230.73
+
+slmtest(iv_form, data=data, listw = W_knn, test="rlml",
+        model="within") # 0.3639. El valor es 0.80604
+
+slmtest(iv_form, data=data, listw = W_knn, test="rlme",
+        model="within") # 8.53e-10. El valor es 37.635
+
+# Hay evidencia de posible existencia de autoccorelación espacial entre los errores. Por tanto se puede optar por un modelo SEM
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+library(estimatr)
+library(plm)         # panel models
+library(splm)        # spatial panel models 
+library(spdep)       # spatial weights
+library(spatialreg)  # spatial regressions
+library(modelsummary) # nice regression tables
+library(gt)          # tables
+
+{
+W_knn
+    
+    data$wG<-splm::slag(data$G, W_knn, 1)
+    data$wL1G<-splm::slag(data$L1G, W_knn, 1)
+    data$wL2G<-splm::slag(data$L2G, W_knn, 1)
+    data$wL1U1<-splm::slag(data$L1U1, W_knn, 1)
+    data$wL1U2<-splm::slag(data$L1U2, W_knn, 1)
+    data$wL2U1<-splm::slag(data$L2U1, W_knn, 1)
+    data$wL2U2<-splm::slag(data$L2U2, W_knn, 1)
+    data$wL2CD<-splm::slag(data$L2CD, W_knn, 1)
+    data$wL3CD<-splm::slag(data$L3CD, W_knn, 1)
+    data$wMafiosi<-splm::slag(data$Mafiosi, W_knn, 1)
+    data$wExtortion<-splm::slag(data$Extortion, W_knn, 1)
+    data$wCorruption1<-splm::slag(data$Corruption1, W_knn, 1)
+    data$wCorruption2<-splm::slag(data$Corruption2, W_knn, 1)
+    data$wMurder<-splm::slag(data$Murder, W_knn, 1)
+    data$wL1Mafiosi<-splm::slag(data$L1Mafiosi, W_knn, 1)
+    data$wL1Extortion<-splm::slag(data$L1Extortion, W_knn, 1)
+    data$wL1Corruption1<-splm::slag(data$L1Corruption1, W_knn, 1)
+    data$wL1Corruption2<-splm::slag(data$L1Corruption2, W_knn, 1)
+    data$wL1Murder<-splm::slag(data$L1Murder, W_knn, 1)
+    data$wL2Mafiosi<-splm::slag(data$L2Mafiosi, W_knn, 1)
+    data$wL2Extortion<-splm::slag(data$L2Extortion, W_knn, 1)
+    data$wL2Corruption1<-splm::slag(data$L2Corruption1, W_knn, 1)
+    data$wL2Corruption2<-splm::slag(data$L2Corruption2, W_knn, 1)
+    data$wL2Murder<-splm::slag(data$L2Murder, W_knn, 1)
+    
+    data$wCD_S1<-splm::slag(data$CD_S1, W_knn, 1)
+    data$wL1CD_S2<-splm::slag(data$L1CD_S2, W_knn, 1)
+    data$wL1Y<-splm::slag(data$L1Y, W_knn, 1)
+    data$wL2Y<-splm::slag(data$L2Y, W_knn, 1)
+}
+
+{ # Static models with fixed effects
+  
+iv_form
+  # Modelo SAR: agrega rezagos wY
+    sarfe <- spml(iv_form, data = data, listw = W_knn,
+              model = "within", effect = "twoways",
+              lag = TRUE, spatial.error = "none", method = "eigen")
+    summary(sarfe)
+
+  # Modelo SEM: agrega rezagos wE
+    semfe <- spml(iv_form, data = data, listw = W_knn,
+              model = "within", effect = "twoways",
+              lag = FALSE, spatial.error = "b", method = "eigen")
+    summary(semfe)
+
+  # Modelo SARAR: agrega rezagos wY wE
+    sararfe <- spml(iv_form, data = data, listw = W_knn,
+                model = "within", effect = "twoways",
+                lag = TRUE, spatial.error = "b", method = "eigen")
+    summary(sararfe)
+
+  # Modelo Spatial Durbin model
+    sdmfe <- spml(Y ~ G + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                L2Murder + wG + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                wL2Murder| CD_S1 + L1CD_S2 + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                L2Murder + wG + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                wL2Murder + wCD_S1 + wL1CD_S2, data = data, listw = W_knn, lag = TRUE, 
+              spatial.error = "none", model = "within", effect = "twoways", method = "eigen")
+    summary(sdmfe)
+    print(effects(sdmfe))
+    
+    # Modelo Spatial Durbin error model - con lag en error
+    sdemfe <- spml(Y ~ G + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                     Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                     L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                     L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                     L2Murder + wG + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                     wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                     wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                     wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                     wL2Murder| CD_S1 + L1CD_S2 + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                     Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                     L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                     L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                     L2Murder + wG + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                     wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                     wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                     wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                     wL2Murder + wCD_S1 + wL1CD_S2, data = data, listw = W_knn, lag = FALSE, 
+                   spatial.error = "b", model = "within", effect = "twoways", method = "eigen")
+    summary(sdemfe) #0.195267, significant
+    
+    # Modelo SLX
+    slxfe <- plm(Y ~ G + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                   Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                   L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                   L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                   L2Murder + wG + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                   wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                   wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                   wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                   wL2Murder| + CD_S1 + L1CD_S2 + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                   Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                   L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                   L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                   L2Murder + wG + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                   wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                   wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                   wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                   wL2Murder + wCD_S1 + wL1CD_S2, data = data, model = "within", effect = "twoways", method = "eigen")
+    summary(slxfe)
+
+    testSDM <- spml(iv_form, data = data, listw = W_knn,
+                model = "within", effect = "twoways",
+                lag = TRUE, spatial.error = "none", spatial.lag.X = TRUE, method = "eigen")
+    summary(testSDM)
+    
+  
+}
+
+{ # Static models with random effects
+  
+iv_form
+  # Modelo SAR: agrega rezagos wY
+    sarre <- spml(iv_form, data = data, listw = W_knn,
+              model = "random", lag = TRUE, spatial.error = "none")
+    summary(sarre)
+
+  # Modelo SEM: agrega rezagos wE
+    semre <- spml(iv_form, data = data, listw = W_knn,
+              model = "random", lag = FALSE, spatial.error = "b")
+    summary(semre)
+
+  # Modelo SARAR: agrega rezagos wY wE
+    sararre <- spml(iv_form, data = data, listw = W_knn,
+                model = "random", lag = TRUE, spatial.error = "b")
+    summary(sararre)
+
+  # Modelo Spatial Durbin model
+    sdmre <- spml(Y ~ G + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                L2Murder + wG + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                wL2Murder| CD_S1 + L1CD_S2 + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                L2Murder + wG + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                wL2Murder + wCD_S1 + wL1CD_S2, data = data, listw = W_knn, lag = TRUE, 
+              spatial.error = "none", model = "random")
+    summary(sdmre)
+    
+    # Modelo Spatial Durbin error model - con lag en error
+    sdemre <- spml(Y ~ G + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                     Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                     L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                     L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                     L2Murder + wG + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                     wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                     wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                     wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                     wL2Murder| CD_S1 + L1CD_S2 + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                     Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                     L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                     L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                     L2Murder + wG + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                     wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                     wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                     wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                     wL2Murder + wCD_S1 + wL1CD_S2, data = data, listw = W_knn, lag = FALSE, 
+                   spatial.error = "b", model = "random")
+    summary(sdemre) #0.195267, significant
+    
+    # Modelo SLX
+    slxre <- plm(Y ~ G + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                   Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                   L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                   L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                   L2Murder + wG + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                   wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                   wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                   wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                   wL2Murder| + CD_S1 + L1CD_S2 + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                   Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                   L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                   L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                   L2Murder + wG + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                   wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                   wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                   wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                   wL2Murder + wCD_S1 + wL1CD_S2, data = data, model = "random")
+    summary(slxre)
+}
+
+{ # Dynamic models
+    # Modelo SAR
+    sarfe_d <- spml(Y ~ G + L1G + L2G + L1Y + L2Y + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                    Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                    L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                    L2Mafiosi + L2Extortion + L1Y + L2Y + L2Corruption1 + L2Corruption2 + 
+                    L2Murder | CD_S1 + L1CD_S2 + L1G + L2G + L1Y + L2Y + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD +    
+                    Mafiosi + Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                    L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                    L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                    L2Murder, data = data, listw = W_knn, spatial.error="none", lag=TRUE, 
+                  model = "within", effect = "twoways", method = "eigen")
+    summary(sarfe_d)
+    
+    # Modelo Spatial Durbin model
+    sdmfe_d <- spml(Y ~ G + L1G + L2G + L1Y + L2Y +L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                L2Murder + wG + wL1G + wL2G + wL1Y + wL2Y+ wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                wL2Murder| CD_S1 + L1CD_S2 + L1Y + L2Y + L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                L2Murder + wG + wL1G + wL2G + wL1Y + wL2Y + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                wL2Murder + wCD_S1 + wL1CD_S2, data = data, listw = W_knn, lag = TRUE, 
+              spatial.error = "none", model = "within", effect = "twoways", method = "eigen")
+    summary(sdmfe_d)
+    
+    # Modelo Spatial Durbin error model - con lag en error
+    sdemfe_d <- spml(Y ~ G + L1G + L2G + L1Y + L2Y + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                     Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                     L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                     L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                     L2Murder + wG + wL1G + wL2G + wL1G + wL2G + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                     wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                     wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                     wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                     wL2Murder| CD_S1 + L1CD_S2 + L1G + L2G + L1Y + L2Y + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                     Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                     L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                     L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                     L2Murder + wG + wL1G + wL2G + wL1Y + wL2Y + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                     wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                     wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                     wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                     wL2Murder + wCD_S1 + wL1CD_S2, data = data, listw = W_knn, lag = FALSE, 
+                   spatial.error = "b", model = "within", effect = "twoways", method = "eigen")
+    summary(sdemfe_d) #0.195267, significant
+    
+    # Modelo SLX
+    slxfe_d <- plm(Y ~ G + L1G + L2G + L1Y + L2Y + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                   Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                   L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                   L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                   L2Murder + wG + wL1G + wL2G + wL1Y + wL2Y + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                   wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                   wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                   wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                   wL2Murder| + CD_S1 + L1CD_S2 + L1G + L2G + L1Y + L2Y + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD + Mafiosi +
+                   Extortion + Corruption1 + Corruption2 + Murder + L1Mafiosi +
+                   L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder + 
+                   L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + 
+                   L2Murder + wG + wL1G + wL2G + wL1Y + wL2Y + wL1U1 + wL1U2 + wL2U1 + wL2U2 + wL2CD + wL3CD + wMafiosi +
+                   wExtortion + wCorruption1 + wCorruption2 + wMurder + wL1Mafiosi +
+                   wL1Extortion + wL1Corruption1 + wL1Corruption2 + wL1Murder + 
+                   wL2Mafiosi + wL2Extortion + wL2Corruption1 + wL2Corruption2 + 
+                   wL2Murder + wCD_S1 + wL1CD_S2, data = data, model = "within", effect = "twoways", method = "eigen")
+    summary(slxfe_d)
+}
+```
+
+```{r}
+#| include: false
+# SAR - RE
+sphtest(x = sarre, x2 = sarfe)
+
+# SEM - RE
+sphtest(x = semre, x2 = semfe)
+
+# SARAR - FE
+sphtest(x = sararre, x2 = sararfe)
+
+# Modelo Spatial Durbin model - FE
+sphtest(x = sdmre, x2 = sdmfe) 
+
+# Modelo Spatial Durbin error model - RE
+sphtest(x = sdemre, x2 = sdemfe)
+
+# Modelo SLX - FE
+phtest(x = slxre, x2 = slxfe)
+
+# Tests #
+
+l_r<-sarfe$logLik
+l_r
+
+l_ur<-sdmfe$logLik
+l_ur
+
+lr_test=2*(l_ur-l_r)
+lr_test
+pchisq(lr_test,5,lower.tail = FALSE)
+
+# Modelo elegido: SDM con FE
+
+```
+
+```{r}
+#| include: false
+# Wald test: H0: theta + lambda * beta = 0  (conjunto)
+wald_sdm_sem <- function(sdmfe, w_prefix = "w") {
+  # 1) parámetros y var-cov
+  b <- coef(sdmfe)
+  V <- tryCatch(vcov(sdmfe), error = function(e) NULL)
+  if (is.null(V) && !is.null(sdmfe$vcov)) V <- sdmfe$vcov
+  if (is.null(V)) stop("No pude obtener la matriz de var-cov (vcov).")
+
+  # 2) nombre del parámetro lambda (rezago espacial de Y en 'spml')
+  lam_name <- if ("lambda" %in% names(b)) "lambda" else {
+    cand <- grep("lambda|Lambda", names(b), value = TRUE)
+    if (length(cand) == 0) stop("No encuentro el parámetro 'lambda' en coef(mod).")
+    cand[1]
+  }
+
+  # 3) emparejar cada WX (theta_j) con su X base (beta_j)
+  w_names <- grep(paste0("^", w_prefix), names(b), value = TRUE)
+  x_names <- sub(paste0("^", w_prefix), "", w_names)
+  keep    <- x_names %in% names(b)
+  w_names <- w_names[keep]
+  x_names <- x_names[keep]
+  K <- length(w_names)
+  if (K == 0) stop("No se encontraron términos WX (coeficientes que comiencen con 'w').")
+
+  lambda <- as.numeric(b[lam_name])
+  theta  <- as.numeric(b[w_names])
+  beta   <- as.numeric(b[x_names])
+
+  # 4) vector de restricciones h(ψ) = θ + λβ
+  h <- theta + lambda * beta
+
+  # 5) Jacobiano de h respecto a (… β, θ, lambda, …)
+  #    ∂h_j/∂θ_j = 1,  ∂h_j/∂β_j = λ,  ∂h_j/∂λ = β_j
+  p <- length(b)
+  J <- matrix(0, nrow = K, ncol = p, dimnames = list(w_names, names(b)))
+  for (j in seq_len(K)) {
+    J[j, w_names[j]] <- 1
+    J[j, x_names[j]] <- lambda
+    J[j, lam_name]   <- beta[j]
+  }
+
+  # 6) estadístico Wald y p-valor (χ²_K)
+  S   <- J %*% V %*% t(J)
+  W   <- as.numeric(t(h) %*% solve(S) %*% h)
+  pvl <- pchisq(W, df = K, lower.tail = FALSE)
+
+  data.frame(
+    test     = "H0: theta + lambda*beta = 0 (conjunto)",
+    K        = K,
+    stat     = W,
+    df       = K,
+    p.value  = pvl
+  )
+}
+
+res_H0 <- wald_sdm_sem(sdmfe, w_prefix = "w")
+print(res_H0)
+
+```
+
+Aun cuando los resultados de pruebas de especificación, como el test de Hausman, sugieren la idoneidad de un modelo de efectos aleatorios, se opta por un modelo de efectos fijos, en línea con la favorabilidad que tiene en la literatura económica. En el caso de las provincias italianas, factores estructurales no observados, como la capacidad administrativa, la historia de infiltración mafiosa o la cultura política, difícilmente son independientes del gasto público y del desempeño económico, lo que sesgaría e invalidaría los estimadores de efectos aleatorios. El enfoque de efectos fijos, en contraste, permite controlar explícitamente esa heterogeneidad inobservable constante en el tiempo. De forma complementaria se estimó un modelo de variables instrumentales con efectos fijos con la especificación anterior para corregir los problemas de endogeneidad asociados al gasto en infraestructura (columnas 1 y 2 de @tbl-2).
+
+Los resultados de las pruebas LM permiten identificar la naturaleza de la dependencia espacial presente en los datos. Tanto el LM-lag como el LM-error resultan altamente significativos en sus versiones estándar, lo que indica evidencia de correlación espacial tanto en la variable dependiente como en los errores. Sin embargo, al aplicar las pruebas robustas, sólo el LM-error permanece significativo, mientras que el LM-lag deja de serlo. Esto sugiere que la fuente principal de la dependencia espacial proviene de choques no observados compartidos entre provincias, más que de una dependencia directa del crecimiento económico entre territorios vecinos. A partir de este diagnóstico, el modelo SEM con efectos fijos se convierte en la especificación más adecuada para capturar estas correlaciones. No obstante, al implementar la metodología de Elhorst (2010) para identificar el mejor modelo espacial se obtiene como resultado el SDM. De igual forma se estiman otros modelos espaciales para evaluar la robustez de los hallazgos y, en términos espaciales, también se realizó el test de Hausman para las diferentes especificaciones de los modelos y es preferible implementar un SDM con efectos fijos.
+
+En los modelos estáticos, al considerar los resultados de los diversos modelos espaciales se encuentra que el gasto público en infraestructura tiene un coeficiente positivo y significativo, al igual que su rezago temporal, confirmando la existencia de un multiplicador fiscal local. Los modelos de tipo Durbin permiten una exploración más detallada de los efectos spillovers a través de los regresores. En el SDM se mantiene un efecto positivo y significativo del gasto público local, mientras que los rezagos espaciales del gasto en provincias vecinas no muestran un patrón claro, sugiriendo que los spillovers contemporáneos del gasto hacia jurisdicciones adyacentes son limitados o heterogéneos. En el SDEM, el parámetro de error espacial vuelve a ser significativo y el efecto propio del gasto se conserva positivo. Sin embargo, algunos rezagos espaciales de las variables de control, en particular aquellas asociadas con criminalidad y disoluciones administrativas, resultan significativos, lo que sugiere que las dinámicas institucionales y de seguridad son los principales canales de transmisión de choques entre provincias, más allá de un efecto directo del gasto.
+
+El parámetro espacial del rezago de la variable dependiente es también significativo y positivo, lo que refleja cierto grado de interdependencia contemporánea en el crecimiento económico entre provincias. En el SEM, el parámetro de error espacial es elevado y altamente significativo, confirmando la importancia de los choques no observados compartidos entre provincias. Los coeficientes de gasto público se mantienen positivos y significativos, lo que demuestra que el multiplicador fiscal es robusto incluso al controlar por correlación de los residuos. En el SARAR ambos parámetros espaciales son significativos, con un error espacial positivo y un rezago espacial de la variable dependiente negativo, lo que puede interpretarse como la coexistencia de choques comunes regionales y ciertos desplazamientos de actividad entre provincias.
+
+```{r}
+#| include: false
+library(broom)
+
+# Tidier robusto para modelos de 'splm'
+tidy.splm_ML <- function(x, conf.int = FALSE, conf.level = 0.95, ...) {
+  sx <- summary(x)
+
+  # Candidatos donde 'splm' suele guardar la tabla
+  cand <- list(
+    sx$coefficients,
+    sx$CoefTable,
+    tryCatch(coef(summary(x)), error = function(e) NULL)
+  )
+
+  co <- NULL
+  for (m in cand) if (!is.null(m)) { co <- m; break }
+  if (is.null(co)) stop("No se encontró tabla de coeficientes en summary(x). Prueba str(summary(x)).")
+
+  # Si es vector, convertir a matriz con 1 columna
+  if (is.null(dim(co))) {
+    rn <- names(co)
+    co <- cbind(Estimate = as.numeric(co))
+    rownames(co) <- rn
+  }
+
+  # Estandarizar nombres de columnas y extraer con tolerancia
+  cn <- tolower(colnames(co))
+  pick <- function(opts, default = NA_real_) {
+    j <- which(cn %in% tolower(opts))[1]
+    if (length(j)) as.numeric(co[, j]) else rep(default, nrow(co))
+  }
+
+  est <- pick(c("estimate","est.","beta","coef","coefficients"))
+  se  <- pick(c("std. error","std error","se","std_error"))
+  st  <- pick(c("z-value","z value","t value","t-value","statistic"))
+  pv  <- pick(c("pr(>|z|)","pr(>|t|)","p-value","p value","p"))
+
+  out <- tibble::tibble(
+    term      = rownames(co),
+    estimate  = est,
+    std.error = se,
+    statistic = st,
+    p.value   = pv
+  )
+
+  # quitar parámetros espaciales de la tabla
+  out <- out[!grepl("lambda|rho|phi|sigma", out$term, ignore.case = TRUE), , drop = FALSE]
+
+  if (conf.int && !all(is.na(out$std.error))) {
+    z <- qnorm(1 - (1 - conf.level)/2)
+    out$conf.low  <- out$estimate - z*out$std.error
+    out$conf.high <- out$estimate + z*out$std.error
+  }
+  out
+}
+
+# Alias por si objeto viene con otra clase
+tidy.spml <- function(x, ...) tidy.splm_ML(x, ...)
+tidy.splm <- function(x, ...) tidy.splm_ML(x, ...)
+
+tidy.splm_ML <- function(x, conf.int = FALSE, conf.level = 0.95, ...) {
+  est <- stats::coef(x)
+  V   <- try(stats::vcov(x), silent = TRUE)
+
+  se  <- if (inherits(V, "try-error")) rep(NA_real_, length(est)) else sqrt(diag(V))
+  z   <- est / se
+  # Para N grandes, la distribución asintótica es normal
+  p   <- 2 * stats::pnorm(abs(z), lower.tail = FALSE)
+
+  out <- tibble::tibble(
+    term      = names(est),
+    estimate  = unname(est),
+    std.error = unname(se),
+    statistic = unname(z),
+    p.value   = unname(p)
+  )
+
+  #  intervalos de confianza
+  if (conf.int && !any(is.na(se))) {
+    crit <- stats::qnorm(1 - (1 - conf.level)/2)
+    out$conf.low  <- out$estimate - crit * out$std.error
+    out$conf.high <- out$estimate + crit * out$std.error
+  }
+
+  out
+}
+
+str(summary(sararfe))       # para ver qué trae
+broom::tidy(sararfe) |> head()
+
+glance.splm_ML <- function(x, ...) {
+  res  <- as.numeric(stats::residuals(x))
+  n    <- length(res)
+
+  yhat <- try(stats::fitted(x), silent = TRUE)
+  if (!inherits(yhat, "try-error") && length(yhat) == n && any(is.finite(yhat))) {
+    y <- yhat + res
+  } else {
+    y <- try(model.response(model.frame(x)), silent = TRUE)
+    if (inherits(y, "try-error") || is.null(y) || length(y) != n) y <- res
+    y <- as.numeric(y)
+  }
+
+  rmse <- sqrt(mean(res^2, na.rm = TRUE))
+  tss  <- sum((y - mean(y, na.rm = TRUE))^2, na.rm = TRUE)
+  rss  <- sum(res^2, na.rm = TRUE)
+  r2   <- if (is.finite(tss) && tss > 0) 1 - rss/tss else NA_real_
+  k    <- length(stats::coef(x))
+  adjr2 <- if (is.finite(r2) && (n - k - 1) > 0) 1 - (1 - r2) * (n - 1)/(n - k - 1) else NA_real_
+
+  tibble::tibble(
+    nobs           = n,
+    r.squared      = r2,
+    adj.r.squared  = adjr2,
+    rmse           = rmse
+  )
+}
+# Alias por si objetos vienen con estas clases
+glance.spml <- function(x, ...) glance.splm_ML(x, ...)
+glance.splm <- function(x, ...) glance.splm_ML(x, ...)
+```
+
+```{r echo=FALSE}
+#| label: tbl-2
+#| message: false
+#| warning: false
+library(modelsummary)
+library(splm)
+
+# export 1 especificacion (solo 1 etapa e IV)
+
+models_list1 <- list("FE" = fe_s,
+                     "FE-IV" = fe_iv_s,
+                     "SAR" = sarfe,
+                     "SEM" = semfe,
+                     "SARAR" =sararfe,
+                     "SDM" = sdmfe,
+                     "SDEM" = sdemfe,
+                     "SLX" = slxfe)
+
+gof_map <- tibble::tribble(
+  ~raw,            ~clean,      ~fmt,
+  "nobs",          "Num.Obs.",     0,
+  "r.squared",     "R2",           3,
+  "adj.r.squared", "R2 Adj.",      3,
+  "rmse",          "RMSE",         3
+)
+
+
+# Table for the first model specification
+modelsummary(models_list1, 
+             output="gt", 
+             coef_map = c("G" = "G(t)",
+                          "L1G" = "G(t-1)",
+                          "L2G" = "G(t-2)",
+                          #"L1Y" = "Y(t-1)",
+                          #"L2Y" = "Y(t-2)",
+                          "CD_S1" = "CDS1(t)",
+                          "L1CD_S2" = "CDS2(t-1)"),
+             title = "Multiplicador del Gasto Público",
+            gof_map  = gof_map,
+             gof_omit = "IC|Log" ,
+             stars = c('*'=.1,'**'=.05,'***'=.01),
+              coef_rename = NULL,
+              missing = "" ) |>
+  
+  gt::tab_source_note(gt::md("**Nota:** Errores estándar en paréntesis")) %>%
+  gt::tab_source_note(gt::md("**Fuente:** Elaboración propia.")) %>%
+  tab_style(style = cell_text(color='black', size='x-small', align = "left"), locations = cells_source_notes()) %>%
+  gt::tab_options(source_notes.font.size = gt::px(12))
+```
+
+# Conclusiones
+
+Este trabajo aporta a la literatura sobre multiplicadores fiscales y crimen organizado al introducir un análisis explícitamente espacial del gasto público en infraestructura en las provincias italianas durante los noventa. Mientras estudios previos se han concentrado en estimaciones convencionales de modelos VAR o paneles estáticos, aquí se enfatiza cómo los derrames espaciales asociados a disoluciones mafiosas pueden modificar tanto la magnitud como la interpretación de los efectos estimados. El uso comparativo de modelos SAR, SEM, SARAR, SDM y SDEM permite mostrar que la interacción espacial no es un aspecto secundario, sino una dimensión central para comprender el alcance real del gasto público en contextos con fuerte presencia de criminalidad organizada.
+
+Los resultados muestran que el multiplicador de la inversión pública es positivo y estadísticamente significativo en el corto plazo. En particular, el efecto contemporáneo de $G_{t}$ sobre el crecimiento del producto provincial per cápita es robusto en todas las especificaciones, oscilando entre 0.09 y 0.21 en los modelos tradicionales y alcanzando valores cercanos a 0.16 en otras especificaciones espaciales (SDM y SDEM). Además, el rezago de un período $G_{t-1}$ también resulta significativo en la mayoría de modelos, indicando que los efectos del gasto se extienden en el tiempo y no se limitan a un impacto inmediato. En contraste, los rezagos de dos períodos $G_{t-2}$ no muestran relevancia estadística, lo que sugiere que la persistencia temporal del multiplicador es limitada. Estos hallazgos confirman que la inversión en infraestructura tiene capacidad de estimular el crecimiento local y que parte de este efecto se mantiene en el corto plazo.
+
+Desde la perspectiva de políticas públicas, los resultados sugieren que la inversión en infraestructura no solo impulsa el crecimiento económico inmediato, sino que también genera efectos rezagados positivos en el corto plazo, incluso en contextos con presencia de criminalidad organizada. Esto refuerza la necesidad de sostener niveles adecuados de gasto público en territorios vulnerables, no únicamente como una herramienta de reactivación económica, sino también como un mecanismo de resiliencia institucional y social. Al mismo tiempo, la evidencia sobre derrames espaciales indica que las decisiones de inversión deben diseñarse considerando la coordinación interprovincial, de manera que los beneficios no se diluyan por desplazamientos de actividad hacia regiones vecinas. En este sentido, la política fiscal puede convertirse en una herramienta estratégica para mitigar los efectos económicos de la infiltración mafiosa, siempre que se complemente con políticas de transparencia y fortalecimiento institucional.
+
+No obstante, el ejercicio presenta limitaciones que abren espacio a futuras investigaciones. En particular, la estrategia no distingue entre provincias con distintos niveles de intensidad mafiosa, lo que impide capturar heterogeneidades en la magnitud y duración del multiplicador. Incorporar esta dimensión permitiría explorar si el gasto público genera impactos diferenciados en territorios con mayor penetración criminal. De igual manera, sería pertinente considerar especificaciones alternativas que integren indicadores de calidad institucional y redes de corrupción, lo cual ayudaría a refinar la interpretación de los resultados y robustecer las conclusiones sobre la interacción entre gasto público, criminalidad organizada y crecimiento económico.
+
+# Referencias
