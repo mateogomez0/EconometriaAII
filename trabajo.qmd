@@ -5,7 +5,13 @@ format: typst
 editor: visual
 ---
 
-## Trabajo
+# Abstract
+
+# Introduction
+
+# Literature Review
+
+# Data and descriptive Statistics
 
 Instalamos la bd
 
@@ -15,7 +21,7 @@ library(pder)
 data("Mafia")
 ```
 
-limpiamos la bd
+Limpiamos la bd
 
 ```{r}
 # Cargar librerías
@@ -45,9 +51,10 @@ italy_clean <- italy |>
 plot(st_geometry(italy_clean))
 ```
 
-matriz de pesos
+Matriz de pesos
 
 ```{r}
+{r}
 library(spdep)
 library(sf)
 
@@ -56,3 +63,11 @@ coords   <- st_centroid(italy_clean) |> st_coordinates()
 italy_nb <- knn2nb(knearneigh(coords, k = 4))
 italy_W  <- nb2listw(italy_nb, style = "W")
 ```
+
+# Econometric Model
+
+# Result
+
+# Conclusions
+
+# References
