@@ -13,7 +13,7 @@ editor: visual
 
 # Data and descriptive Statistics
 
-Instalamos la bd
+importamos la bd
 
 ```{r}
 #install.packages("pder")
@@ -62,6 +62,50 @@ library(sf)
 coords   <- st_centroid(italy_clean) |> st_coordinates()
 italy_nb <- knn2nb(knearneigh(coords, k = 4))
 italy_W  <- nb2listw(italy_nb, style = "W")
+```
+
+```{r}
+library(ggplot2)
+
+# Promediar variables por provincia (colapsar el panel)
+mafia_avg <- Mafia |>
+  group_by(province) |>
+  summarise(
+    y        = mean(y,        na.rm = TRUE),
+    g        = mean(g,        na.rm = TRUE),
+    mafiosi  = mean(mafiosi,  na.rm = TRUE),
+    murder   = mean(murder,   na.rm = TRUE)
+  )
+
+# Join con shapefile
+italy_mafia <- italy_clean |>
+  left_join(mafia_avg, by = "province")
+
+# Función para no repetir código en cada mapa
+mapa_italia <- function(variable, titulo, leyenda) {
+  ggplot(italy_mafia) +
+    geom_sf(aes(fill = {{ variable }}), color = "white", linewidth = 0.2) +
+    scale_fill_viridis_c(option = "plasma", name = leyenda) +
+    labs(title = titulo,
+         caption = "Source: Mafia dataset (pder). Average 1986-1999.") +
+    theme_void() +
+    theme(
+      plot.title   = element_text(hjust = 0.5, face = "bold"),
+      legend.position = "right"
+    )
+}
+
+# Mapas individuales
+mapa_y       <- mapa_italia(y,       "GDP per capita (y)",          "log GDP")
+mapa_g       <- mapa_italia(g,       "Public Spending (g)",         "log Spending")
+mapa_mafiosi <- mapa_italia(mafiosi, "Mafia Presence (mafiosi)",    "Rate")
+mapa_murder  <- mapa_italia(murder,  "Murder Rate",                 "Rate")
+
+# Ver los mapas
+mapa_y
+mapa_g
+mapa_mafiosi
+mapa_murder
 ```
 
 # Econometric Model
