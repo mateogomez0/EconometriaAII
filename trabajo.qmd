@@ -1,8 +1,12 @@
 ---
-title: "Crime"
+title: "Mafia and Public Spending: Evidence on the Fiscal Multiplier from a Quasi-Experiment"
 author: "pau, fer, y teo"
 format: typst
 editor: visual
+execute:
+  warning: false
+  message: false
+  echo: false #esta oculta el código y solo deja el output, podemos quitarla o dejarla 
 ---
 
 # Abstract
@@ -48,7 +52,7 @@ italy_clean <- italy |>
   left_join(equivalencias, by = c("name" = "shp_name")) |>
   mutate(province = ifelse(is.na(mafia_name), name, mafia_name)) |>
   filter(province %in% unique(Mafia$province))
-plot(st_geometry(italy_clean))
+#plot(st_geometry(italy_clean)) --> solo para validar que si cargue jeje
 ```
 
 Descriptivas :)
