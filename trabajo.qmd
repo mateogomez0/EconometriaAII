@@ -154,8 +154,15 @@ Test de Moran para autocorrelación espacial
 moran_y <- moran.test(italy_mafia$y, italy_W)
 moran_g <- moran.test(italy_mafia$g, italy_W)
 
-moran_y
-moran_g
+# Tabla resumen
+data.frame(
+  Variable  = c("GDP growth (y)", "Public Spending (g)"),
+  `Moran's I` = c(moran_y$estimate[1], moran_g$estimate[1]),
+  `p-value`   = c(moran_y$p.value,     moran_g$p.value)
+) |>
+  kable(digits = 4, 
+        caption = "Moran's I Test for Spatial Autocorrelation",
+        col.names = c("Variable", "Moran's I", "p-value"))
 ```
 
 Scatter plot
