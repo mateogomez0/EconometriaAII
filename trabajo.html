@@ -2416,7 +2416,7 @@ window.Quarto = {
 
 <section id="resumen" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Resumen</h1>
-<p>Este trabajo replica y extiende espacialmente a <span class="citation" data-cites="acconcia2014">Acconcia et al. (<a href="#ref-acconcia2014" role="doc-biblioref">2014</a>)</span>, quienes estiman el multiplicador fiscal de la inversión pública en las provincias italianas instrumentando el gasto con las disoluciones de concejos municipales por infiltración mafiosa (Ley 164/1991). Nuestra replicación reproduce con precisión los resultados originales sobre el panel de 95 provincias y 950 observaciones (1990–1999): multiplicador de impacto de 1.55, dinámico a dos años de 1.30 y acumulado de 1.96, con un estadístico F de instrumento débil de 12.8. La extensión consiste en someter a escrutinio espacial formal la afirmación de los autores de que las economías provinciales italianas son “insulares” —conclusión que ellos derivan de un procedimiento simple, añadir el gasto regional agregado como regresor adicional. Definimos matrices de pesos basadas en proximidad geográfica, contrastamos la dependencia espacial mediante tests LM, estimamos las especificaciones SAR, SEM y SDM, calculamos los efectos directos, indirectos y totales en el sentido de <span class="citation" data-cites="lesage2009">LeSage y Pace (<a href="#ref-lesage2009" role="doc-biblioref">2009</a>)</span>, y empleamos un estimador GMM espacial (<code>splm::spgm</code>) que corrige simultáneamente dependencia espacial y endogeneidad —algo que la estimación por máxima verosimilitud no permite. Los resultados confirman la existencia de dependencia espacial significativa en el crecimiento provincial, atribuible principalmente a choques regionales comunes, pero no revelan un canal de transmisión del gasto público entre provincias vecinas: la insularidad postulada por el paper original resiste el escrutinio. Complementamos el análisis con un ejercicio de heterogeneidad por macrorregión que valida el diseño de identificación, un balance test de pre-trends y verificaciones de robustez frente a cuatro matrices de pesos alternativas.</p>
+<p>Este trabajo replica y extiende espacialmente a <span class="citation" data-cites="acconcia2014">Acconcia et al. (<a href="#ref-acconcia2014" role="doc-biblioref">2014</a>)</span>, quienes estiman el multiplicador fiscal de la inversión pública en las provincias italianas instrumentando el gasto con las disoluciones de concejos municipales por infiltración mafiosa (Ley 164/1991). Nuestra replicación reproduce con precisión los resultados originales sobre el panel de 95 provincias y 950 observaciones (1990–1999): multiplicador de impacto de 1.55, dinámico a dos años de 1.30 y acumulado de 1.96, con un estadístico F de instrumento débil de 12.8. La extensión consiste en someter a escrutinio espacial formal la afirmación de los autores de que las economías provinciales italianas son “insulares” —conclusión que ellos derivan de un procedimiento simple, añadir el gasto regional agregado como regresor adicional. Definimos matrices de pesos basadas en proximidad geográfica, contrastamos la dependencia espacial mediante tests LM, estimamos las especificaciones SAR, SEM y SDM, calculamos los efectos directos, indirectos y totales en el sentido de <span class="citation" data-cites="lesage2009">LeSage y Pace (<a href="#ref-lesage2009" role="doc-biblioref">2009</a>)</span>, y empleamos un estimador GMM espacial (<code>splm::spgm</code>) que corrige simultáneamente dependencia espacial y endogeneidad —algo que la estimación por máxima verosimilitud no permite. Los resultados confirman la existencia de dependencia espacial significativa en el crecimiento provincial —presente tanto en la variable dependiente como en los errores— pero no revelan un canal de transmisión del gasto público entre provincias vecinas: la insularidad postulada por el paper original resiste el escrutinio. Complementamos el análisis con un ejercicio de heterogeneidad por macrorregión que valida el diseño de identificación, un balance test de pre-trends y verificaciones de robustez frente a cuatro matrices de pesos alternativas.</p>
 </section>
 <section id="introducción" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Introducción</h1>
@@ -2448,20 +2448,20 @@ Tabla 1: Definición de variables y unidades
 </figcaption>
 <div aria-describedby="tbl-vars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="fmgnxwzaqq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fmgnxwzaqq table {
+<div id="wxhifwqanj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wxhifwqanj table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#fmgnxwzaqq thead, #fmgnxwzaqq tbody, #fmgnxwzaqq tfoot, #fmgnxwzaqq tr, #fmgnxwzaqq td, #fmgnxwzaqq th {
+#wxhifwqanj thead, #wxhifwqanj tbody, #wxhifwqanj tfoot, #wxhifwqanj tr, #wxhifwqanj td, #wxhifwqanj th {
 border-style: none;
 }
-#fmgnxwzaqq p {
+#wxhifwqanj p {
 margin: 0;
 padding: 0;
 }
-#fmgnxwzaqq .gt_table {
+#wxhifwqanj .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -2486,11 +2486,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#fmgnxwzaqq .gt_caption {
+#wxhifwqanj .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#fmgnxwzaqq .gt_title {
+#wxhifwqanj .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -2501,7 +2501,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#fmgnxwzaqq .gt_subtitle {
+#wxhifwqanj .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -2512,7 +2512,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#fmgnxwzaqq .gt_heading {
+#wxhifwqanj .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -2523,12 +2523,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#fmgnxwzaqq .gt_bottom_border {
+#wxhifwqanj .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#fmgnxwzaqq .gt_col_headings {
+#wxhifwqanj .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2542,7 +2542,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#fmgnxwzaqq .gt_col_heading {
+#wxhifwqanj .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2561,7 +2561,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#fmgnxwzaqq .gt_column_spanner_outer {
+#wxhifwqanj .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2572,13 +2572,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#fmgnxwzaqq .gt_column_spanner_outer:first-child {
+#wxhifwqanj .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#fmgnxwzaqq .gt_column_spanner_outer:last-child {
+#wxhifwqanj .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#fmgnxwzaqq .gt_column_spanner {
+#wxhifwqanj .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -2589,10 +2589,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#fmgnxwzaqq .gt_spanner_row {
+#wxhifwqanj .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#fmgnxwzaqq .gt_group_heading {
+#wxhifwqanj .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2617,7 +2617,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#fmgnxwzaqq .gt_empty_group_heading {
+#wxhifwqanj .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -2631,13 +2631,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#fmgnxwzaqq .gt_from_md > :first-child {
+#wxhifwqanj .gt_from_md > :first-child {
 margin-top: 0;
 }
-#fmgnxwzaqq .gt_from_md > :last-child {
+#wxhifwqanj .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#fmgnxwzaqq .gt_row {
+#wxhifwqanj .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2655,7 +2655,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#fmgnxwzaqq .gt_stub {
+#wxhifwqanj .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2667,7 +2667,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fmgnxwzaqq .gt_stub_row_group {
+#wxhifwqanj .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2680,13 +2680,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#fmgnxwzaqq .gt_row_group_first td {
+#wxhifwqanj .gt_row_group_first td {
 border-top-width: 2px;
 }
-#fmgnxwzaqq .gt_row_group_first th {
+#wxhifwqanj .gt_row_group_first th {
 border-top-width: 2px;
 }
-#fmgnxwzaqq .gt_summary_row {
+#wxhifwqanj .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2695,14 +2695,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fmgnxwzaqq .gt_first_summary_row {
+#wxhifwqanj .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#fmgnxwzaqq .gt_first_summary_row.thick {
+#wxhifwqanj .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#fmgnxwzaqq .gt_last_summary_row {
+#wxhifwqanj .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2711,7 +2711,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#fmgnxwzaqq .gt_grand_summary_row {
+#wxhifwqanj .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2720,7 +2720,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fmgnxwzaqq .gt_first_grand_summary_row {
+#wxhifwqanj .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2729,7 +2729,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#fmgnxwzaqq .gt_last_grand_summary_row_top {
+#wxhifwqanj .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2738,10 +2738,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#fmgnxwzaqq .gt_striped {
+#wxhifwqanj .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#fmgnxwzaqq .gt_table_body {
+#wxhifwqanj .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2749,7 +2749,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#fmgnxwzaqq .gt_footnotes {
+#wxhifwqanj .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2762,7 +2762,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#fmgnxwzaqq .gt_footnote {
+#wxhifwqanj .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -2770,7 +2770,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fmgnxwzaqq .gt_sourcenotes {
+#wxhifwqanj .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2783,64 +2783,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#fmgnxwzaqq .gt_sourcenote {
+#wxhifwqanj .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fmgnxwzaqq .gt_left {
+#wxhifwqanj .gt_left {
 text-align: left;
 }
-#fmgnxwzaqq .gt_center {
+#wxhifwqanj .gt_center {
 text-align: center;
 }
-#fmgnxwzaqq .gt_right {
+#wxhifwqanj .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#fmgnxwzaqq .gt_font_normal {
+#wxhifwqanj .gt_font_normal {
 font-weight: normal;
 }
-#fmgnxwzaqq .gt_font_bold {
+#wxhifwqanj .gt_font_bold {
 font-weight: bold;
 }
-#fmgnxwzaqq .gt_font_italic {
+#wxhifwqanj .gt_font_italic {
 font-style: italic;
 }
-#fmgnxwzaqq .gt_super {
+#wxhifwqanj .gt_super {
 font-size: 65%;
 }
-#fmgnxwzaqq .gt_footnote_marks {
+#wxhifwqanj .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#fmgnxwzaqq .gt_asterisk {
+#wxhifwqanj .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#fmgnxwzaqq .gt_indent_1 {
+#wxhifwqanj .gt_indent_1 {
 text-indent: 5px;
 }
-#fmgnxwzaqq .gt_indent_2 {
+#wxhifwqanj .gt_indent_2 {
 text-indent: 10px;
 }
-#fmgnxwzaqq .gt_indent_3 {
+#wxhifwqanj .gt_indent_3 {
 text-indent: 15px;
 }
-#fmgnxwzaqq .gt_indent_4 {
+#wxhifwqanj .gt_indent_4 {
 text-indent: 20px;
 }
-#fmgnxwzaqq .gt_indent_5 {
+#wxhifwqanj .gt_indent_5 {
 text-indent: 25px;
 }
-#fmgnxwzaqq .katex-display {
+#wxhifwqanj .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#fmgnxwzaqq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wxhifwqanj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -2953,20 +2953,20 @@ Tabla 2: Estadísticas descriptivas — panel 1990–1999 (95 provincias)
 </figcaption>
 <div aria-describedby="tbl-desc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="lwdaelvpxo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lwdaelvpxo table {
+<div id="dyfkxfouxe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dyfkxfouxe table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#lwdaelvpxo thead, #lwdaelvpxo tbody, #lwdaelvpxo tfoot, #lwdaelvpxo tr, #lwdaelvpxo td, #lwdaelvpxo th {
+#dyfkxfouxe thead, #dyfkxfouxe tbody, #dyfkxfouxe tfoot, #dyfkxfouxe tr, #dyfkxfouxe td, #dyfkxfouxe th {
 border-style: none;
 }
-#lwdaelvpxo p {
+#dyfkxfouxe p {
 margin: 0;
 padding: 0;
 }
-#lwdaelvpxo .gt_table {
+#dyfkxfouxe .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -2991,11 +2991,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#lwdaelvpxo .gt_caption {
+#dyfkxfouxe .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#lwdaelvpxo .gt_title {
+#dyfkxfouxe .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -3006,7 +3006,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#lwdaelvpxo .gt_subtitle {
+#dyfkxfouxe .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -3017,7 +3017,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#lwdaelvpxo .gt_heading {
+#dyfkxfouxe .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -3028,12 +3028,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#lwdaelvpxo .gt_bottom_border {
+#dyfkxfouxe .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#lwdaelvpxo .gt_col_headings {
+#dyfkxfouxe .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3047,7 +3047,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#lwdaelvpxo .gt_col_heading {
+#dyfkxfouxe .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3066,7 +3066,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#lwdaelvpxo .gt_column_spanner_outer {
+#dyfkxfouxe .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3077,13 +3077,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#lwdaelvpxo .gt_column_spanner_outer:first-child {
+#dyfkxfouxe .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#lwdaelvpxo .gt_column_spanner_outer:last-child {
+#dyfkxfouxe .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#lwdaelvpxo .gt_column_spanner {
+#dyfkxfouxe .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -3094,10 +3094,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#lwdaelvpxo .gt_spanner_row {
+#dyfkxfouxe .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#lwdaelvpxo .gt_group_heading {
+#dyfkxfouxe .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3122,7 +3122,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#lwdaelvpxo .gt_empty_group_heading {
+#dyfkxfouxe .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -3136,13 +3136,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#lwdaelvpxo .gt_from_md > :first-child {
+#dyfkxfouxe .gt_from_md > :first-child {
 margin-top: 0;
 }
-#lwdaelvpxo .gt_from_md > :last-child {
+#dyfkxfouxe .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#lwdaelvpxo .gt_row {
+#dyfkxfouxe .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3160,7 +3160,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#lwdaelvpxo .gt_stub {
+#dyfkxfouxe .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3172,7 +3172,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#lwdaelvpxo .gt_stub_row_group {
+#dyfkxfouxe .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3185,13 +3185,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#lwdaelvpxo .gt_row_group_first td {
+#dyfkxfouxe .gt_row_group_first td {
 border-top-width: 2px;
 }
-#lwdaelvpxo .gt_row_group_first th {
+#dyfkxfouxe .gt_row_group_first th {
 border-top-width: 2px;
 }
-#lwdaelvpxo .gt_summary_row {
+#dyfkxfouxe .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3200,14 +3200,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#lwdaelvpxo .gt_first_summary_row {
+#dyfkxfouxe .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#lwdaelvpxo .gt_first_summary_row.thick {
+#dyfkxfouxe .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#lwdaelvpxo .gt_last_summary_row {
+#dyfkxfouxe .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3216,7 +3216,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#lwdaelvpxo .gt_grand_summary_row {
+#dyfkxfouxe .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3225,7 +3225,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#lwdaelvpxo .gt_first_grand_summary_row {
+#dyfkxfouxe .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3234,7 +3234,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#lwdaelvpxo .gt_last_grand_summary_row_top {
+#dyfkxfouxe .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3243,10 +3243,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#lwdaelvpxo .gt_striped {
+#dyfkxfouxe .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#lwdaelvpxo .gt_table_body {
+#dyfkxfouxe .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3254,7 +3254,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#lwdaelvpxo .gt_footnotes {
+#dyfkxfouxe .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3267,7 +3267,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#lwdaelvpxo .gt_footnote {
+#dyfkxfouxe .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -3275,7 +3275,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#lwdaelvpxo .gt_sourcenotes {
+#dyfkxfouxe .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3288,64 +3288,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#lwdaelvpxo .gt_sourcenote {
+#dyfkxfouxe .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#lwdaelvpxo .gt_left {
+#dyfkxfouxe .gt_left {
 text-align: left;
 }
-#lwdaelvpxo .gt_center {
+#dyfkxfouxe .gt_center {
 text-align: center;
 }
-#lwdaelvpxo .gt_right {
+#dyfkxfouxe .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#lwdaelvpxo .gt_font_normal {
+#dyfkxfouxe .gt_font_normal {
 font-weight: normal;
 }
-#lwdaelvpxo .gt_font_bold {
+#dyfkxfouxe .gt_font_bold {
 font-weight: bold;
 }
-#lwdaelvpxo .gt_font_italic {
+#dyfkxfouxe .gt_font_italic {
 font-style: italic;
 }
-#lwdaelvpxo .gt_super {
+#dyfkxfouxe .gt_super {
 font-size: 65%;
 }
-#lwdaelvpxo .gt_footnote_marks {
+#dyfkxfouxe .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#lwdaelvpxo .gt_asterisk {
+#dyfkxfouxe .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#lwdaelvpxo .gt_indent_1 {
+#dyfkxfouxe .gt_indent_1 {
 text-indent: 5px;
 }
-#lwdaelvpxo .gt_indent_2 {
+#dyfkxfouxe .gt_indent_2 {
 text-indent: 10px;
 }
-#lwdaelvpxo .gt_indent_3 {
+#dyfkxfouxe .gt_indent_3 {
 text-indent: 15px;
 }
-#lwdaelvpxo .gt_indent_4 {
+#dyfkxfouxe .gt_indent_4 {
 text-indent: 20px;
 }
-#lwdaelvpxo .gt_indent_5 {
+#dyfkxfouxe .gt_indent_5 {
 text-indent: 25px;
 }
-#lwdaelvpxo .katex-display {
+#dyfkxfouxe .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#lwdaelvpxo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#dyfkxfouxe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -3491,7 +3491,7 @@ height: 0px !important;
 <p>La <a href="#fig-descriptive-maps" class="quarto-xref">Figura 1</a> presenta la distribución provincial de las cuatro variables centrales del análisis, promediadas sobre el periodo 1990–1999 (con excepción del panel D, que muestra la suma acumulada de municipios bajo administración externa). El <strong>panel A</strong> muestra el crecimiento del valor agregado real per cápita <span class="math inline">\(Y\)</span>: se observa el clásico dualismo italiano con provincias del Norte y Centro industrial exhibiendo crecimientos por encima de la media, y una franja del Mezzogiorno con crecimientos más bajos o incluso negativos. El <strong>panel B</strong> muestra la variación de la inversión pública per cápita <span class="math inline">\(G\)</span>: la distribución es más ruidosa geográficamente, coherente con el hecho de que <span class="math inline">\(G\)</span> es un cambio anual normalizado y por tanto un shock más que un nivel. El <strong>panel C</strong> presenta la intensidad de la asociación mafiosa (variación de reportes por 1.000 habitantes), donde se aprecia claramente la concentración histórica del fenómeno en Sicilia, Calabria, Campania y Puglia. Finalmente, el <strong>panel D</strong> presenta la suma acumulada de disoluciones (<span class="math inline">\(CD\)</span>) durante el periodo: la variable de tratamiento se concentra abrumadoramente en el Mezzogiorno —Sicilia, Calabria y Campania, principalmente— mientras que el Norte y buena parte del Centro registran cero o casi cero disoluciones en toda la década. Este patrón visual anticipa un resultado central del trabajo: el multiplicador local del gasto sólo puede identificarse en la región donde el instrumento efectivamente varía.</p>
 <div class="cell fig-cap-location-top" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-descriptive-maps" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-cap-location="top">
+<div id="fig-descriptive-maps" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-descriptive-maps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura 1: Distribución espacial de las variables clave, provincias italianas 1990–1999
@@ -3512,7 +3512,7 @@ Figura 1: Distribución espacial de las variables clave, provincias italianas 1
 <p>Para el análisis espacial construimos matrices de pesos entre provincias siguiendo distintos criterios de vecindad. La especificación base emplea <span class="math inline">\(k\)</span>-vecinos más cercanos con <span class="math inline">\(k=4\)</span>, estimados a partir de los centroides provinciales. Para los ejercicios de robustez usaremos además: (i) contigüidad tipo reina; (ii) <span class="math inline">\(k=6\)</span> vecinos más cercanos; y (iii) distancia inversa umbralizada al mínimo umbral que garantiza conectividad de todas las provincias, incluidas las insulares. Todas las matrices se estandarizan por filas para facilitar la interpretación de los rezagos espaciales como promedios ponderados.</p>
 <div class="cell fig-cap-location-top" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-w" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-cap-location="top">
+<div id="fig-w" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura 2: Estructura de vecindad k-NN con k=4 (matriz de pesos base)
@@ -3536,20 +3536,20 @@ Tabla 3: Moran’s I por año — matriz base k-NN(4)
 </figcaption>
 <div aria-describedby="tbl-moran-global-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="dtkkcxpspu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dtkkcxpspu table {
+<div id="cguwnoppdd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cguwnoppdd table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#dtkkcxpspu thead, #dtkkcxpspu tbody, #dtkkcxpspu tfoot, #dtkkcxpspu tr, #dtkkcxpspu td, #dtkkcxpspu th {
+#cguwnoppdd thead, #cguwnoppdd tbody, #cguwnoppdd tfoot, #cguwnoppdd tr, #cguwnoppdd td, #cguwnoppdd th {
 border-style: none;
 }
-#dtkkcxpspu p {
+#cguwnoppdd p {
 margin: 0;
 padding: 0;
 }
-#dtkkcxpspu .gt_table {
+#cguwnoppdd .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -3574,11 +3574,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#dtkkcxpspu .gt_caption {
+#cguwnoppdd .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#dtkkcxpspu .gt_title {
+#cguwnoppdd .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -3589,7 +3589,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#dtkkcxpspu .gt_subtitle {
+#cguwnoppdd .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -3600,7 +3600,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#dtkkcxpspu .gt_heading {
+#cguwnoppdd .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -3611,12 +3611,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#dtkkcxpspu .gt_bottom_border {
+#cguwnoppdd .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#dtkkcxpspu .gt_col_headings {
+#cguwnoppdd .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3630,7 +3630,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#dtkkcxpspu .gt_col_heading {
+#cguwnoppdd .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3649,7 +3649,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#dtkkcxpspu .gt_column_spanner_outer {
+#cguwnoppdd .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3660,13 +3660,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#dtkkcxpspu .gt_column_spanner_outer:first-child {
+#cguwnoppdd .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#dtkkcxpspu .gt_column_spanner_outer:last-child {
+#cguwnoppdd .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#dtkkcxpspu .gt_column_spanner {
+#cguwnoppdd .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -3677,10 +3677,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#dtkkcxpspu .gt_spanner_row {
+#cguwnoppdd .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#dtkkcxpspu .gt_group_heading {
+#cguwnoppdd .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3705,7 +3705,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#dtkkcxpspu .gt_empty_group_heading {
+#cguwnoppdd .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -3719,13 +3719,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#dtkkcxpspu .gt_from_md > :first-child {
+#cguwnoppdd .gt_from_md > :first-child {
 margin-top: 0;
 }
-#dtkkcxpspu .gt_from_md > :last-child {
+#cguwnoppdd .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#dtkkcxpspu .gt_row {
+#cguwnoppdd .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3743,7 +3743,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#dtkkcxpspu .gt_stub {
+#cguwnoppdd .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3755,7 +3755,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dtkkcxpspu .gt_stub_row_group {
+#cguwnoppdd .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3768,13 +3768,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#dtkkcxpspu .gt_row_group_first td {
+#cguwnoppdd .gt_row_group_first td {
 border-top-width: 2px;
 }
-#dtkkcxpspu .gt_row_group_first th {
+#cguwnoppdd .gt_row_group_first th {
 border-top-width: 2px;
 }
-#dtkkcxpspu .gt_summary_row {
+#cguwnoppdd .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3783,14 +3783,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dtkkcxpspu .gt_first_summary_row {
+#cguwnoppdd .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#dtkkcxpspu .gt_first_summary_row.thick {
+#cguwnoppdd .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#dtkkcxpspu .gt_last_summary_row {
+#cguwnoppdd .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3799,7 +3799,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#dtkkcxpspu .gt_grand_summary_row {
+#cguwnoppdd .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3808,7 +3808,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dtkkcxpspu .gt_first_grand_summary_row {
+#cguwnoppdd .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3817,7 +3817,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#dtkkcxpspu .gt_last_grand_summary_row_top {
+#cguwnoppdd .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3826,10 +3826,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#dtkkcxpspu .gt_striped {
+#cguwnoppdd .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#dtkkcxpspu .gt_table_body {
+#cguwnoppdd .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3837,7 +3837,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#dtkkcxpspu .gt_footnotes {
+#cguwnoppdd .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3850,7 +3850,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#dtkkcxpspu .gt_footnote {
+#cguwnoppdd .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -3858,7 +3858,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dtkkcxpspu .gt_sourcenotes {
+#cguwnoppdd .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3871,64 +3871,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#dtkkcxpspu .gt_sourcenote {
+#cguwnoppdd .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dtkkcxpspu .gt_left {
+#cguwnoppdd .gt_left {
 text-align: left;
 }
-#dtkkcxpspu .gt_center {
+#cguwnoppdd .gt_center {
 text-align: center;
 }
-#dtkkcxpspu .gt_right {
+#cguwnoppdd .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#dtkkcxpspu .gt_font_normal {
+#cguwnoppdd .gt_font_normal {
 font-weight: normal;
 }
-#dtkkcxpspu .gt_font_bold {
+#cguwnoppdd .gt_font_bold {
 font-weight: bold;
 }
-#dtkkcxpspu .gt_font_italic {
+#cguwnoppdd .gt_font_italic {
 font-style: italic;
 }
-#dtkkcxpspu .gt_super {
+#cguwnoppdd .gt_super {
 font-size: 65%;
 }
-#dtkkcxpspu .gt_footnote_marks {
+#cguwnoppdd .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#dtkkcxpspu .gt_asterisk {
+#cguwnoppdd .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#dtkkcxpspu .gt_indent_1 {
+#cguwnoppdd .gt_indent_1 {
 text-indent: 5px;
 }
-#dtkkcxpspu .gt_indent_2 {
+#cguwnoppdd .gt_indent_2 {
 text-indent: 10px;
 }
-#dtkkcxpspu .gt_indent_3 {
+#cguwnoppdd .gt_indent_3 {
 text-indent: 15px;
 }
-#dtkkcxpspu .gt_indent_4 {
+#cguwnoppdd .gt_indent_4 {
 text-indent: 20px;
 }
-#dtkkcxpspu .gt_indent_5 {
+#cguwnoppdd .gt_indent_5 {
 text-indent: 25px;
 }
-#dtkkcxpspu .katex-display {
+#cguwnoppdd .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#dtkkcxpspu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cguwnoppdd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -3956,28 +3956,28 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="I_Y">0.449</td>
 <td class="gt_row gt_right" headers="p_Y">0.001</td>
 <td class="gt_row gt_right" headers="I_G">0.185</td>
-<td class="gt_row gt_right" headers="p_G">0.001</td>
+<td class="gt_row gt_right" headers="p_G">0.003</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="year">1992</td>
 <td class="gt_row gt_right" headers="I_Y">0.228</td>
 <td class="gt_row gt_right" headers="p_Y">0.001</td>
 <td class="gt_row gt_right" headers="I_G">−0.016</td>
-<td class="gt_row gt_right" headers="p_G">0.550</td>
+<td class="gt_row gt_right" headers="p_G">0.572</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="year">1993</td>
 <td class="gt_row gt_right" headers="I_Y">0.180</td>
-<td class="gt_row gt_right" headers="p_Y">0.005</td>
+<td class="gt_row gt_right" headers="p_Y">0.004</td>
 <td class="gt_row gt_right" headers="I_G">0.048</td>
-<td class="gt_row gt_right" headers="p_G">0.167</td>
+<td class="gt_row gt_right" headers="p_G">0.171</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="year">1994</td>
 <td class="gt_row gt_right" headers="I_Y">0.415</td>
 <td class="gt_row gt_right" headers="p_Y">0.001</td>
 <td class="gt_row gt_right" headers="I_G">0.018</td>
-<td class="gt_row gt_right" headers="p_G">0.288</td>
+<td class="gt_row gt_right" headers="p_G">0.314</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="year">1995</td>
@@ -3989,28 +3989,28 @@ height: 0px !important;
 <tr class="odd">
 <td class="gt_row gt_right" headers="year">1996</td>
 <td class="gt_row gt_right" headers="I_Y">0.023</td>
-<td class="gt_row gt_right" headers="p_Y">0.289</td>
+<td class="gt_row gt_right" headers="p_Y">0.296</td>
 <td class="gt_row gt_right" headers="I_G">0.136</td>
-<td class="gt_row gt_right" headers="p_G">0.024</td>
+<td class="gt_row gt_right" headers="p_G">0.015</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="year">1997</td>
 <td class="gt_row gt_right" headers="I_Y">0.117</td>
-<td class="gt_row gt_right" headers="p_Y">0.032</td>
+<td class="gt_row gt_right" headers="p_Y">0.038</td>
 <td class="gt_row gt_right" headers="I_G">0.006</td>
-<td class="gt_row gt_right" headers="p_G">0.388</td>
+<td class="gt_row gt_right" headers="p_G">0.392</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="year">1998</td>
 <td class="gt_row gt_right" headers="I_Y">0.026</td>
-<td class="gt_row gt_right" headers="p_Y">0.293</td>
+<td class="gt_row gt_right" headers="p_Y">0.283</td>
 <td class="gt_row gt_right" headers="I_G">0.028</td>
-<td class="gt_row gt_right" headers="p_G">0.201</td>
+<td class="gt_row gt_right" headers="p_G">0.238</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="year">1999</td>
 <td class="gt_row gt_right" headers="I_Y">0.090</td>
-<td class="gt_row gt_right" headers="p_Y">0.081</td>
+<td class="gt_row gt_right" headers="p_Y">0.082</td>
 <td class="gt_row gt_right" headers="I_G">0.096</td>
 <td class="gt_row gt_right" headers="p_G">0.058</td>
 </tr>
@@ -4034,7 +4034,7 @@ height: 0px !important;
 <p>Complementamos el diagnóstico global con el índice de Moran local (LISA) computado sobre <span class="math inline">\(Y\)</span> estandarizada por año. La <a href="#fig-lisa" class="quarto-xref">Figura 3</a> presenta el mapa de clusters LISA para el año representativo 1995 (año central del panel): las provincias en rojo constituyen clusters High–High (alto crecimiento rodeado de vecinas con alto crecimiento) y las azules Low–Low, patrones típicamente asociados al conocido dualismo Norte–Mezzogiorno. Los outliers espaciales High–Low y Low–High —significativos pero de signo opuesto a sus vecinos— son escasos, lo que sugiere que la dependencia espacial toma la forma de clusters regionales consistentes más que de heterogeneidad idiosincrática.</p>
 <div class="cell fig-cap-location-top" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-lisa" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-cap-location="top">
+<div id="fig-lisa" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-lisa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura 3: LISA clusters del crecimiento del valor agregado real per cápita (Y), año 1995
@@ -4079,20 +4079,20 @@ Tabla 4: Replicación de la Tabla 4 de Acconcia et al. (2014): multiplicador d
 </figcaption>
 <div aria-describedby="tbl-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="gvunwnaxzm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gvunwnaxzm table {
+<div id="iyqckgmlsy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iyqckgmlsy table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#gvunwnaxzm thead, #gvunwnaxzm tbody, #gvunwnaxzm tfoot, #gvunwnaxzm tr, #gvunwnaxzm td, #gvunwnaxzm th {
+#iyqckgmlsy thead, #iyqckgmlsy tbody, #iyqckgmlsy tfoot, #iyqckgmlsy tr, #iyqckgmlsy td, #iyqckgmlsy th {
 border-style: none;
 }
-#gvunwnaxzm p {
+#iyqckgmlsy p {
 margin: 0;
 padding: 0;
 }
-#gvunwnaxzm .gt_table {
+#iyqckgmlsy .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -4117,11 +4117,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#gvunwnaxzm .gt_caption {
+#iyqckgmlsy .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#gvunwnaxzm .gt_title {
+#iyqckgmlsy .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -4132,7 +4132,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#gvunwnaxzm .gt_subtitle {
+#iyqckgmlsy .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -4143,7 +4143,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#gvunwnaxzm .gt_heading {
+#iyqckgmlsy .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -4154,12 +4154,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#gvunwnaxzm .gt_bottom_border {
+#iyqckgmlsy .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#gvunwnaxzm .gt_col_headings {
+#iyqckgmlsy .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4173,7 +4173,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#gvunwnaxzm .gt_col_heading {
+#iyqckgmlsy .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4192,7 +4192,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#gvunwnaxzm .gt_column_spanner_outer {
+#iyqckgmlsy .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4203,13 +4203,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#gvunwnaxzm .gt_column_spanner_outer:first-child {
+#iyqckgmlsy .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#gvunwnaxzm .gt_column_spanner_outer:last-child {
+#iyqckgmlsy .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#gvunwnaxzm .gt_column_spanner {
+#iyqckgmlsy .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -4220,10 +4220,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#gvunwnaxzm .gt_spanner_row {
+#iyqckgmlsy .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#gvunwnaxzm .gt_group_heading {
+#iyqckgmlsy .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4248,7 +4248,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#gvunwnaxzm .gt_empty_group_heading {
+#iyqckgmlsy .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -4262,13 +4262,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#gvunwnaxzm .gt_from_md > :first-child {
+#iyqckgmlsy .gt_from_md > :first-child {
 margin-top: 0;
 }
-#gvunwnaxzm .gt_from_md > :last-child {
+#iyqckgmlsy .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#gvunwnaxzm .gt_row {
+#iyqckgmlsy .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4286,7 +4286,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#gvunwnaxzm .gt_stub {
+#iyqckgmlsy .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4298,7 +4298,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#gvunwnaxzm .gt_stub_row_group {
+#iyqckgmlsy .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4311,13 +4311,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#gvunwnaxzm .gt_row_group_first td {
+#iyqckgmlsy .gt_row_group_first td {
 border-top-width: 2px;
 }
-#gvunwnaxzm .gt_row_group_first th {
+#iyqckgmlsy .gt_row_group_first th {
 border-top-width: 2px;
 }
-#gvunwnaxzm .gt_summary_row {
+#iyqckgmlsy .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4326,14 +4326,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#gvunwnaxzm .gt_first_summary_row {
+#iyqckgmlsy .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#gvunwnaxzm .gt_first_summary_row.thick {
+#iyqckgmlsy .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#gvunwnaxzm .gt_last_summary_row {
+#iyqckgmlsy .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4342,7 +4342,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#gvunwnaxzm .gt_grand_summary_row {
+#iyqckgmlsy .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4351,7 +4351,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#gvunwnaxzm .gt_first_grand_summary_row {
+#iyqckgmlsy .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4360,7 +4360,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#gvunwnaxzm .gt_last_grand_summary_row_top {
+#iyqckgmlsy .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4369,10 +4369,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#gvunwnaxzm .gt_striped {
+#iyqckgmlsy .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#gvunwnaxzm .gt_table_body {
+#iyqckgmlsy .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4380,7 +4380,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#gvunwnaxzm .gt_footnotes {
+#iyqckgmlsy .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4393,7 +4393,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#gvunwnaxzm .gt_footnote {
+#iyqckgmlsy .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -4401,7 +4401,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#gvunwnaxzm .gt_sourcenotes {
+#iyqckgmlsy .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4414,64 +4414,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#gvunwnaxzm .gt_sourcenote {
+#iyqckgmlsy .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#gvunwnaxzm .gt_left {
+#iyqckgmlsy .gt_left {
 text-align: left;
 }
-#gvunwnaxzm .gt_center {
+#iyqckgmlsy .gt_center {
 text-align: center;
 }
-#gvunwnaxzm .gt_right {
+#iyqckgmlsy .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#gvunwnaxzm .gt_font_normal {
+#iyqckgmlsy .gt_font_normal {
 font-weight: normal;
 }
-#gvunwnaxzm .gt_font_bold {
+#iyqckgmlsy .gt_font_bold {
 font-weight: bold;
 }
-#gvunwnaxzm .gt_font_italic {
+#iyqckgmlsy .gt_font_italic {
 font-style: italic;
 }
-#gvunwnaxzm .gt_super {
+#iyqckgmlsy .gt_super {
 font-size: 65%;
 }
-#gvunwnaxzm .gt_footnote_marks {
+#iyqckgmlsy .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#gvunwnaxzm .gt_asterisk {
+#iyqckgmlsy .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#gvunwnaxzm .gt_indent_1 {
+#iyqckgmlsy .gt_indent_1 {
 text-indent: 5px;
 }
-#gvunwnaxzm .gt_indent_2 {
+#iyqckgmlsy .gt_indent_2 {
 text-indent: 10px;
 }
-#gvunwnaxzm .gt_indent_3 {
+#iyqckgmlsy .gt_indent_3 {
 text-indent: 15px;
 }
-#gvunwnaxzm .gt_indent_4 {
+#iyqckgmlsy .gt_indent_4 {
 text-indent: 20px;
 }
-#gvunwnaxzm .gt_indent_5 {
+#iyqckgmlsy .gt_indent_5 {
 text-indent: 25px;
 }
-#gvunwnaxzm .katex-display {
+#iyqckgmlsy .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#gvunwnaxzm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#iyqckgmlsy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -4579,20 +4579,20 @@ Tabla 5: Multiplicadores de impacto, dinámico y acumulado
 </figcaption>
 <div aria-describedby="tbl-mult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="klfznxyddf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#klfznxyddf table {
+<div id="nzkvcgkqtr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nzkvcgkqtr table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#klfznxyddf thead, #klfznxyddf tbody, #klfznxyddf tfoot, #klfznxyddf tr, #klfznxyddf td, #klfznxyddf th {
+#nzkvcgkqtr thead, #nzkvcgkqtr tbody, #nzkvcgkqtr tfoot, #nzkvcgkqtr tr, #nzkvcgkqtr td, #nzkvcgkqtr th {
 border-style: none;
 }
-#klfznxyddf p {
+#nzkvcgkqtr p {
 margin: 0;
 padding: 0;
 }
-#klfznxyddf .gt_table {
+#nzkvcgkqtr .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -4617,11 +4617,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#klfznxyddf .gt_caption {
+#nzkvcgkqtr .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#klfznxyddf .gt_title {
+#nzkvcgkqtr .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -4632,7 +4632,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#klfznxyddf .gt_subtitle {
+#nzkvcgkqtr .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -4643,7 +4643,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#klfznxyddf .gt_heading {
+#nzkvcgkqtr .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -4654,12 +4654,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#klfznxyddf .gt_bottom_border {
+#nzkvcgkqtr .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#klfznxyddf .gt_col_headings {
+#nzkvcgkqtr .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4673,7 +4673,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#klfznxyddf .gt_col_heading {
+#nzkvcgkqtr .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4692,7 +4692,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#klfznxyddf .gt_column_spanner_outer {
+#nzkvcgkqtr .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4703,13 +4703,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#klfznxyddf .gt_column_spanner_outer:first-child {
+#nzkvcgkqtr .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#klfznxyddf .gt_column_spanner_outer:last-child {
+#nzkvcgkqtr .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#klfznxyddf .gt_column_spanner {
+#nzkvcgkqtr .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -4720,10 +4720,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#klfznxyddf .gt_spanner_row {
+#nzkvcgkqtr .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#klfznxyddf .gt_group_heading {
+#nzkvcgkqtr .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4748,7 +4748,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#klfznxyddf .gt_empty_group_heading {
+#nzkvcgkqtr .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -4762,13 +4762,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#klfznxyddf .gt_from_md > :first-child {
+#nzkvcgkqtr .gt_from_md > :first-child {
 margin-top: 0;
 }
-#klfznxyddf .gt_from_md > :last-child {
+#nzkvcgkqtr .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#klfznxyddf .gt_row {
+#nzkvcgkqtr .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4786,7 +4786,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#klfznxyddf .gt_stub {
+#nzkvcgkqtr .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4798,7 +4798,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#klfznxyddf .gt_stub_row_group {
+#nzkvcgkqtr .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4811,13 +4811,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#klfznxyddf .gt_row_group_first td {
+#nzkvcgkqtr .gt_row_group_first td {
 border-top-width: 2px;
 }
-#klfznxyddf .gt_row_group_first th {
+#nzkvcgkqtr .gt_row_group_first th {
 border-top-width: 2px;
 }
-#klfznxyddf .gt_summary_row {
+#nzkvcgkqtr .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4826,14 +4826,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#klfznxyddf .gt_first_summary_row {
+#nzkvcgkqtr .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#klfznxyddf .gt_first_summary_row.thick {
+#nzkvcgkqtr .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#klfznxyddf .gt_last_summary_row {
+#nzkvcgkqtr .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4842,7 +4842,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#klfznxyddf .gt_grand_summary_row {
+#nzkvcgkqtr .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4851,7 +4851,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#klfznxyddf .gt_first_grand_summary_row {
+#nzkvcgkqtr .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4860,7 +4860,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#klfznxyddf .gt_last_grand_summary_row_top {
+#nzkvcgkqtr .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4869,10 +4869,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#klfznxyddf .gt_striped {
+#nzkvcgkqtr .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#klfznxyddf .gt_table_body {
+#nzkvcgkqtr .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4880,7 +4880,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#klfznxyddf .gt_footnotes {
+#nzkvcgkqtr .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4893,7 +4893,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#klfznxyddf .gt_footnote {
+#nzkvcgkqtr .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -4901,7 +4901,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#klfznxyddf .gt_sourcenotes {
+#nzkvcgkqtr .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4914,64 +4914,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#klfznxyddf .gt_sourcenote {
+#nzkvcgkqtr .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#klfznxyddf .gt_left {
+#nzkvcgkqtr .gt_left {
 text-align: left;
 }
-#klfznxyddf .gt_center {
+#nzkvcgkqtr .gt_center {
 text-align: center;
 }
-#klfznxyddf .gt_right {
+#nzkvcgkqtr .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#klfznxyddf .gt_font_normal {
+#nzkvcgkqtr .gt_font_normal {
 font-weight: normal;
 }
-#klfznxyddf .gt_font_bold {
+#nzkvcgkqtr .gt_font_bold {
 font-weight: bold;
 }
-#klfznxyddf .gt_font_italic {
+#nzkvcgkqtr .gt_font_italic {
 font-style: italic;
 }
-#klfznxyddf .gt_super {
+#nzkvcgkqtr .gt_super {
 font-size: 65%;
 }
-#klfznxyddf .gt_footnote_marks {
+#nzkvcgkqtr .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#klfznxyddf .gt_asterisk {
+#nzkvcgkqtr .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#klfznxyddf .gt_indent_1 {
+#nzkvcgkqtr .gt_indent_1 {
 text-indent: 5px;
 }
-#klfznxyddf .gt_indent_2 {
+#nzkvcgkqtr .gt_indent_2 {
 text-indent: 10px;
 }
-#klfznxyddf .gt_indent_3 {
+#nzkvcgkqtr .gt_indent_3 {
 text-indent: 15px;
 }
-#klfznxyddf .gt_indent_4 {
+#nzkvcgkqtr .gt_indent_4 {
 text-indent: 20px;
 }
-#klfznxyddf .gt_indent_5 {
+#nzkvcgkqtr .gt_indent_5 {
 text-indent: 25px;
 }
-#klfznxyddf .katex-display {
+#nzkvcgkqtr .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#klfznxyddf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nzkvcgkqtr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -5030,7 +5030,7 @@ height: 0px !important;
 <p>Habiendo replicado la línea base, abordamos la contribución central de este trabajo. <span class="citation" data-cites="acconcia2014">Acconcia et al. (<a href="#ref-acconcia2014" role="doc-biblioref">2014</a>)</span> examinan la posibilidad de derrames interprovinciales en su Sección V.A, pero lo hacen mediante un procedimiento deliberadamente simple: añaden a la regresión la variable <span class="math inline">\(SG_{i,t}\)</span> —inversión per cápita de las restantes provincias de la misma región— y su primer rezago. Con esa especificación reportan coeficientes de 0.20 (no significativo) y 0.35 (significativo al 5%), y concluyen que “la evidencia sobre los efectos de derrame de las contracciones del gasto es débil”, caracterizando a las economías provinciales como “insulares”.</p>
 <p>Ese ejercicio, sin embargo, no es econometría espacial propiamente dicha. Impone una estructura de vecindad <em>ad hoc</em> (pertenencia a la misma región administrativa), ignora la geografía efectiva —dos provincias limítrofes de regiones distintas no se consideran vecinas—, no permite dependencia espacial en la variable dependiente ni en los errores, y no admite la descomposición de los efectos en directos, indirectos y totales. Nuestra contribución consiste en someter la afirmación de insularidad a la batería completa de modelos de panel espacial vistos en el curso: definimos matrices de pesos basadas en proximidad geográfica real, contrastamos formalmente la presencia de dependencia espacial mediante tests LM, estimamos las especificaciones SAR, SEM y SDM, y calculamos los impactos en el sentido de <span class="citation" data-cites="lesage2009">LeSage y Pace (<a href="#ref-lesage2009" role="doc-biblioref">2009</a>)</span>.</p>
 <p>Una advertencia metodológica gobierna la lectura de toda esta sección. El estimador de máxima verosimilitud de <code>splm::spml</code> <strong>no admite variables instrumentales</strong>: trata <span class="math inline">\(G_{i,t}\)</span> como exógena. Dado que la <a href="#tbl-baseline" class="quarto-xref">Tabla 4</a> muestra que ignorar la endogeneidad sesga el multiplicador hacia cero en un factor de siete, los coeficientes de los modelos ML deben leerse como <em>contaminados por ese mismo sesgo</em>, y sus estimaciones de spillovers también. Por esa razón el estimador de referencia de esta sección no es el SDM por máxima verosimilitud sino el <strong>GMM espacial con instrumentos</strong> (<code>splm::spgm</code>, Sección 5.4), único que corrige simultáneamente dependencia espacial y endogeneidad. Los modelos ML se reportan porque documentan de forma transparente qué ocurre cuando sólo se atiende una de las dos patologías.</p>
-<p>El diagnóstico LM de Anselin sobre los residuos del panel indica dependencia espacial tanto en la variable dependiente como en los errores.</p>
+<p>El diagnóstico LM de Anselin, aplicado sobre los residuos del modelo no espacial siguiendo el protocolo de <span class="citation" data-cites="elhorst2010">Elhorst (<a href="#ref-elhorst2010" role="doc-biblioref">2010</a>)</span>, indica dependencia espacial tanto en la variable dependiente como en los errores, y ambas sobreviven a las versiones robustas. Esto apunta a una especificación <strong>SARAR</strong> como forma funcional apropiada y motiva el estimador de referencia que empleamos más adelante. (Estos estadísticos están derivados sobre residuos de mínimos cuadrados, de modo que se aplican a la especificación estructural; calcularlos sobre residuos 2SLS altera el patrón, pero esa variante no corresponde a la derivación estándar.)</p>
 <div class="cell" data-tbl-cap-location="top">
 <div id="tbl-lm" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -5039,20 +5039,20 @@ Tabla 6: Diagnóstico LM de dependencia espacial (W = k-NN(4))
 </figcaption>
 <div aria-describedby="tbl-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tqegdpyelc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tqegdpyelc table {
+<div id="foioobwubs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#foioobwubs table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#tqegdpyelc thead, #tqegdpyelc tbody, #tqegdpyelc tfoot, #tqegdpyelc tr, #tqegdpyelc td, #tqegdpyelc th {
+#foioobwubs thead, #foioobwubs tbody, #foioobwubs tfoot, #foioobwubs tr, #foioobwubs td, #foioobwubs th {
 border-style: none;
 }
-#tqegdpyelc p {
+#foioobwubs p {
 margin: 0;
 padding: 0;
 }
-#tqegdpyelc .gt_table {
+#foioobwubs .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -5077,11 +5077,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#tqegdpyelc .gt_caption {
+#foioobwubs .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#tqegdpyelc .gt_title {
+#foioobwubs .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -5092,7 +5092,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#tqegdpyelc .gt_subtitle {
+#foioobwubs .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -5103,7 +5103,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#tqegdpyelc .gt_heading {
+#foioobwubs .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -5114,12 +5114,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#tqegdpyelc .gt_bottom_border {
+#foioobwubs .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#tqegdpyelc .gt_col_headings {
+#foioobwubs .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5133,7 +5133,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#tqegdpyelc .gt_col_heading {
+#foioobwubs .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5152,7 +5152,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#tqegdpyelc .gt_column_spanner_outer {
+#foioobwubs .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5163,13 +5163,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#tqegdpyelc .gt_column_spanner_outer:first-child {
+#foioobwubs .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#tqegdpyelc .gt_column_spanner_outer:last-child {
+#foioobwubs .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#tqegdpyelc .gt_column_spanner {
+#foioobwubs .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -5180,10 +5180,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#tqegdpyelc .gt_spanner_row {
+#foioobwubs .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#tqegdpyelc .gt_group_heading {
+#foioobwubs .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5208,7 +5208,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#tqegdpyelc .gt_empty_group_heading {
+#foioobwubs .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -5222,13 +5222,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#tqegdpyelc .gt_from_md > :first-child {
+#foioobwubs .gt_from_md > :first-child {
 margin-top: 0;
 }
-#tqegdpyelc .gt_from_md > :last-child {
+#foioobwubs .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#tqegdpyelc .gt_row {
+#foioobwubs .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5246,7 +5246,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#tqegdpyelc .gt_stub {
+#foioobwubs .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5258,7 +5258,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#tqegdpyelc .gt_stub_row_group {
+#foioobwubs .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5271,13 +5271,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#tqegdpyelc .gt_row_group_first td {
+#foioobwubs .gt_row_group_first td {
 border-top-width: 2px;
 }
-#tqegdpyelc .gt_row_group_first th {
+#foioobwubs .gt_row_group_first th {
 border-top-width: 2px;
 }
-#tqegdpyelc .gt_summary_row {
+#foioobwubs .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5286,14 +5286,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#tqegdpyelc .gt_first_summary_row {
+#foioobwubs .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#tqegdpyelc .gt_first_summary_row.thick {
+#foioobwubs .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#tqegdpyelc .gt_last_summary_row {
+#foioobwubs .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5302,7 +5302,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#tqegdpyelc .gt_grand_summary_row {
+#foioobwubs .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5311,7 +5311,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#tqegdpyelc .gt_first_grand_summary_row {
+#foioobwubs .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5320,7 +5320,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#tqegdpyelc .gt_last_grand_summary_row_top {
+#foioobwubs .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5329,10 +5329,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#tqegdpyelc .gt_striped {
+#foioobwubs .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#tqegdpyelc .gt_table_body {
+#foioobwubs .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5340,7 +5340,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#tqegdpyelc .gt_footnotes {
+#foioobwubs .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5353,7 +5353,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#tqegdpyelc .gt_footnote {
+#foioobwubs .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -5361,7 +5361,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#tqegdpyelc .gt_sourcenotes {
+#foioobwubs .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5374,64 +5374,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#tqegdpyelc .gt_sourcenote {
+#foioobwubs .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#tqegdpyelc .gt_left {
+#foioobwubs .gt_left {
 text-align: left;
 }
-#tqegdpyelc .gt_center {
+#foioobwubs .gt_center {
 text-align: center;
 }
-#tqegdpyelc .gt_right {
+#foioobwubs .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#tqegdpyelc .gt_font_normal {
+#foioobwubs .gt_font_normal {
 font-weight: normal;
 }
-#tqegdpyelc .gt_font_bold {
+#foioobwubs .gt_font_bold {
 font-weight: bold;
 }
-#tqegdpyelc .gt_font_italic {
+#foioobwubs .gt_font_italic {
 font-style: italic;
 }
-#tqegdpyelc .gt_super {
+#foioobwubs .gt_super {
 font-size: 65%;
 }
-#tqegdpyelc .gt_footnote_marks {
+#foioobwubs .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#tqegdpyelc .gt_asterisk {
+#foioobwubs .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#tqegdpyelc .gt_indent_1 {
+#foioobwubs .gt_indent_1 {
 text-indent: 5px;
 }
-#tqegdpyelc .gt_indent_2 {
+#foioobwubs .gt_indent_2 {
 text-indent: 10px;
 }
-#tqegdpyelc .gt_indent_3 {
+#foioobwubs .gt_indent_3 {
 text-indent: 15px;
 }
-#tqegdpyelc .gt_indent_4 {
+#foioobwubs .gt_indent_4 {
 text-indent: 20px;
 }
-#tqegdpyelc .gt_indent_5 {
+#foioobwubs .gt_indent_5 {
 text-indent: 25px;
 }
-#tqegdpyelc .katex-display {
+#foioobwubs .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#tqegdpyelc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#foioobwubs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -5446,19 +5446,19 @@ height: 0px !important;
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="Test">LM-lag</td>
-<td class="gt_row gt_left" headers="Valor">188.44 (p=0.000)</td>
+<td class="gt_row gt_left" headers="Valor">487.86 (p=0.000)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Test">LM-error</td>
-<td class="gt_row gt_left" headers="Valor">241.49 (p=0.000)</td>
+<td class="gt_row gt_left" headers="Valor">438.67 (p=0.000)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Test">LM-lag robusto</td>
-<td class="gt_row gt_left" headers="Valor">0.21 (p=0.646)</td>
+<td class="gt_row gt_left" headers="Valor">64.50 (p=0.000)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Test">LM-error robusto</td>
-<td class="gt_row gt_left" headers="Valor">53.26 (p=0.000)</td>
+<td class="gt_row gt_left" headers="Valor">15.31 (p=0.000)</td>
 </tr>
 </tbody><tfoot>
 <tr class="gt_sourcenotes odd">
@@ -5482,20 +5482,20 @@ Tabla 7: Modelos espaciales con efectos fijos bidireccionales (W = k-NN(4), est
 </figcaption>
 <div aria-describedby="tbl-spatial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="fuwoxccxfa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fuwoxccxfa table {
+<div id="gkmcaoldxb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gkmcaoldxb table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#fuwoxccxfa thead, #fuwoxccxfa tbody, #fuwoxccxfa tfoot, #fuwoxccxfa tr, #fuwoxccxfa td, #fuwoxccxfa th {
+#gkmcaoldxb thead, #gkmcaoldxb tbody, #gkmcaoldxb tfoot, #gkmcaoldxb tr, #gkmcaoldxb td, #gkmcaoldxb th {
 border-style: none;
 }
-#fuwoxccxfa p {
+#gkmcaoldxb p {
 margin: 0;
 padding: 0;
 }
-#fuwoxccxfa .gt_table {
+#gkmcaoldxb .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -5520,11 +5520,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#fuwoxccxfa .gt_caption {
+#gkmcaoldxb .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#fuwoxccxfa .gt_title {
+#gkmcaoldxb .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -5535,7 +5535,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#fuwoxccxfa .gt_subtitle {
+#gkmcaoldxb .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -5546,7 +5546,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#fuwoxccxfa .gt_heading {
+#gkmcaoldxb .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -5557,12 +5557,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#fuwoxccxfa .gt_bottom_border {
+#gkmcaoldxb .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#fuwoxccxfa .gt_col_headings {
+#gkmcaoldxb .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5576,7 +5576,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#fuwoxccxfa .gt_col_heading {
+#gkmcaoldxb .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5595,7 +5595,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#fuwoxccxfa .gt_column_spanner_outer {
+#gkmcaoldxb .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5606,13 +5606,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#fuwoxccxfa .gt_column_spanner_outer:first-child {
+#gkmcaoldxb .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#fuwoxccxfa .gt_column_spanner_outer:last-child {
+#gkmcaoldxb .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#fuwoxccxfa .gt_column_spanner {
+#gkmcaoldxb .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -5623,10 +5623,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#fuwoxccxfa .gt_spanner_row {
+#gkmcaoldxb .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#fuwoxccxfa .gt_group_heading {
+#gkmcaoldxb .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5651,7 +5651,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#fuwoxccxfa .gt_empty_group_heading {
+#gkmcaoldxb .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -5665,13 +5665,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#fuwoxccxfa .gt_from_md > :first-child {
+#gkmcaoldxb .gt_from_md > :first-child {
 margin-top: 0;
 }
-#fuwoxccxfa .gt_from_md > :last-child {
+#gkmcaoldxb .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#fuwoxccxfa .gt_row {
+#gkmcaoldxb .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5689,7 +5689,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#fuwoxccxfa .gt_stub {
+#gkmcaoldxb .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5701,7 +5701,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fuwoxccxfa .gt_stub_row_group {
+#gkmcaoldxb .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5714,13 +5714,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#fuwoxccxfa .gt_row_group_first td {
+#gkmcaoldxb .gt_row_group_first td {
 border-top-width: 2px;
 }
-#fuwoxccxfa .gt_row_group_first th {
+#gkmcaoldxb .gt_row_group_first th {
 border-top-width: 2px;
 }
-#fuwoxccxfa .gt_summary_row {
+#gkmcaoldxb .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5729,14 +5729,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fuwoxccxfa .gt_first_summary_row {
+#gkmcaoldxb .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#fuwoxccxfa .gt_first_summary_row.thick {
+#gkmcaoldxb .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#fuwoxccxfa .gt_last_summary_row {
+#gkmcaoldxb .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5745,7 +5745,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#fuwoxccxfa .gt_grand_summary_row {
+#gkmcaoldxb .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5754,7 +5754,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fuwoxccxfa .gt_first_grand_summary_row {
+#gkmcaoldxb .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5763,7 +5763,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#fuwoxccxfa .gt_last_grand_summary_row_top {
+#gkmcaoldxb .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5772,10 +5772,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#fuwoxccxfa .gt_striped {
+#gkmcaoldxb .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#fuwoxccxfa .gt_table_body {
+#gkmcaoldxb .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5783,7 +5783,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#fuwoxccxfa .gt_footnotes {
+#gkmcaoldxb .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5796,7 +5796,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#fuwoxccxfa .gt_footnote {
+#gkmcaoldxb .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -5804,7 +5804,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fuwoxccxfa .gt_sourcenotes {
+#gkmcaoldxb .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5817,64 +5817,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#fuwoxccxfa .gt_sourcenote {
+#gkmcaoldxb .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fuwoxccxfa .gt_left {
+#gkmcaoldxb .gt_left {
 text-align: left;
 }
-#fuwoxccxfa .gt_center {
+#gkmcaoldxb .gt_center {
 text-align: center;
 }
-#fuwoxccxfa .gt_right {
+#gkmcaoldxb .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#fuwoxccxfa .gt_font_normal {
+#gkmcaoldxb .gt_font_normal {
 font-weight: normal;
 }
-#fuwoxccxfa .gt_font_bold {
+#gkmcaoldxb .gt_font_bold {
 font-weight: bold;
 }
-#fuwoxccxfa .gt_font_italic {
+#gkmcaoldxb .gt_font_italic {
 font-style: italic;
 }
-#fuwoxccxfa .gt_super {
+#gkmcaoldxb .gt_super {
 font-size: 65%;
 }
-#fuwoxccxfa .gt_footnote_marks {
+#gkmcaoldxb .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#fuwoxccxfa .gt_asterisk {
+#gkmcaoldxb .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#fuwoxccxfa .gt_indent_1 {
+#gkmcaoldxb .gt_indent_1 {
 text-indent: 5px;
 }
-#fuwoxccxfa .gt_indent_2 {
+#gkmcaoldxb .gt_indent_2 {
 text-indent: 10px;
 }
-#fuwoxccxfa .gt_indent_3 {
+#gkmcaoldxb .gt_indent_3 {
 text-indent: 15px;
 }
-#fuwoxccxfa .gt_indent_4 {
+#gkmcaoldxb .gt_indent_4 {
 text-indent: 20px;
 }
-#fuwoxccxfa .gt_indent_5 {
+#gkmcaoldxb .gt_indent_5 {
 text-indent: 25px;
 }
-#fuwoxccxfa .katex-display {
+#gkmcaoldxb .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#fuwoxccxfa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gkmcaoldxb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -7309,9 +7309,9 @@ height: 0px !important;
 </figure>
 </div>
 </div>
-<p>Tres lecturas se desprenden de la <a href="#tbl-spgm" class="quarto-xref">Tabla 10</a>. Primero, al reintroducir los instrumentos el coeficiente de <span class="math inline">\(G\)</span> se recupera respecto a los modelos ML —de 0.13–0.15 a un rango de 0.30–0.51— confirmando que la atenuación observada en la <a href="#tbl-spatial" class="quarto-xref">Tabla 7</a> era efecto de la endogeneidad y no de la corrección espacial. Segundo, el parámetro de dependencia espacial <span class="math inline">\(\lambda\)</span> permanece positivo y significativo en ambas especificaciones, de modo que la estructura espacial en el crecimiento provincial es un hecho robusto que sobrevive a la corrección por variables instrumentales. Tercero, y más relevante para la pregunta de derrames: aun corrigiendo simultáneamente ambas patologías, el estimador <strong>no</strong> produce evidencia de un efecto de derrame del gasto grande y nítidamente estimado; en la especificación SARAR completa el coeficiente de <span class="math inline">\(G\)</span> pierde significancia estadística.</p>
+<p>Tres lecturas se desprenden de la <a href="#tbl-spgm" class="quarto-xref">Tabla 10</a>. Primero, al reintroducir los instrumentos el coeficiente de <span class="math inline">\(G\)</span> se recupera respecto a los modelos ML —de 0.13–0.15 a un rango de 0.30–0.51— confirmando que la atenuación de la <a href="#tbl-spatial" class="quarto-xref">Tabla 7</a> era efecto de la endogeneidad y no de la corrección espacial. Segundo, <span class="math inline">\(\lambda\)</span> permanece positivo y significativo en ambas especificaciones: la estructura espacial sobrevive a la corrección por variables instrumentales. Tercero, y más relevante: aun corrigiendo ambas patologías, el estimador <strong>no</strong> produce evidencia de un derrame del gasto nítidamente estimado; en el SARAR completo el coeficiente de <span class="math inline">\(G\)</span> pierde significancia.</p>
 <p>Conviene señalar una limitación: en la especificación SARAR el parámetro <span class="math inline">\(\lambda\)</span> se aproxima al límite del espacio de estacionariedad (<span class="math inline">\(|\lambda|&lt;1\)</span>), lo que en paneles cortos suele indicar que el término espacial está absorbiendo choques comunes no modelados. La estimación puntual bajo SARAR-GMM debe tomarse como orientativa.</p>
-<p>Puestos en conjunto, estos resultados <strong>respaldan la conclusión de insularidad de <span class="citation" data-cites="acconcia2014">Acconcia et al. (<a href="#ref-acconcia2014" role="doc-biblioref">2014</a>)</span> en lugar de contradecirla</strong>. Los autores llegaron a ella con un procedimiento rudimentario —añadir el gasto regional agregado como regresor— que dejaba abierta la pregunta de si un tratamiento espacial formal revelaría derrames ocultos. La respuesta, tras aplicar matrices de vecindad geográfica, tests LM, la descomposición de impactos de LeSage–Pace y un estimador que corrige espacio y endogeneidad de forma conjunta, es que no: existe dependencia espacial en el crecimiento provincial —seguramente por choques regionales comunes, como sugiere la significancia del término de error espacial— pero no un canal de transmisión del gasto público que atraviese fronteras provinciales de forma económicamente sustantiva. La insularidad del paper resiste el escrutinio espacial.</p>
+<p>Puestos en conjunto, estos resultados <strong>respaldan la conclusión de insularidad de <span class="citation" data-cites="acconcia2014">Acconcia et al. (<a href="#ref-acconcia2014" role="doc-biblioref">2014</a>)</span> en lugar de contradecirla</strong>. Los autores llegaron a ella con un procedimiento rudimentario —añadir el gasto regional agregado como regresor— que dejaba abierta la pregunta de si un tratamiento espacial formal revelaría derrames ocultos. La respuesta, tras aplicar matrices de vecindad geográfica, tests LM, la descomposición de impactos de LeSage–Pace y un estimador que corrige espacio y endogeneidad de forma conjunta, es que no: existe dependencia espacial en el crecimiento provincial —el diagnóstico LM la detecta en la dependiente y en los errores, y <span class="math inline">\(\lambda\)</span> es significativo en todas las especificaciones— pero no un canal de transmisión del gasto público que atraviese fronteras provinciales de forma económicamente sustantiva. Conviene distinguir ambas cosas: que el crecimiento de provincias vecinas esté correlacionado no implica que el <em>gasto</em> de una provincia mueva el producto de las otras. La insularidad del paper, entendida en este segundo sentido, resiste el escrutinio espacial.</p>
 </section>
 <section id="heterogeneidad-por-macrorregión-validación-del-diseño" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="heterogeneidad-por-macrorregión-validación-del-diseño"><span class="header-section-number">7.5</span> Heterogeneidad por macrorregión (validación del diseño)</h2>
@@ -8771,7 +8771,7 @@ height: 0px !important;
 <h2 data-number="7.8" class="anchored" data-anchor-id="interpretación"><span class="header-section-number">7.8</span> Interpretación</h2>
 <p>Los resultados admiten tres lecturas complementarias.</p>
 <p><strong>Sobre el multiplicador.</strong> La réplica confirma el hallazgo central de <span class="citation" data-cites="acconcia2014">Acconcia et al. (<a href="#ref-acconcia2014" role="doc-biblioref">2014</a>)</span>: una contracción exógena de la inversión pública provincial reduce el producto local en una magnitud superior a la unidad —1.55 en impacto, 1.96 acumulado. Se trata de multiplicadores altos para el estándar de la literatura de estímulo subnacional <span class="citation" data-cites="nakamura2014 chodorowreich2012">(<a href="#ref-chodorowreich2012" role="doc-biblioref">Chodorow-Reich et al., 2012</a>; <a href="#ref-nakamura2014" role="doc-biblioref">Nakamura y Steinsson, 2014</a>)</span>, atribuibles a que el shock es una contracción abrupta y no compensada por política monetaria ni tributaria local.</p>
-<p><strong>Sobre el espacio.</strong> La dependencia espacial en el crecimiento provincial italiano es un hecho robusto: los tests LM la detectan, el parámetro <span class="math inline">\(\lambda\)</span> es significativo en todas las especificaciones espaciales, y el análisis LISA identifica clusters persistentes que reproducen el dualismo Norte–Mezzogiorno. Pero esa dependencia opera principalmente a través de <strong>choques regionales comunes</strong> —capturados por el término de error espacial— y no a través de un canal de transmisión del gasto público entre provincias vecinas. Los impactos indirectos estimados por SDM son sugerentes pero provienen de un modelo que no corrige endogeneidad; cuando se corrige mediante GMM espacial, el efecto propio del gasto pierde precisión y no emerge un derrame nítido.</p>
+<p><strong>Sobre el espacio.</strong> La dependencia espacial en el crecimiento provincial italiano es un hecho robusto: los tests LM detectan dependencia en la variable dependiente y en los errores —ambas persistentes en las versiones robustas—, el parámetro <span class="math inline">\(\lambda\)</span> es significativo en todas las especificaciones espaciales, y el análisis LISA identifica clusters que reproducen el dualismo Norte–Mezzogiorno. Ese diagnóstico apunta a una especificación SARAR, que es la que estimamos por GMM con instrumentos. Pero la existencia de dependencia espacial no equivale a la existencia de un canal de transmisión del <strong>gasto</strong> entre provincias: los impactos indirectos que sugiere el SDM provienen de un modelo que no corrige endogeneidad, y cuando se corrigen ambas patologías el efecto del gasto pierde precisión sin que emerja un derrame nítidamente estimado.</p>
 <p><strong>Sobre la insularidad.</strong> Nuestra conclusión coincide con la de <span class="citation" data-cites="acconcia2014">Acconcia et al. (<a href="#ref-acconcia2014" role="doc-biblioref">2014</a>)</span>, pero descansa sobre una base metodológica considerablemente más sólida. Los autores descartaron los derrames añadiendo el gasto regional agregado como regresor, un procedimiento que impone una noción administrativa de vecindad y no permite descomponer efectos. Nosotros llegamos al mismo resultado tras definir vecindades geográficas, contrastar formalmente la dependencia espacial, estimar la familia SAR–SEM–SDM, calcular impactos directos e indirectos y verificar la robustez a cuatro matrices de pesos alternativas. Que la conclusión sobreviva a este escrutinio la fortalece: las provincias italianas se comportan, en efecto, como economías insulares respecto a los shocks de inversión pública.</p>
 <p>Desde el punto de vista de la política, la implicación es que el costo económico de una disolución administrativa se concentra en la jurisdicción intervenida y no se difunde de forma sustantiva hacia sus vecinas. Esto simplifica el diseño de mecanismos compensatorios —que pueden focalizarse territorialmente sin necesidad de coordinación interprovincial—, pero también implica que la provincia afectada absorbe íntegramente el ajuste, lo que refuerza el argumento a favor de transferencias contingentes durante los periodos de administración externa.</p>
 </section>
@@ -8779,7 +8779,7 @@ height: 0px !important;
 <section id="conclusiones" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Conclusiones</h1>
 <p>Este trabajo replicó y extendió espacialmente el análisis de <span class="citation" data-cites="acconcia2014">Acconcia et al. (<a href="#ref-acconcia2014" role="doc-biblioref">2014</a>)</span> sobre el multiplicador fiscal de la inversión pública en las 95 provincias italianas entre 1990 y 1999. La replicación reproduce los resultados originales con precisión: multiplicador de impacto de 1.55, dinámico a dos años de 1.30 y acumulado de 1.96, frente a los 1.55, 1.29 y 1.95 del paper, con un estadístico F de instrumento débil de 12.8 (paper: 12.58) y coeficientes de primera etapa negativos y significativos para ambos instrumentos. Dos decisiones metodológicas del original resultaron cuantitativamente decisivas para alcanzar esta correspondencia: la ponderación de las regresiones por población provincial y la agrupación de los errores estándar a nivel región × año.</p>
-<p>La extensión espacial arroja un resultado matizado. Por un lado, la dependencia espacial en el crecimiento provincial italiano es un hecho sólido: los tests LM la detectan en la variable dependiente y en los errores, el parámetro <span class="math inline">\(\lambda\)</span> resulta positivo y significativo en todas las especificaciones que lo estiman, y el análisis LISA identifica clusters High–High y Low–Low que reproducen el dualismo Norte–Mezzogiorno. Por otro lado, esa dependencia no se traduce en un canal de transmisión del gasto público entre provincias: la descomposición de impactos del SDM sugiere efectos indirectos, pero proviene de un estimador que trata el gasto como exógeno; cuando se corrigen simultáneamente espacio y endogeneidad mediante GMM espacial, no emerge un derrame nítidamente estimado.</p>
+<p>La extensión espacial arroja un resultado matizado. Por un lado, la dependencia espacial en el crecimiento provincial italiano es un hecho sólido: los tests LM la detectan tanto en la variable dependiente como en los errores —y ambas sobreviven a las versiones robustas, lo que apunta a una especificación SARAR—, el parámetro <span class="math inline">\(\lambda\)</span> resulta positivo y significativo en todas las especificaciones que lo estiman, y el análisis LISA identifica clusters High–High y Low–Low que reproducen el dualismo Norte–Mezzogiorno. Por otro lado, esa dependencia no se traduce en un canal de transmisión del gasto público entre provincias: la descomposición de impactos del SDM sugiere efectos indirectos, pero proviene de un estimador que trata el gasto como exógeno; cuando se corrigen simultáneamente espacio y endogeneidad mediante el SARAR-GMM —precisamente la especificación que el diagnóstico LM recomienda— no emerge un derrame nítidamente estimado.</p>
 <p>Este hallazgo <strong>respalda la conclusión de insularidad del paper original en lugar de contradecirla</strong>, y lo hace sobre una base metodológica más exigente. <span class="citation" data-cites="acconcia2014">Acconcia et al. (<a href="#ref-acconcia2014" role="doc-biblioref">2014</a>)</span> la establecieron mediante un procedimiento simple —añadir el gasto regional agregado como regresor— cuya principal limitación es imponer una noción administrativa de vecindad. Al reemplazarla por vecindades geográficas explícitas, contrastar formalmente la dependencia espacial, estimar la familia SAR–SEM–SDM, calcular impactos directos e indirectos y verificar la robustez frente a cuatro matrices de pesos alternativas, la conclusión se mantiene. Los ejercicios complementarios apuntan en la misma dirección: el balance test confirma que las disoluciones no se anticipan por trayectorias económicas previas, y el análisis por macrorregión muestra que el efecto se identifica precisamente donde el instrumento varía —el Mezzogiorno concentra prácticamente toda la variación instrumental, con una sola observación tratada en el Norte.</p>
 <p>Una lección metodológica transversal emerge del ejercicio. Los modelos espaciales estimados por máxima verosimilitud entregaron sistemáticamente multiplicadores del orden de 0.13–0.15, muy próximos al OLS y lejos del 1.55 del 2SLS. La razón no es la corrección espacial sino que <code>spml</code> no admite instrumentos: aplicar econometría espacial sobre un diseño cuasi-experimental sin preservar la estrategia de identificación reintroduce el sesgo que el diseño buscaba eliminar. En contextos donde ambas patologías coexisten, la estimación por Momentos Generalizados no es un refinamiento opcional sino un requisito.</p>
 <p>El ejercicio de <strong>heterogeneidad por macrorregión ISTAT</strong> valida el diseño: el multiplicador se estima con precisión en el Mezzogiorno (donde efectivamente ocurrieron las disoluciones), mientras Norte y Centro entregan estimadores no identificados o con instrumentos degenerados. Esto es la contrapartida esperada de un diseño de LATE y descarta la posibilidad de que el efecto agregado surja de regiones donde el instrumento no varía. El <strong>balance test de pre-trends</strong> verifica el supuesto sustantivo del diseño: que los municipios disueltos no eran significativamente distintos de sus pares en trayectoria económica o criminal previa. El resultado apoya la interpretación causal, con la mayoría de los coeficientes de <span class="math inline">\(CDS1\)</span> y <span class="math inline">\(CDS2\)</span> sobre variables pre-tratamiento estadísticamente cerca de cero. Este test es complementario a los diagnósticos formales (F, Wu–Hausman, Sargan) y menos sensible a la debilidad del instrumento porque no involucra el estimador 2SLS.</p>

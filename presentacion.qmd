@@ -1,0 +1,551 @@
+---
+title: "¿Son insulares las provincias italianas?"
+subtitle: "Una extensión espacial al multiplicador fiscal de Acconcia, Corsetti y Simonelli (2014)"
+author: "Paula (pau) · Fernando (fer) · Mateo (teo)"
+institute: "Econometría Avanzada II --- Universidad EAFIT"
+date: "5 de septiembre de 2026"
+lang: es
+format:
+  beamer:
+    theme: default
+    colortheme: dove
+    aspectratio: 169
+    slide-level: 2
+    fontsize: 10pt
+    keep-tex: true
+    incremental: false
+    include-in-header:
+      text: |
+        \usepackage{booktabs}
+        \usepackage{caption}
+        \captionsetup{font=scriptsize}
+        % --- Paleta ---
+        \definecolor{acc}{RGB}{123,60,140}
+        \definecolor{acc2}{RGB}{40,90,130}
+        \setbeamercolor{frametitle}{fg=white,bg=acc}
+        \setbeamercolor{title}{fg=acc}
+        \setbeamercolor{structure}{fg=acc}
+        \setbeamercolor{alerted text}{fg=acc2}
+        \setbeamercolor{block title}{fg=white,bg=acc2}
+        \setbeamercolor{block body}{bg=acc2!8}
+        \setbeamercolor{block title alerted}{fg=white,bg=acc}
+        \setbeamercolor{block body alerted}{bg=acc!8}
+        % --- Tipografía y layout ---
+        \setbeamerfont{frametitle}{size=\large,series=\bfseries}
+        \setbeamertemplate{navigation symbols}{}
+        \setbeamertemplate{footline}[frame number]
+        \setbeamertemplate{itemize item}{\color{acc}$\bullet$}
+        \setbeamertemplate{itemize subitem}{\color{acc}--}
+        \setbeamertemplate{section page}{
+          \begin{centering}\vfill
+          {\usebeamerfont{section title}\usebeamercolor[fg]{acc}%
+           \Large\bfseries\insertsection\par}
+          \vfill\end{centering}}
+        \AtBeginSection[]{\frame{\sectionpage}}
+bibliography: refs.bib
+csl: apa.csl
+execute:
+  echo: false
+  warning: false
+  message: false
+  cache: true
+---
+
+```{r setup}
+#| include: false
+if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
+pacman::p_load(pder, dplyr, tidyr, purrr, tibble, sf, spdep, splm,
+               plm, AER, sandwich, lmtest, ggplot2, viridisLite,
+               knitr, kableExtra)
+options(scipen = 999)
+
+data("Mafia", package = "pder")
+
+df_all <- Mafia |> arrange(province, year) |> group_by(province) |>
+  mutate(
+    Y = y, G = g, L1G = dplyr::lag(g,1), L2G = dplyr::lag(g,2),
+    L1Y = dplyr::lag(y,1), L2Y = dplyr::lag(y,2),
+    L1U1 = dplyr::lag(u1,1), L2U1 = dplyr::lag(u1,2),
+    L1U2 = dplyr::lag(u2,1), L2U2 = dplyr::lag(u2,2),
+    L2CD = dplyr::lag(cd,2), L3CD = dplyr::lag(cd,3),
+    L1CD_S2 = dplyr::lag(cds2,1), CD_S1 = cds1,
+    L1Mafiosi = dplyr::lag(mafiosi,1), L2Mafiosi = dplyr::lag(mafiosi,2),
+    L1Extortion = dplyr::lag(extortion,1), L2Extortion = dplyr::lag(extortion,2),
+    L1Corruption1 = dplyr::lag(corruption1,1), L2Corruption1 = dplyr::lag(corruption1,2),
+    L1Corruption2 = dplyr::lag(corruption2,1), L2Corruption2 = dplyr::lag(corruption2,2),
+    L1Murder = dplyr::lag(murder,1), L2Murder = dplyr::lag(murder,2),
+    Mafiosi = mafiosi, Extortion = extortion, Corruption1 = corruption1,
+    Corruption2 = corruption2, Murder = murder, Population = pop
+  ) |> ungroup()
+
+macro_norte <- c("Alessandria","Asti","Cuneo","Novara","Torino","Vercelli","Aosta",
+  "Bergamo","Brescia","Como","Cremona","Mantua","Milano","Pavia","Sondrio","Varese",
+  "Bolzano","Trento","Belluno","Padua","Rovigo","Treviso","Venezia","Verona","Vicenza",
+  "Gorizia","Pordenone","Trieste","Udine","Genova","Imperia","La Spezia","Savona",
+  "Bologna","Ferrara","Forli' - Cesena","Modena","Parma","Piacenza","Ravenna","Reggio Nell'Emilia")
+macro_centro <- c("Arezzo","Florence","Grosseto","Livorno","Lucca","Massa Carrara","Pisa",
+  "Pistoia","Siena","Perugia","Terni","Ancona","Ascoli Piceno","Macerata","Pesaro E Urbino",
+  "Frosinone","Latina","Rieti","Roma","Viterbo")
+macro_sur <- c("Chieti","L'Aquila","Pescara","Teramo","Campobasso","Isernia","Avellino",
+  "Benevento","Caserta","Napoli","Salerno","Bari","Brindisi","Foggia","Lecce","Taranto",
+  "Matera","Potenza","Catanzaro","Cosenza","Reggio Di Calabria","Agrigento","Caltanissetta",
+  "Catania","Enna","Messina","Palermo","Ragusa","Syracuse","Trapani","Cagliari","Nuoro",
+  "Oristano","Sassari")
+macro_lookup <- c(setNames(rep("Norte", length(macro_norte)), macro_norte),
+                  setNames(rep("Centro", length(macro_centro)), macro_centro),
+                  setNames(rep("Mezzogiorno", length(macro_sur)), macro_sur))
+
+df <- df_all |>
+  mutate(macrorregion = unname(macro_lookup[province])) |>
+  filter(year >= 1990, year <= 1999) |>
+  mutate(
+    region_cl = ifelse(region %in% c("Valle d'Aosta","Valle D'Aosta"), "Piemonte", region),
+    regyear   = interaction(region_cl, year, drop = TRUE),
+    prov_fac  = factor(province), year_fac = factor(year))
+
+pdata <- plm::pdata.frame(df, index = c("province","year"))
+
+ctrl <- paste("L1G + L2G + L1U1 + L1U2 + L2U1 + L2U2 + L2CD + L3CD +",
+  "Mafiosi + Extortion + Corruption1 + Corruption2 + Murder +",
+  "L1Mafiosi + L1Extortion + L1Corruption1 + L1Corruption2 + L1Murder +",
+  "L2Mafiosi + L2Extortion + L2Corruption1 + L2Corruption2 + L2Murder")
+
+f_ols <- as.formula(paste("Y ~ G +", ctrl, "+ prov_fac + year_fac"))
+f_iv  <- as.formula(paste("Y ~ G +", ctrl, "+ prov_fac + year_fac | CD_S1 + L1CD_S2 +",
+                          ctrl, "+ prov_fac + year_fac"))
+f_ivY <- as.formula(paste("Y ~ G + L1Y + L2Y +", ctrl, "+ prov_fac + year_fac |",
+                          "CD_S1 + L1CD_S2 + L1Y + L2Y +", ctrl, "+ prov_fac + year_fac"))
+
+ols_w <- lm(f_ols, data = df, weights = Population)
+iv_w  <- ivreg(f_iv,  data = df, weights = Population)
+iv_wY <- ivreg(f_ivY, data = df, weights = Population)
+
+vcl <- function(m) sandwich::vcovCL(m, cluster = df$regyear[as.integer(names(residuals(m)))])
+ct_ols <- coeftest(ols_w, vcov. = vcl(ols_w))
+ct_iv  <- coeftest(iv_w,  vcov. = vcl(iv_w))
+ct_ivY <- coeftest(iv_wY, vcov. = vcl(iv_wY))
+d_iv   <- summary(iv_w, diagnostics = TRUE)$diagnostics
+
+b <- coef(iv_wY)
+m_imp <- unname(b["G"]); m_dyn <- unname(b["G"]/(1-b["L1Y"]))
+m_cum <- unname((b["G"]+b["L1G"])/(1-b["L1Y"]))
+
+fs_w <- lm(as.formula(paste("G ~ CD_S1 + L1CD_S2 +", ctrl, "+ prov_fac + year_fac")),
+           data = df, weights = Population)
+ct_fs <- coeftest(fs_w, vcov. = vcl(fs_w))
+
+# --- Geometría y matriz de pesos ---
+italy <- st_read("it_shp/it.shp", quiet = TRUE)
+equiv <- tibble::tribble(~shp_name, ~mafia_name,
+  "Turin","Torino","Aoste","Aosta","Mantova","Mantua","Bozen","Bolzano","Padova","Padua",
+  "Reggio Emilia","Reggio Nell'Emilia","Forlì-Cesena","Forli' - Cesena","Massa-Carrara","Massa Carrara",
+  "Firenze","Florence","Pesaro e Urbino","Pesaro E Urbino","Reggio Calabria","Reggio Di Calabria",
+  "Siracusa","Syracuse","Oristrano","Oristano")
+italy_c <- italy |> left_join(equiv, by = c("name"="shp_name")) |>
+  mutate(province = ifelse(is.na(mafia_name), name, mafia_name)) |>
+  filter(province %in% unique(Mafia$province)) |> arrange(province)
+coords <- st_centroid(italy_c) |> st_coordinates()
+W4 <- nb2listw(knn2nb(knearneigh(coords, k = 4)), style = "W")
+
+# --- Modelos espaciales ---
+x_all <- c("G","L1G","L2G","L1U1","L1U2","L2U1","L2U2","L2CD","L3CD",
+  "Mafiosi","Extortion","Corruption1","Corruption2","Murder",
+  "L1Mafiosi","L1Extortion","L1Corruption1","L1Corruption2","L1Murder",
+  "L2Mafiosi","L2Extortion","L2Corruption1","L2Corruption2","L2Murder")
+pd_w <- pdata
+for (v in x_all) pd_w[[paste0("w",v)]] <- splm::slag(pd_w[[v]], listw = W4, lag = 1)
+f_ml  <- reformulate(x_all, response = "Y")
+f_sdm <- reformulate(c(x_all, paste0("w", x_all)), response = "Y")
+
+sar <- try(spml(f_ml,  data = pd_w, listw = W4, model="within", effect="twoways",
+                lag=TRUE,  spatial.error="none"), silent=TRUE)
+sem <- try(spml(f_ml,  data = pd_w, listw = W4, model="within", effect="twoways",
+                lag=FALSE, spatial.error="b"),   silent=TRUE)
+sdm <- try(spml(f_sdm, data = pd_w, listw = W4, model="within", effect="twoways",
+                lag=TRUE,  spatial.error="none"), silent=TRUE)
+
+f_gmm <- reformulate(setdiff(x_all,"G"), response = "Y")
+sar_gmm <- try(splm::spgm(f_gmm, data=pdata, listw=W4, model="within",
+                lag=TRUE, spatial.error=FALSE, endog=~G,
+                instruments=~CD_S1+L1CD_S2), silent=TRUE)
+sarar_gmm <- try(splm::spgm(f_gmm, data=pdata, listw=W4, model="within",
+                lag=TRUE, spatial.error=TRUE, endog=~G,
+                instruments=~CD_S1+L1CD_S2), silent=TRUE)
+
+# --- Tests LM ---
+lm_res <- sapply(c("lml","lme","rlml","rlme"), function(tt)
+  tryCatch({x <- slmtest(f_ml, data=pdata, listw=W4, test=tt, model="within")
+            sprintf("%.2f (p=%.3f)", as.numeric(x$statistic), x$p.value)},
+           error=function(e) "---"))
+
+# --- Helpers de formato ---
+gv <- function(m, term) {
+  if (inherits(m,"try-error")) return(c(NA,NA,NA))
+  s <- summary(m); co <- if (!is.null(s$CoefTable)) s$CoefTable else s$coefficients
+  if (!term %in% rownames(co)) return(c(NA,NA,NA))
+  c(co[term,1], co[term,2], co[term,4])
+}
+fst <- function(v, d=3) {
+  if (any(is.na(v))) return("---")
+  s <- ifelse(v[3]<.01,"***",ifelse(v[3]<.05,"**",ifelse(v[3]<.1,"*","")))
+  sprintf(paste0("%.",d,"f%s"), v[1], s)
+}
+cl2 <- function(ct, t) if (t %in% rownames(ct))
+  sprintf("%.2f%s", ct[t,1], ifelse(ct[t,4]<.01,"***",ifelse(ct[t,4]<.05,"**",
+    ifelse(ct[t,4]<.1,"*","")))) else "---"
+```
+
+# El problema
+
+## Medir el multiplicador fiscal es difícil
+
+**La pregunta:** ¿cuánto cambia el producto local cuando cambia el gasto público?
+
+\vspace{0.4cm}
+
+**El obstáculo: el gasto es endógeno.**
+
+\vspace{0.2cm}
+
+- La inversión en infraestructura se **planea años antes** de ejecutarse
+  \newline $\rightarrow$ efectos de anticipación sesgan el multiplicador hacia abajo
+- El gobierno **asigna fondos en respuesta** a la evolución local
+  \newline $\rightarrow$ si compensa provincias rezagadas, MCO subestima
+
+\vspace{0.4cm}
+
+Ambos sesgos apuntan a cero. Se necesita variación en el gasto que sea **ajena al ciclo económico local**.
+
+## El experimento natural: Ley 164/1991
+
+:::: {.columns}
+
+::: {.column width="57%"}
+
+**Tres piezas institucionales**
+
+\vspace{0.2cm}
+
+\small
+
+1. El gobierno central financia, pero los municipios **eligen proyectos y contratistas**. Sin poder tributario local, el gasto no se acompaña de cambios impositivos.
+2. La obra pública se vuelve negocio central para las mafias.
+3. **D.L. 164/1991**: ante evidencia de infiltración se disuelve el concejo completo y tres comisarios externos gobiernan 18 meses.
+
+\normalsize
+
+\vspace{0.25cm}
+
+Los comisarios **cortan el gasto en obra pública**: la contracción promedio es cercana a 20 p.p. de la inversión.
+
+:::
+
+::: {.column width="43%"}
+
+```{r}
+#| fig-width: 3.4
+#| fig-height: 4.0
+prov_cd <- df |> group_by(province) |>
+  summarise(CD = sum(cd, na.rm=TRUE), .groups="drop")
+mp <- italy_c |> left_join(prov_cd, by="province")
+ggplot(mp) +
+  geom_sf(aes(fill = CD), color="white", linewidth=.12) +
+  scale_fill_viridis_c(option="inferno", trans="sqrt", name=NULL) +
+  labs(title="Disoluciones acumuladas\n1990-1999") +
+  theme_void(base_size=9) +
+  theme(plot.title=element_text(hjust=.5, face="bold", size=9),
+        legend.key.width=unit(.25,"cm"), legend.text=element_text(size=6))
+```
+
+:::
+
+::::
+
+## Datos y especificación
+
+$$Y_{i,t} = \beta\, G_{i,t} + \alpha_i + \lambda_t + \gamma X_{i,t} + v_{i,t}$$
+
+\vspace{0.2cm}
+
+**Panel:** 95 provincias $\times$ 1990--1999 = 950 observaciones
+
+\vspace{0.2cm}
+
+\small
+
+| | |
+|---|---|
+| $Y_{i,t}$ | Crecimiento del valor agregado real per cápita |
+| $G_{i,t}$ | $\Delta$ inversión pública per cápita $/\ y_{i,t-1}$ |
+| $CDS1_{i,t}$ | Disoluciones decretadas en el 1er semestre (pond. población) |
+| $CDS2_{i,t-1}$ | Disoluciones con $<$180 días hasta fin de año, rezagadas |
+
+\normalsize
+
+\vspace{0.3cm}
+
+**Controles:** cinco variables de criminalidad y corrupción con dos rezagos, dos proxies laborales, rezagos de disoluciones y de $G$.
+
+**Decisiones del original que replicamos:** ponderación por población y errores agrupados región $\times$ año (190 clusters).
+
+# Parte I --- La replicación
+
+## Replicamos la Tabla 4 del paper
+
+```{r}
+#| results: asis
+tibble::tibble(
+  ` ` = c("$G(t)$","$G(t-1)$","$Y(t-1)$",
+          "$CDS1(t)$ --- 1\\textsuperscript{a} etapa",
+          "$CDS2(t-1)$ --- 1\\textsuperscript{a} etapa","F instrumentos"),
+  `OLS` = c(cl2(ct_ols,"G"), cl2(ct_ols,"L1G"), "---","---","---","---"),
+  `2SLS` = c(cl2(ct_iv,"G"), cl2(ct_iv,"L1G"), "---",
+             cl2(ct_fs,"CD_S1"), cl2(ct_fs,"L1CD_S2"),
+             sprintf("%.2f", d_iv["Weak instruments","statistic"])),
+  `2SLS + Y rez.` = c(cl2(ct_ivY,"G"), cl2(ct_ivY,"L1G"), cl2(ct_ivY,"L1Y"),
+             cl2(ct_fs,"CD_S1"), cl2(ct_fs,"L1CD_S2"), "12.82"),
+  `Paper` = c("1.46 / 1.55","0.73 / 0.79","$-0.20$","$-2.07$","$-4.02$","12.58 / 11.83")
+) |>
+  kbl(booktabs=TRUE, escape=FALSE, align="lrrrr", linesep="") |>
+  kable_styling(font_size=8, latex_options="hold_position")
+```
+
+\vspace{0.2cm}
+
+\small
+
+- El estimador IV es **siete veces** el MCO $\rightarrow$ el sesgo de endogeneidad es enorme
+- Instrumentos fuertes (F = `r sprintf('%.1f', d_iv["Weak instruments","statistic"])`), Wu--Hausman rechaza exogeneidad, Sargan no rechaza
+- Coincidimos con el paper **hasta en los errores estándar**
+
+\normalsize
+
+## Los tres multiplicadores
+
+```{r}
+#| results: asis
+tibble::tibble(
+  Multiplicador = c("Impacto: $\\beta$",
+                    "Dinámico (2 años): $\\beta/(1-\\phi_1)$",
+                    "Acumulado: $(\\beta+\\beta_{G,t-1})/(1-\\phi_1)$"),
+  `Nuestro` = sprintf("%.2f", c(m_imp, m_dyn, m_cum)),
+  `Paper` = c("1.55","1.29","1.95")
+) |>
+  kbl(booktabs=TRUE, escape=FALSE, align="lrr", linesep="") |>
+  kable_styling(font_size=9, latex_options="hold_position")
+```
+
+\vspace{0.5cm}
+
+\begin{alertblock}{Interpretación}
+Un recorte exógeno de inversión pública equivalente al 1\% del valor agregado local reduce el producto provincial en \textbf{`r sprintf('%.2f', m_imp)`\%} el mismo año y hasta \textbf{`r sprintf('%.2f', m_cum)`\%} de forma acumulada.
+\end{alertblock}
+
+# Parte II --- La extensión espacial
+
+## La brecha que llenamos
+
+**Lo que hace el paper (Sección V.A):** añade $SG_{i,t}$ --- gasto agregado de las otras provincias de la **misma región administrativa** --- como regresor. Concluye que la evidencia de derrames es "débil" y que las provincias son **insulares**.
+
+\vspace{0.3cm}
+
+**Cinco limitaciones de ese procedimiento:**
+
+\small
+
+1. Vecindad **administrativa**, no geográfica (Reggio Calabria y Messina: 3 km, regiones distintas)
+2. Pesos implícitos uniformes dentro de la región
+3. No modela dependencia en la variable dependiente ($WY$)
+4. No modela dependencia en los errores ($W\varepsilon$)
+5. No permite descomponer en efectos directo, indirecto y total
+
+\normalsize
+
+\vspace{0.3cm}
+
+\begin{quotation}
+\small
+``Su estudio requiere una especificación cuidadosa \dots de \textbf{modelos espaciales} que den cuenta de la movilidad transfronteriza de capital y trabajo. Esta es una \textbf{nueva dirección prometedora} para la investigación.''
+\hfill --- Acconcia et al. (2014), conclusiones
+\end{quotation}
+
+## Tests LM: ¿hay dependencia espacial?
+
+```{r}
+#| results: asis
+tibble::tibble(
+  Test = c("LM-lag","LM-error","\\textbf{LM-lag robusto}","\\textbf{LM-error robusto}"),
+  Estadístico = unname(lm_res)
+) |>
+  kbl(booktabs=TRUE, escape=FALSE, align="lr", linesep="") |>
+  kable_styling(font_size=9, latex_options="hold_position")
+```
+
+\vspace{0.35cm}
+
+Los cuatro tests rechazan: hay dependencia espacial **tanto en la variable dependiente como en los errores**, y ambas sobreviven a las versiones robustas.
+
+\vspace{0.2cm}
+
+\begin{block}{Qué implica}
+El protocolo de Elhorst (2010) señala en este caso una especificación \textbf{SARAR} --- rezago espacial de la dependiente \emph{y} autocorrelación en los errores.
+
+\vspace{0.15cm}
+
+Eso motiva directamente nuestro estimador de referencia: el \textbf{SARAR-GMM con instrumentos}.
+\end{block}
+
+## Modelos espaciales: ML frente a GMM
+
+```{r}
+#| results: asis
+tibble::tibble(
+  Modelo = c("SAR (ML)","SEM (ML)","SDM (ML)",
+             "\\textbf{SAR-GMM (IV)}","\\textbf{SARAR-GMM (IV)}"),
+  `$G(t)$` = c(fst(gv(sar,"G")), fst(gv(sem,"G")), fst(gv(sdm,"G")),
+               fst(gv(sar_gmm,"G")), fst(gv(sarar_gmm,"G"))),
+  `$\\lambda$ / $\\rho$` = c(fst(gv(sar,"lambda")), fst(gv(sem,"rho")),
+               fst(gv(sdm,"lambda")), fst(gv(sar_gmm,"lambda")),
+               fst(gv(sarar_gmm,"lambda"))),
+  `Corrige endog.` = c("No","No","No","\\textbf{Sí}","\\textbf{Sí}")
+) |>
+  kbl(booktabs=TRUE, escape=FALSE, align="lrrc", linesep="") |>
+  kable_styling(font_size=8, latex_options="hold_position")
+```
+
+\vspace{0.25cm}
+
+\small
+
+\alert{Advertencia clave:} \texttt{splm::spml} **no admite instrumentos**. Los modelos ML tratan $G$ como exógena y reproducen el sesgo de atenuación: sus coeficientes (0.13--0.15) están más cerca del MCO (0.20) que del 2SLS (1.55).
+
+\vspace{0.2cm}
+
+El **GMM de Kelejian--Prucha** (`spgm`) sí acepta instrumentos. Al reintroducirlos el coeficiente se recupera, $\lambda$ sigue significativo, pero **no emerge un derrame nítidamente estimado**.
+
+\normalsize
+
+## Heterogeneidad: dónde está la identificación
+
+```{r}
+#| results: asis
+hh <- purrr::map_dfr(c("Norte","Centro","Mezzogiorno"), function(r) {
+  d <- df |> filter(macrorregion == r)
+  n_ins <- sum(d$CD_S1 != 0 | d$L1CD_S2 != 0, na.rm = TRUE)
+  m <- try(plm(as.formula(paste("Y ~ G +", ctrl, "| CD_S1 + L1CD_S2 +", ctrl)),
+               data = plm::pdata.frame(d, index=c("province","year")),
+               model="within", effect="twoways"), silent=TRUE)
+  g <- if (inherits(m,"try-error") || !("G" %in% names(coef(m)))) "no identificado" else {
+    co <- coef(summary(m))
+    sprintf("%.2f%s", co["G",1], ifelse(co["G",4]<.05,"**",ifelse(co["G",4]<.1,"*","")))
+  }
+  tibble(Región=r, Provincias=length(unique(d$province)), Obs=nrow(d),
+         `Obs. con instr. $\\neq 0$`=n_ins, `$G(t)$`=g)
+})
+hh |> kbl(booktabs=TRUE, escape=FALSE, align="lrrrr", linesep="") |>
+  kable_styling(font_size=9, latex_options="hold_position")
+```
+
+\vspace{0.35cm}
+
+\begin{alertblock}{}
+En todo el \textbf{Norte} de Italia, durante los diez años, hay \textbf{una sola} observación provincia--año con instrumento distinto de cero. En el \textbf{Centro}, ninguna.
+
+\vspace{0.15cm}
+
+Toda la variación instrumental está en el Mezzogiorno --- y el multiplicador allí reproduce el de la muestra completa. Es la contrapartida exacta de un diseño de LATE, y \textbf{valida el diseño}.
+\end{alertblock}
+
+## Síntesis: lo que discrimina los resultados
+
+```{r}
+#| results: asis
+tibble::tibble(
+  Modelo = c("OLS ponderado","\\textbf{2SLS}","\\textbf{2SLS + Y rez.}",
+             "SAR (ML)","SEM (ML)","SDM (ML)",
+             "SAR-GMM","SARAR-GMM","2SLS (Mezzogiorno)"),
+  `$G(t)$` = c(sprintf("%.2f", coef(ols_w)["G"]),
+               sprintf("\\textbf{%.2f}", coef(iv_w)["G"]),
+               sprintf("\\textbf{%.2f}", coef(iv_wY)["G"]),
+               fst(gv(sar,"G")), fst(gv(sem,"G")), fst(gv(sdm,"G")),
+               fst(gv(sar_gmm,"G")), fst(gv(sarar_gmm,"G")), "1.20*"),
+  `Endog.` = c("No","Sí","Sí","No","No","No","Sí","Sí","Sí"),
+  `Espacio` = c("No","No","No","Sí","Sí","Sí","Sí","Sí","No")
+) |>
+  kbl(booktabs=TRUE, escape=FALSE, align="lrcc", linesep="") |>
+  kable_styling(font_size=8, latex_options="hold_position")
+```
+
+\vspace{0.25cm}
+
+\small
+
+Las especificaciones que **no** instrumentan entregan 0.13--0.20, modelen o no el espacio. Las que **sí** instrumentan: 1.47--1.55 sin estructura espacial, 0.30--0.51 con ella.
+
+\vspace{0.15cm}
+
+$\Rightarrow$ Lo que discrimina los resultados es **el tratamiento de la endogeneidad**, no el del espacio. Y el parámetro espacial es significativo en todas las especificaciones que lo estiman.
+
+\normalsize
+
+# Conclusiones
+
+## La insularidad se sostiene
+
+**La evidencia converge desde tres direcciones:**
+
+\vspace{0.2cm}
+
+1. El **diagnóstico LM** señala una especificación SARAR --- que es exactamente la que estimamos por GMM con instrumentos
+2. El **SARAR-GMM** confirma dependencia espacial ($\lambda$ significativo) pero **no** produce un derrame del gasto nítidamente estimado
+3. La **robustez a cuatro matrices $W$** (k-NN 4 y 6, reina, distancia inversa) descarta que sea artefacto de la vecindad elegida
+
+\vspace{0.3cm}
+
+\small
+Conviene distinguir dos cosas: que el crecimiento de provincias vecinas esté **correlacionado** no implica que el **gasto** de una mueva el producto de las otras. Lo primero lo confirmamos; lo segundo no aparece.
+\normalsize
+
+\vspace{0.4cm}
+
+Confirmamos la conclusión del paper **sobre una base metodológica más exigente**: ellos la establecieron con vecindad administrativa y sin descomposición de efectos; nosotros con geografía explícita, tests formales, la familia SAR--SEM--SDM e impactos de LeSage--Pace.
+
+## Lección metodológica y política
+
+\begin{block}{Metodología}
+Aplicar econometría espacial sobre un diseño cuasi-experimental \textbf{sin preservar la estrategia de identificación} reintroduce el sesgo que el diseño existe para eliminar.
+
+\vspace{0.15cm}
+
+Cuando ambas patologías coexisten, el GMM espacial no es un refinamiento opcional: es un requisito.
+\end{block}
+
+\vspace{0.3cm}
+
+\begin{block}{Política}
+El costo económico de una disolución administrativa se concentra en la jurisdicción intervenida y no se difunde a sus vecinas.
+
+\vspace{0.15cm}
+
+Esto simplifica el diseño de compensaciones --- pueden focalizarse sin coordinación interprovincial --- pero implica que la provincia afectada \textbf{absorbe íntegramente el ajuste}.
+\end{block}
+
+## \phantom{Gracias}
+
+\begin{center}
+\vspace{1cm}
+{\Huge Gracias}
+
+\vspace{1.2cm}
+
+{\large Las tres cifras}
+
+\vspace{0.5cm}
+
+\begin{tabular}{cl}
+\textbf{`r sprintf('%.2f', m_imp)`} & multiplicador de impacto \\[0.3cm]
+\textbf{`r sprintf('%.2f', m_cum)`} & multiplicador acumulado \\[0.3cm]
+\textbf{1} & observación con instrumento $\neq 0$ \\
+ & en todo el Norte de Italia \\
+\end{tabular}
+\end{center}
