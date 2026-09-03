@@ -1064,17 +1064,15 @@ La medición del multiplicador fiscal ha sido estudiada, en gran medida, desde m
 
 En la elaboración de este trabajo inicialmente se propone un modelo basado en los estudios cuasi-experimentales de @acconcia2014, el cual se fundamenta en que los shocks son exógemos a la ejecución pública. La especificación del modelo (ver @eq-mod1) relaciona el crecimiento anual agregado per cápita a nivel de provincia (\\(Y\_{i, t}\\)) con la variación interanual del gasto público per cápita en infraestructura (\\(G\_{i, t}\\)), normalizada por el rezago del producto per cápita. Dado lo anterior, se estima un modelo de datos panel con efectos fijos provinciales (\\( \\alpha_i\\)) y efectos fijos de año (\\( \\lambda_t\\)), con un vector de controles (\\(X\_{i, t}\\)) y un término de error (\\(\\varepsilon\_{i, t}\\)).
 
-$$
-Y_{i,t}=\beta G_{i,t}+\alpha_i+\lambda_t+\gamma_i'X_{i,t}+\varepsilon_{i,t}\hspace{2cm} \varepsilon_{i,t} \sim \mathcal{N}(0,\sigma_\epsilon^2)
-$$ {#eq-mod1}
+$$Y_{i,t}=\beta G_{i,t}+\alpha_i+\lambda_t+\gamma_i'X_{i,t}+\varepsilon_{i,t}\hspace{2cm} \varepsilon_{i,t} \sim \mathcal{N}(0,\sigma_\epsilon^2)$$
+ {#eq-mod1}
 
 Sin embargo, el uso de estimaciones por Mínimos Cuadrados Ordinarios (MCO) resulta insuficiente en este contexto debido a la fuerte endogeneidad que afecta al gasto público en infraestructura. La ejecución de proyectos suele estar anticipada por decisiones políticas y administrativas, de manera que los cambios en inversión pueden correlacionarse con shocks no observados de crecimiento económico. Además, la reasignación de recursos frente a crisis locales o regionales introduce simultaneidad entre gasto e ingresos provinciales. Estas fuentes de sesgo generan correlación entre el gasto y el término de error, lo que conduce a estimadores inconsistentes y a una mala interpretación del efecto sobre el multiplicador fiscal. Por tanto, para aislar shocks exógenos en la inversión se requiere recurrir a un enfoque de Variables Instrumentales (IV).
 
 Los instrumentos utilizados siguen la propuesta de @acconcia2014 al hacer uso de las disoluciones forzosas de concejos municipales por infiltración mafiosa como variación cuasi-exógena en la ejecución de gasto público. Se consideran dos medidas: i) \\(cds1\_{i,t}\\)​, que capta el número de municipios sometidos a administración obligatoria en el primer semestre del año ponderados por la proporción de población provincial que reside en dichos municipios, y ii) \\(cds2\_{i,t-1}\\)​, que mide la exposición cuando la destitución ocurre en el segundo semestre y se calcula en función de los días transcurridos hasta final de año (ver @eq-mod2). Ambas variables representan shocks administrativos que alteran de manera abrupta y ajena al ciclo económico local la capacidad de ejecutar proyectos de inversión pública, cumpliendo así los supuestos de validez de los instrumentos.
 
-$$
-G_{i,t}=\psi_1CDS1_{i,t}+\psi_2CDS2_{i,t-1}+\alpha_i+\lambda_t+\gamma_i'X_{i,t}+v_{i,t}\hspace{2cm} v_{i,t} \sim \mathcal{N}(0,\sigma_v^2)
-$$ {#eq-mod2}
+$$G_{i,t}=\psi_1CDS1_{i,t}+\psi_2CDS2_{i,t-1}+\alpha_i+\lambda_t+\gamma_i'X_{i,t}+v_{i,t}\hspace{2cm} v_{i,t} \sim \mathcal{N}(0,\sigma_v^2)$$
+ {#eq-mod2}
 
 En cuanto a los controles, el modelo incorpora un conjunto amplio de variables para reducir sesgos por omisión. Se incluyen proxies del mercado laboral: el crecimiento del empleo per cápita (\\(u1\\)) y las horas de *cassa integrazione* per cápita (\\(u2\\)), ambos considerados en niveles y con dos rezagos. Asimismo, se añaden indicadores de criminalidad vinculados a la mafia: número de asociados mafiosos, extorsiones, homicidios y delitos de corrupción (medidos tanto como personas reportadas como por denuncias judiciales), todos en forma contemporánea y hasta dos rezagos para cada provincia. La inclusión de estos controles permite capturar tanto la dinámica del ciclo económico como factores institucionales y criminales que influyen en la capacidad de crecimiento y en la ejecución de gasto, asegurando estimaciones más robustas del multiplicador fiscal.
 
@@ -1082,9 +1080,8 @@ Un aporte fundamental de este trabajo es la incorporación de modelos espaciales
 
 En particular, se emplea la especificación del Spatial Durbin Model, el cual permite identificar no solo cómo las variaciones en el gasto de una provincia afectan a su propio crecimiento económico, sino también cómo se transmiten hacia provincias vecinas a través de spillovers espaciales. En la @eq-mod3 el parámetro $\rho$ mide la dependencia espacial de la variable dependiente (rezago espacial de $Y$), capturando los efectos spillovers entre provincias a través de $WY$. El vector $\beta$ recoge los efectos directos de los regresores sobre $Y$ dentro de cada provincia, mientras que $\theta$ cuantifica los spillovers de los regresores hacia las provincias vecinas mediante $WX$ (efectos indirectos); la suma de ambos define el impacto total. En la estimación se incorporan efectos fijos por provincia y año para controlar por heterogeneidad no observada invariante y choques comunes. De igual forma se estiman otros modelos espaciales para comprobar la robustez del ejercicio.
 
-$$
-Y=\rho WY + X\beta + WX\theta + \varepsilon
-$$ {#eq-mod3}
+$$Y=\rho WY + X\beta + WX\theta + \varepsilon$$
+ {#eq-mod3}
 
 # Resultados
 
